@@ -17,7 +17,8 @@
 %%%%%%%%% Início das definições iniciais %%%%%%%%%
 % ---------- Preambulo ----------
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
-\programa{}
+\unidade{Câmpus Cornélio Procópio}
+\programa{Programa de Pós-Graduação em Engenharia Elétrica}
 \documento{Manual}
 \nivel{}
 \titulacao{}
@@ -29,23 +30,11 @@
 \palavraschave{}
 \keywords{}
 
-\comentario{\UTFPRdocumentodata\ apresentado ao \UTFPRprogramadata\ da \ABNTinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em Automação Industrial''.}
-
-
-
-\orientador[Orientador]{Grau}{Nome do Orientador}
-\coorientador[Co-orientadora]{Grau}{Nome da Co-orientadora} \coordenadorUTFPR[Coordenadora]{Grau}{Nome do coordenador}
+\comentario{O \utfprtex e uma classe de formatação para Dissertações e Trabalhos de Conclusão do
+\UTFPRprogramadata\ da \ABNTinstituicaodata\ do \UTFPRunidadedata.}
 
 \local{Cornélio Procópio} % cidade
 \data{\the\year} % ano automático
-
-%%%% Folha de Aprovação
-\textoaprovacao{Este \UTFPRdocumentodata\ foi julgado adequado para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em Automação Industrial'' e aprovado em sua forma final pelo \UTFPRprogramadata\ da \ABNTinstituicaodata.}
-\primeiroassina[Doutor, UFSC]{Primeiro Membro}
-\segundoassina{Segundo Membro}
-\terceiroassina{Terceiro Membro}
-\quartoassina{Quarto Membro}
-\datadefesaUTFPR{29/07/2011}
 
 %%%%%%%%% Fim das definições iniciais %%%%%%%%%
 
@@ -91,16 +80,16 @@
 
 \chapter{Introdução}
 
-O pgeeltex é uma classe de formatação para dissertações, teses e propostas de teses da Programa de Pós-graduação em Engenharia Elétrica da Universidade Federal de Santa Catarina - Brasil.
+O \utfprtex é uma classe de formatação para Dissertações e Trabalhos de Conclusão de Curso \ABNTinstituicaodata.
 
-Por ser uma classe (modelo) o pgeeltex é invocado nas primeiras linhas do seu documento escrito no LaTeX, com o comando \verb|\documentclass|.
+Por ser uma classe (modelo) o \utfprtex é invocado nas primeiras linhas do seu documento escrito no LaTeX, com o comando \verb|\documentclass|.
 
-Este modelo é baseado no \href{http://abntex.codigolivre.org.br/}{AbnTeX}.
+Este modelo é baseado no \href{http://abntex.codigolivre.org.br/}{\abnTeX}.
 
-Veja instruções abaixo de como instalar o \abnTeX~ bem como o PgeelTeX.
+Veja instruções abaixo de como instalar o \abnTeX~ bem como o \utfprtex.
 
 
-\section{Instalação do PgeelTeX}
+\section{Instalação do }
 
 Você pode instalar o \utfprtex de diversas maneiras, veja abaixo:
 
