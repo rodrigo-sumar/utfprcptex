@@ -1,0 +1,18 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{ABOL}]\begingroup \nomeqref {2}\nompageref{15}
+  \item [{BEMO}]\begingroup TESTE 4\nomeqref {2}\nompageref{16}
+  \item [{CPGEI}]\begingroup Programa de P\'os-gradua\c {c}\~ao em Engenharia El\'etrica e Inform\'atica Industrial\nomeqref {2}
+		\nompageref{15}
+  \item [{DAELN}]\begingroup Departamento Acad\^emico de Eletr\^onica\nomeqref {2}
+		\nompageref{15}
+  \item [{ESQUISITINHO}]\begingroup É O CARA DO CLUBE DOS QUINZE\nomeqref {2}
+		\nompageref{16}
+  \item [{JING}]\begingroup TESTE 2\nomeqref {2}\nompageref{15}
+  \item [{UTFPR}]\begingroup Universidade Tecnol\'ogica Federal do Paran\'a\nomeqref {2}
+		\nompageref{15}
+  \item [{XANTtrtrtrtr}]\begingroup TESTE 1\nomeqref {2}\nompageref{15}
+
+\end{thenomenclature}
