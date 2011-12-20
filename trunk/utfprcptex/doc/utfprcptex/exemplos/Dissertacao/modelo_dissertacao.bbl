@@ -11,6 +11,11 @@
 Dispon{\'\i}vel em: $<$http://sourceforge.net/apps/
   mediawiki/abntex/index.php$>$. Acesso em: 8 de novembro de 2009.}
 
+\bibitem[Anderson e Fouad 1977]{Anderson1977}
+\abntrefinfo{Anderson e Fouad}{ANDERSON; FOUAD}{1977}
+{ANDERSON, P.~M.; FOUAD, A.~A. \textbf{Power System Control and Stability}.
+  Ames, USA: The Iowa State University Press, 1977. 464~p.}
+
 \bibitem[BibTeX 2009]{BibTeX2009}
 \abntrefinfo{BibTeX}{BIBTEX}{2009}
 {BIBTEX. \textbf{Bib\TeX.org}. 2009.
