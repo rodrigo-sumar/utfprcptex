@@ -4,16 +4,12 @@
 
 %\usepackage[latin1]{inputenc}
 %\usepackage[brazil]{babel}
-\usepackage[alf]{abntcite}
-\usepackage{hyperref}
+\usepackage{amsmath,amsfonts,amssymb} % pacote matematico
+\usepackage{graphicx} % pacote grafico
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=2, abnt-etal-list=99]{abntcite}
 \usepackage{array}
 
-% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
-% Comentar se o pacote hyperref não estiver sendo utilizado.
-\pdfstringdefDisableCommands{\edef\uppercase{}}
-\pdfstringdefDisableCommands{%
-\let\MakeUppercase\relax
-}
+
 %%%%%%%%% Início das definições iniciais %%%%%%%%%
 % ---------- Preambulo ----------
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
@@ -84,7 +80,7 @@ O \utfprtex é uma classe de formatação para Dissertações e Trabalhos de Conclusã
 
 Por ser uma classe (modelo) o \utfprtex é invocado nas primeiras linhas do seu documento escrito no LaTeX, com o comando \verb|\documentclass|.
 
-Este modelo é baseado no \href{http://abntex.codigolivre.org.br/}{\abnTeX}.
+Este modelo é baseado no {\abnTeX} (http://abntex.codigolivre.org.br/)
 
 Veja instruções abaixo de como instalar o \abnTeX~ bem como o \utfprtex.
 
@@ -96,7 +92,7 @@ Você pode instalar o \utfprtex de diversas maneiras, veja abaixo:
 \subsection{A partir do download do arquivo compactado}
 
 \begin{itemize}
-	\item Baixe na página de download deste projeto o arquivo ''.zip´´ com a versão mais recente do \utfprtex. O endereço do site do \utfprtex é \url{http://code.google.com/p/pgeeltex/}
+	\item Baixe na página de download deste projeto o arquivo ''.zip´´ com a versão mais recente do \utfprtex. O endereço do site do \utfprtex é  \verb|http://code.google.com/p/pgeeltex/|
 	\item Uma vez baixado o arquivo, descompacte-o em uma pasta exclusiva;
 	\item Entre no menu de configurações (\textit{settings}) do MiKTeX (Menu iniciar/programas/MiKTeX 2.X);
 	\item Na aba \textit{Roots} clique no botão \textit{Add} e adicione a pasta onde você descompactou o pgeeltex;
@@ -105,39 +101,39 @@ Você pode instalar o \utfprtex de diversas maneiras, veja abaixo:
 
 Pronto, o MiKTeX já sabe onde está o \utfprtex.
 
-%\subsection{A partir do SVN}
-%
-%Você pode também baixar o \utfprtex a partir do repositório SVN\footnote{Para mais informações sobre o SVN, veja em \href{http://pt.wikipedia.org/wiki/Subversion}{http://pt.wikipedia.org/wiki/Subversion}} deste projeto. A vantagem deste método é que você sempre baixará a versão mais recente do \utfprtex. Além disso, com um sistema de controle de versão\footnote{Veja a definição em  \href{http://pt.wikipedia.org/wiki/Sistema\_de\_controle\_de\_vers\%C3\%A3o}{http://pt.wikipedia.org/wiki/Sistema\_de\_controle\_de\_vers\%C3\%A3o}} você pode facilmente atualizar o \utfprtex. O procedimento básico é o seguinte:
-%
-%\begin{itemize}
-%	\item Baixe e instale um programa cliente SVN. Eu recomendo o Tortoise SVN que é integrado ao windows explorer:  \href{http://tortoisesvn.tigris.org/}{http://tortoisesvn.tigris.org/};
-%	\item Crie uma pasta para o \utfprtex no seu computador;
-%	\item Instado o Tortoise SVN clique com o botão direito do mouse dentro desta pasta e selecione \textit{SVN Checkout};
-%	\item Na janela que abriu, cole o seguinte endereço no campo \textit{URL of reposiroty}:
-%
-%   \verb|https://pgeeltex.googlecode.com/svn/trunk/|
-%
-%	\item Clique em \textit{OK} e espere o Tortoise conectar e baixar os diretórios e arquivos mais atuais do servidor;
-%	\item Pronto, agora você já tem a versão mais atual do \utfprtex;
-%	\item Entre no menu de configurações (\textit{settings}) do MiKTeX (Menu iniciar/programas/MiKTeX 2.X);
-%	\item Na aba \textit{Roots} clique no botão \textit{Add} e adicione a pasta onde você descompactou o \utfprtex;
-%	\item Volte para a aba \textit{General} e clique nos botões \textit{Refresh FNDB} e \textit{Update Formats}.
-%
-%\end{itemize}
-%
-%Pronto, o MiKTeX já sabe onde está o PgeelTeX.
-%
-%Se você quiser usar um cliente SVN na linha de comando do Windows (ou Linux), baixe os binários do SVN no site \href{http://subversion.tigris.org/}{http://subversion.tigris.org/} e após instalar, utilize a seguinte linha de comando:
-%
-%\noindent
-%\verb|svn checkout http://pgeeltex.googlecode.com/svn/trunk/ pgeeltex-read-only|
+\subsection{A partir do SVN}
+
+Você pode também baixar o \utfprtex a partir do repositório SVN\footnote{Para mais informações sobre o SVN, veja em  (http://pt.wikipedia.org/wiki/Subversion)} deste projeto. A vantagem deste método é que você sempre baixará a versão mais recente do \utfprtex. Além disso, com um sistema de controle de versão\footnote{Veja a definição em  (http://pt.wikipedia.org/wiki/Sistema\_de\_controle\_de\_versão)} você pode facilmente atualizar o \utfprtex. O procedimento básico é o seguinte:
+
+\begin{itemize}
+	\item Baixe e instale um programa cliente SVN. Eu recomendo o Tortoise SVN que é integrado ao windows explorer:   \verb|http://tortoisesvn.tigris.org/|;
+	\item Crie uma pasta para o \utfprtex no seu computador;
+	\item Instado o Tortoise SVN clique com o botão direito do mouse dentro desta pasta e selecione \textit{SVN Checkout};
+	\item Na janela que abriu, cole o seguinte endereço no campo \textit{URL of reposiroty}:
+
+   \verb|https://utfprcptex.googlecode.com/svn/trunk/|
+
+	\item Clique em \textit{OK} e espere o Tortoise conectar e baixar os diretórios e arquivos mais atuais do servidor;
+	\item Pronto, agora você já tem a versão mais atual do \utfprtex;
+	\item Entre no menu de configurações (\textit{settings}) do MiKTeX (Menu iniciar/programas/MiKTeX 2.X);
+	\item Na aba \textit{Roots} clique no botão \textit{Add} e adicione a pasta onde você descompactou o \utfprtex;
+	\item Volte para a aba \textit{General} e clique nos botões \textit{Refresh FNDB} e \textit{Update Formats}.
+
+\end{itemize}
+
+Pronto, o MiKTeX já sabe onde está o \utfprtex.
+
+Se você quiser usar um cliente SVN na linha de comando do Windows (ou Linux), baixe os binários do SVN no site {http://subversion.tigris.org/} e após instalar, utilize a seguinte linha de comando:
+
+\noindent
+\verb|svn checkout http://utfprcptex.googlecode.com/svn/trunk/ utfprcptex-read-only|
 
 \section{Instalação do AbnTeX}
 
 Para que o \utfprtex funcione, é necessário que você tenha instalado o pacote \abnTeX. O procedimento é semelhante a instalação do \utfprtex via arquivo compactado:
 
 \begin{itemize}
-	\item Baixe o \abnTeX~ versão 0.8.2 em \href{http://abntex.codigolivre.org.br/};
+	\item Baixe o \abnTeX~ versão 0.8.2 em  \verb|http://abntex.codigolivre.org.br/|;
 	\item Descompacte-o em uma pasta dedicada;
 	\item Entre no menu de configurações (\textit{settings}) do MiKTeX (Menu iniciar/programas/MiKTeX 2.X);
 	\item Na aba \textit{Roots} clique no botão \textit{Add} e adicione a pasta \textit{texmf} que está dentro da pasta onde você descompactou o \abnTeX;
@@ -164,7 +160,7 @@ A classe \utfprtex suporta todas as opções da classe \abnTeX. Além destas, algum
 
 \begin{table}[htb]
   \centering
-	\caption{Opções da classe \texorpdfstring{\utfprtex}{pgeeltex}.}
+	\caption{Opções da classe \utfprtex.}
   \begin{tabular}{l|c}
     \hline
     Opção & Descrição \\ \hline
@@ -184,7 +180,7 @@ As opções da classe \abnTeX~ utilizadas para formatar o documento de acordo com 
 
 \begin{table}[htb]
   \centering
-	\caption{Opções da classe \texorpdfstring{\abnTeX}{abntex}.}
+	\caption{Opções da classe \abnTeX.}
   \begin{tabular}{l|c}
     \hline
     Opção & Descrição \\ \hline
@@ -468,9 +464,9 @@ Exemplos de citação de referências bibliográficas:
 
 
 % Bibliografia o arquivo
-\def\refname{Referências Bibliográficas}
-\bibliographystyle{abnt-alf} % Estilo autor-data
-\bibliography{ManualUTFPRtex}    % As referencias deste texto estão no arquivo modelotese.bib
+%\def\refname{Referências Bibliográficas}
+%\bibliographystyle{abnt-alf} % Estilo autor-data
+\bibliography{ManualUTFPRCPtex}    % As referencias deste texto estão no arquivo modelotese.bib
 
 % Elementos pós-textuais
 %\anexo

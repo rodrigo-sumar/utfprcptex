@@ -21,6 +21,15 @@
 % Para fonte Helvetica (Nimbus Sans) descomente linhas abaixo
 %\fontetipo{arial}
 
+
+%\usepackage{hyperref}
+% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
+% Comentar se o pacote hyperref não estiver sendo utilizado.
+%\pdfstringdefDisableCommands{\edef\uppercase{}}
+%\pdfstringdefDisableCommands{%
+%\let\MakeUppercase\relax
+%}
+
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
 \fazlistasiglas[Lista de Abreviaturas e Siglas] % Parâmetro opcional é o título da lista.
 
@@ -112,6 +121,8 @@ Abstract text (maximum of 500 words).
 \input{capitulo3/cap3.tex}
 
 %---------- Referencias ----------
+\cite{Anderson1977}
+
 \bibliography{referencias/referencias} % geracao automatica das referencias a partir do arquivo reflatex.bib
 
 
