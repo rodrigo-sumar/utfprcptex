@@ -1,4 +1,4 @@
-\documentclass[espacoumemeio,normaltoc,anapcustomindent,anapname,normalfigtabnum,ruledheader, PGTEXtrabalho]{pgeeltex}
+\documentclass[openright]{utfprcptex}
 % anapcustomindent-> para mudar o titulo dos apendices;
 % anapnormal-> para deixar APENDICE minusculo
 % normalfigtabnum -> faz com que as numeracoes das figuras dependam dos capitulos (o normal do LATEX).
@@ -10,18 +10,20 @@
 \usepackage[alf,bibjustif,recuo=1cm]{abntcite}
 \bibliographystyle{abnt-num}
 
-
-\autor{ANDRÉ NASCIMENTO CAVALCANTI DE ALBUQUERQUE}
+\instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
+\programa{Curso Superior de Técnologia em Automação Industrial}
+\autor{NOME DO PRIMEIRO AUTOR}
+\autordois{NOME DO SEGUNDO AUTOR}
+\autortres{NOME DO TERCEIRO AUTOR}
 \titulo{Aqui vai o TITULO DO TRAbalho QUE sera TransmFORmado Em TODAS MAIusculas}
-\labPGTEX{laborat\'orio de sistemas de pot\^encia}
-\orientadorPGTEX[Professor]{}{Nome do Professor}
-\local{Florianópolis}
-\mesPGTEX{Agosto}
-\anoPGTEX{2009}
-\discipPGTEX{Nome da disciplina}
+\labUTFPR{Laborat\'orio de Sistemas de Pot\^encia}
+\orientador[Professor]{}{Nome do Professor}
+\local{Cornélio Procópio}
+\data{Dezembro de 2009}
+\discipUTFPR{Nome da disciplina}
 \makeindex
 \begin{document}
-\capaPGTEX
+\capatrab
 
 \tableofcontents
 \ProximoForaDoSumario\listadesimbolos
@@ -42,17 +44,17 @@ Um exemplo de equação muito utilizada na pós graduação da engenharia elétrica, é
 	\begin{array}{l}
 	 \min \begin{array}{*{20}c}
 	   {} & {c(p_t )}  \\
-	\end{array} = \sum\limits_1^N {c\left( {p_{t_i } } \right)}  \times h_i  \\ 
+	\end{array} = \sum\limits_1^N {c\left( {p_{t_i } } \right)}  \times h_i  \\
 	 s.a.:\begin{array}{*{20}c}
 	   {} & {\left\{ \begin{array}{l}
-	 P_L  + \ell \left( {p_t ,p_h } \right) - p_t  - p_h  = 0 \\ 
-	 h^T q\left( {p_h } \right) - V_{esp}  = 0 \\ 
-	 p_t  - \bar p_t  + \bar s_t  = 0 \\ 
-	  - p_t  + \underline p_t  + \underline s_t  = 0 \\ 
-	 p_h  - \bar p_h  + \bar s_h  = 0 \\ 
-	  - p_h  + \underline p_h  + \underline s_h  = 0 \\ 
+	 P_L  + \ell \left( {p_t ,p_h } \right) - p_t  - p_h  = 0 \\
+	 h^T q\left( {p_h } \right) - V_{esp}  = 0 \\
+	 p_t  - \bar p_t  + \bar s_t  = 0 \\
+	  - p_t  + \underline p_t  + \underline s_t  = 0 \\
+	 p_h  - \bar p_h  + \bar s_h  = 0 \\
+	  - p_h  + \underline p_h  + \underline s_h  = 0 \\
 	 \end{array} \right.}  \\
-	\end{array} \\ 
+	\end{array} \\
 	 \end{array}
 \end{align}
 onde
@@ -134,6 +136,6 @@ A grande maioria das tabelas utilizadas em \LaTeX  são simples, apenas com um ca
 Isso não quer dizer que tabelas mais complexas não possam ser elaboradas de acordo com a necessidade. Para citar uma referência no meio do texto, basta usar o comando \verb+\cite{}+ no local onde será inserido a informação bibliográfica, e o comando no final do trabalho \verb+\\bibliography{arquivo}+, onde ``arquivo'' é o arquivo .bib contendo as referências. Por exemplo, se neste parágrafo tivesse sido utilizado como referência o livro ``Power Generation, Operation and Control'' dos autores WOOD, A. J. e WOLLENBERG, B. F, ao final da frase apareceria \cite{wood}, e no final do arquivo seria criada a seção de referências, como aparece nesse arquivo de exemplo.
 
 \bibliography{Exemplo}
-%  
+%
 \end{document}
 

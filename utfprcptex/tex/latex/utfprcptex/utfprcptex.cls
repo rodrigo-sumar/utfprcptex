@@ -88,6 +88,15 @@
 \providecommand{\UTFPRunidadedata}{}
 \newcommand{\unidade}[1]{\renewcommand{\UTFPRunidadedata}{#1}}
 
+% Disciplina:
+\providecommand{\UTFPRdiscip}{}
+\newcommand{\discipUTFPR}[1]{\renewcommand{\UTFPRdiscip}{#1}}
+
+% Laboratório:
+\providecommand{\UTFPRlab}{}
+\newcommand{\labUTFPR}[1]{\renewcommand{\UTFPRlab}{#1}}
+
+
 \providecommand{\UTFPRautordoisdata}{}
 \newcommand{\autordois}[1]{\renewcommand{\UTFPRautordoisdata}{#1}}
 
@@ -139,44 +148,39 @@
 \newcommand{\coorientadorb}[1]{\renewcommand{\UTFPRcoorientadorbdata}{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% CAPA
+% CAPA DISSERTACAO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\capa}{
 	\begin{titlepage}
 		\begin{center}
 		  \begin{espacosimples}
-				\large\MakeUppercase{\ABNTinstituicaodata}\\
-				\large\MakeUppercase{\UTFPRunidadedata}\\
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}\par}
+				\UTFPRifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}\par}
                 \ABNTifnotempty{\UTFPRdepartamentodata}
 				{
-					\MakeUppercase{\UTFPRdepartamentodata}\\
+					\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdepartamentodata}\par
 				}
-				\large\MakeUppercase{\UTFPRprogramadata}\par	
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRprogramadata}\par}	
 		\end{espacosimples}		
 	 \end{center}		
 		\vspace{12pt}	
 		\begin{center}
 			\begin{espacosimples}
-				\large\MakeUppercase{\ABNTautordata}\\
-				\UTFPRifnotempty{\UTFPRautordoisdata}{\large\MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautortresdata}{\large\MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautorquatrodata}{\large\MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTautordata}\\}
+				\UTFPRifnotempty{\UTFPRautordoisdata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautortresdata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautorquatrodata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
 			\end{espacosimples}
 		\end{center}
 		\vspace{60pt}
 		\begin{center}
-		  \begin{espacosimples} %cesar230511
-			\large\ABNTchapterfont \ABNTtitulodata \par
-			%\large\ABNTchapterfont \MakeUppercase{\ABNTtitulodata}\par
-			\end{espacosimples}
+		  \begin{espacosimples}
+		       {\fontsize{12}{14}\selectfont \ABNTchapterfont \ABNTtitulodata \par}
+		  \end{espacosimples}
 		\end{center}
 		\vspace{12pt}
 		\begin{center}
-			\large\MakeUppercase{\UTFPRdocumentodata}%
-			\ABNTifnotempty{\UTFPRniveldata}
-			%CESAR230511{
-			%	\MakeUppercase{de \UTFPRniveldata}\par
-			%}
+			{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdocumentodata}}%
 		\end{center}
 		\vfill
 		\begin{center}
@@ -186,6 +190,47 @@
 	\end{titlepage}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CAPA TRABALHO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\capatrab}{
+	\begin{titlepage}
+	   \begin{center}
+            \begin{espacosimples}
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}}\par
+				\UTFPRifnotempty{\UTFPRunidadedata}{{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}}\par}
+               \ABNTifnotempty{\UTFPRdepartamentodata}
+				{
+					{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdepartamentodata}\par}
+				}
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRprogramadata}\par}
+                {\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRlab}\par}
+                {\fontsize{12}{13}\selectfont DISCIPLINA: \MakeUppercase{\UTFPRdiscip}\par}
+                {\fontsize{12}{13}\selectfont DOCENTE: \MakeUppercase{\ABNTorientadorname}}	
+	       \end{espacosimples}		
+	 \end{center}		
+		\vfill
+		\begin{center}
+		  \begin{espacosimples}
+			\large\ABNTchapterfont \MakeUppercase{\ABNTtitulodata} \par
+			\end{espacosimples}
+		\end{center}
+        \vfill
+		\begin{center}
+			\begin{espacosimples}
+				\large\MakeUppercase{\ABNTautordata}\\
+				\UTFPRifnotempty{\UTFPRautordoisdata}{\large\MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautortresdata}{\large\MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautorquatrodata}{\large\MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
+			\end{espacosimples}
+		\end{center}
+        \vfill
+        \begin{center}
+			\textbf{\MakeUppercase{\ABNTlocaldata}}\par
+			\textbf{\MakeUppercase{\ABNTdatadata}}
+		\end{center}
+	\end{titlepage}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FOLHA DE ROSTO
