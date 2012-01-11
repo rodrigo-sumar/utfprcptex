@@ -1,9 +1,7 @@
-%% version 2.3
-%% normas-utf-tex.cls
-%% Copyright 200?-2011 Diogo Rosa Kuiaski <diogo.kuiaski@gmail.com>
-%% Copyright 200?-2011 Hugo Vieira Neto <hvieir@utfpr.edu.br>
-%% Copyright 2011      César M. Vargas Benítez <cesarvargasb@gmail.com>
-%% Copyright 2011      Marcos Talau <talau@users.sourceforge.net>
+%% version 1.0
+%% utfprcptex.cls
+%% Copyright 2011      Rodrigo Rodrigues Sumar <sumar@utfpr.edu.br>
+%% Copyright 2011      Bruno Augusto Angélico <bangelico@utfpr.edu.br>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -304,11 +302,8 @@
 \newcommand{\termodeaprovacao}
 {
 \if@openright{\cleardoublepage}\else\clearpage\fi
-%	\begin{titlepage}
 \thispagestyle{empty}
     \espaco{1}
-       % \pretextualchapter{TERMO DE APROVA\c{C}\~AO}
-%		\vspace{-1cm}
 		\begin{center}
 			\large\ABNTautordata
 		\end{center}
@@ -361,7 +356,6 @@
             \vfill
 		\end{center}
 		}
-%	\end{titlepage}
 \espaco{\ABNTespacodefault}
 \if@openright\cleardoublepage\else\clearpage\fi
 }
@@ -388,7 +382,6 @@
 	\newpage
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % AGRADECIMENTOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -402,10 +395,9 @@
 	\newpage
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % EPIGRAFE
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{epigrafe}%
 {%
 	\if@openright\cleardoublepage\else\clearpage\fi%
@@ -446,10 +438,9 @@
 	\newpage
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ABSTRACT
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewenvironment{abstract}%
 {%
 	\if@openright\cleardoublepage\else\clearpage\fi%
@@ -466,7 +457,6 @@
 		\end{espacosimples}
 	\newpage
 }
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE FIGURAS
@@ -503,7 +493,6 @@
 	\parindent 0em
 	\@tempdima 2.8em
 	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-	%{\MakeUppercase{Figura \normalfont #1}}\nobreak \figfillnum{#2}
 	{\MakeUppercase{Figura} \normalfont #1}\nobreak \figfillnum{#2}
 }
 
@@ -543,7 +532,6 @@
 	\parindent 0.em
 	\@tempdima 2.8em
 	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-	%{\MakeUppercase{Tabela \normalfont #1}}\nobreak \tabfillnum{#2}
 	{\MakeUppercase{Tabela} \normalfont #1}\nobreak \tabfillnum{#2} %
 }
 
@@ -575,11 +563,10 @@
 	{\normalfont #1}\hfil\nobreak\par
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE SIGLAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \sigla[entrada na lista de siglas]{sigla}:
+% \sigla{sigla}{entrada na lista de siglas}:
 % Escreve a sigla no texto e uma entrada na Lista de Siglas.
 % Se o parâmetro opcional á omitido, usa-se o parâmetro obrigatório.
 \newcommand{\sigla}{\@ifstar{\siglaStar}{\siglaNotStar}}	
@@ -621,7 +608,7 @@
 \setlength{\nomitemsep}{-\parsep}% Tirando espaço extre entre as entradas na lista.
 }
 
-
+%% Define o comando que monta a lista de siglas
 \newcommand{\listadesiglas}{
 		 % Abrindo arquivo para leitura e verificando se ele existe:
 		 \newread\instream
@@ -637,31 +624,10 @@
 %		 \addtolength{\siglamaxwidth}{1ex}
 \printnomenclature[\the\siglamaxwidth]}
 
-%% Define o comando que monta a lista de siglas
-%\newcommand{\listadesiglas}
-%{
-%	\pretextualchapter{LISTA DE SIGLAS}
-%	\begin{espacosimples}  %cesar230511
-%	\@starttoc{lsg}
-%	\end{espacosimples}
-%}
-%
-%\newcommand{\sigla}[2] {{\addcontentsline{lsg}{sigla}{\numberline{#1}{#2}}}#1}
-%
-%\newcommand{\l@sigla}[2]
-%{
-%	\vspace{-0.75cm}
-%	\leftskip 0em
-%	\parindent 0em
-%	\@tempdima 5em
-%	\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-%	{\normalfont #1}\hfil\nobreak\par
-%}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SUMARIO
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Altera o espacamento entre dots
 \renewcommand\@dotsep{2}
 
@@ -679,7 +645,6 @@
 	\thispagestyle{\chaptertitlepagestyle}
 	\global\@topnum\z@
 	\@afterindentfalse
-	%\@makeschapterhead{\contentsname}%
 	\@afterheading
 	\@mkboth{\contentsname}{\contentsname}
 	\@starttoc{toc}%
@@ -797,20 +762,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CAPITULOS
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Altera o tamanho das fontes
 \renewcommand{\ABNTchapterfont}{\bfseries}
 \renewcommand{\ABNTchaptersize}{\normalsize}
 \renewcommand{\ABNTsectionfont}{\normalfont}
-%\providecommand{\ABNTsectionfontsize}{}
 \renewcommand{\ABNTsectionfontsize}{\normalsize}
-%\providecommand{\ABNTsubsectionfont}{}
 \renewcommand{\ABNTsubsectionfont}{\normalfont}
-%\providecommand{\ABNTsubsectionfontsize}{}
 \renewcommand{\ABNTsubsectionfontsize}{\normalsize}
-%\providecommand{\ABNTsubsubsectionfont}{}
 \renewcommand{\ABNTsubsubsectionfont}{\normalfont}
-%\providecommand{\ABNTsubsubsectionfontsize}{}
 \renewcommand{\ABNTsubsubsectionfontsize}{\normalsize}
 \renewcommand{\ABNTanapsize}{\normalsize}
 
@@ -863,7 +823,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % NUMERACAO
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Define o tipo de numeracao de figuras, tabelas e equacoes
 \AddAbsoluteCounter{figure}
 \setcounter{absfigure}{0}
@@ -907,7 +867,6 @@
 	\renewcommand{\chaptertitlepagestyle}{plainheader}
 	\renewcommand{\thepage}{\arabic{page}}
 	\addtocounter{page}{1}
-	%\setcounter{page}{1}
 
 % Observacoes:
 % \@twosidetrue considera as paginas pares e impares.
@@ -922,7 +881,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LEGENDAS
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\captionfonts}{\small}
 
 \long\def\@makecaption#1#2{
@@ -952,8 +911,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % REFERENCIAS
-
-% \providecommand{\ABNTbibliographyname}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\ABNTbibliographyname}{REFER\^ENCIAS}
 
 
@@ -981,7 +939,6 @@
 \newwrite\outputstream
 \immediate\openout\outputstream=\jobname.tmp
 % Salvando comando contendo a largura da maior sigla:
-%\immediate\write\outputstream{\string\setlength{\simbmaxwidth}{\the\simbmaxwidth}}
 \immediate\write\outputstream{\string\setlength{\siglamaxwidth}{\the\siglamaxwidth}}
 % Fechando stream:
 \immediate\closeout\outputstream
