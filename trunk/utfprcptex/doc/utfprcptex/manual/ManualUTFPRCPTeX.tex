@@ -6,16 +6,17 @@
 %\usepackage[brazil]{babel}
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
 \usepackage{graphicx} % pacote grafico
-\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=2, abnt-etal-list=99]{abntcite}
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=2, abnt-etal-list=3]{abntcite}
 \usepackage{array}
-
+\usepackage{listings}
+\lstset{breaklines=true,basicstyle=\ttfamily}
 
 %%%%%%%%% Início das definições iniciais %%%%%%%%%
 % ---------- Preambulo ----------
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
 \unidade{Câmpus Cornélio Procópio}
 \programa{Programa de Pós-Graduação em Engenharia Elétrica}
-\documento{O \utfprtex e uma classe de formatação para Dissertações e Trabalhos de Conclusão do
+\documento{O \utfprtex~ e uma classe de formatação para Dissertações e Trabalhos de Conclusão do
 \UTFPRprogramadata\ da \ABNTinstituicaodata\ do \UTFPRunidadedata.}
 \nivel{}
 \titulacao{}
@@ -76,9 +77,9 @@
 
 \chapter{Introdução}
 
-O \utfprtex é uma classe de formatação para Dissertações e Trabalhos de Conclusão de Curso \ABNTinstituicaodata do \UTFPRunidadedata.
+O \utfprtex~ é uma classe de formatação para Dissertações e Trabalhos de Conclusão de Curso \ABNTinstituicaodata~ do \UTFPRunidadedata.
 
-Por ser uma classe (modelo) o \utfprtex é invocado nas primeiras linhas do seu documento escrito no LaTeX, com o comando \verb|\documentclass|.
+Por ser uma classe (modelo) o \utfprtex~ é invocado nas primeiras linhas do seu documento escrito no LaTeX, com o comando \verb|\documentclass|.
 
 Este modelo é baseado no {\abnTeX} (http://abntex.codigolivre.org.br/)
 
@@ -92,7 +93,7 @@ Você pode instalar o \utfprtex de diversas maneiras, veja abaixo:
 \subsection{A partir do download do arquivo compactado}
 
 \begin{itemize}
-	\item Baixe na página de download deste projeto o arquivo ''.zip´´ com a versão mais recente do \utfprtex. O endereço do site do \utfprtex é  \verb|http://code.google.com/p/pgeeltex/|
+	\item Baixe na página de download deste projeto o arquivo ''.zip´´ com a versão mais recente do \utfprtex. O endereço do site do \utfprtex~ é  \verb|http://code.google.com/p/pgeeltex/|
 	\item Uma vez baixado o arquivo, descompacte-o em uma pasta exclusiva;
 	\item Entre no menu de configurações (\textit{settings}) do MiKTeX (Menu iniciar/programas/MiKTeX 2.X);
 	\item Na aba \textit{Roots} clique no botão \textit{Add} e adicione a pasta onde você descompactou o pgeeltex;
@@ -103,11 +104,11 @@ Pronto, o MiKTeX já sabe onde está o \utfprtex.
 
 \subsection{A partir do SVN}
 
-Você pode também baixar o \utfprtex a partir do repositório SVN\footnote{Para mais informações sobre o SVN, veja em  (http://pt.wikipedia.org/wiki/Subversion)} deste projeto. A vantagem deste método é que você sempre baixará a versão mais recente do \utfprtex. Além disso, com um sistema de controle de versão\footnote{Veja a definição em  (http://pt.wikipedia.org/wiki/Sistema\_de\_controle\_de\_versão)} você pode facilmente atualizar o \utfprtex. O procedimento básico é o seguinte:
+Você pode também baixar o \utfprtex~ a partir do repositório SVN\footnote{Para mais informações sobre o SVN, veja em  (http://pt.wikipedia.org/wiki/Subversion)} deste projeto. A vantagem deste método é que você sempre baixará a versão mais recente do \utfprtex. Além disso, com um sistema de controle de versão\footnote{Veja a definição em  (http://pt.wikipedia.org/wiki/Sistema\_de\_controle\_de\_versão)} você pode facilmente atualizar o \utfprtex. O procedimento básico é o seguinte:
 
 \begin{itemize}
 	\item Baixe e instale um programa cliente SVN. Eu recomendo o Tortoise SVN que é integrado ao windows explorer:   \verb|http://tortoisesvn.tigris.org/|;
-	\item Crie uma pasta para o \utfprtex no seu computador;
+	\item Crie uma pasta para o \utfprtex~ no seu computador;
 	\item Instado o Tortoise SVN clique com o botão direito do mouse dentro desta pasta e selecione \textit{SVN Checkout};
 	\item Na janela que abriu, cole o seguinte endereço no campo \textit{URL of reposiroty}:
 
@@ -130,7 +131,7 @@ Se você quiser usar um cliente SVN na linha de comando do Windows (ou Linux), ba
 
 \section{Instalação do AbnTeX}
 
-Para que o \utfprtex funcione, é necessário que você tenha instalado o pacote \abnTeX. O procedimento é semelhante a instalação do \utfprtex via arquivo compactado:
+Para que o \utfprtex~ funcione, é necessário que você tenha instalado o pacote \abnTeX. O procedimento é semelhante a instalação do \utfprtex~ via arquivo compactado:
 
 \begin{itemize}
 	\item Baixe o \abnTeX~ versão 0.8.2 em  \verb|http://abntex.codigolivre.org.br/|;
@@ -146,60 +147,60 @@ Pronto, agora o MiKTeX sabe onde está instalado o \abnTeX~ e você já pode começa
 %
 %Para utilizar esta classe você precisa ter o pacote \abnTeX~ instalado na sua distribuição \LaTeX, como por exemplo o Miktex. O pacote \abnTeX~ pode ser obtido no seu site na internet: \url{http://abntex.codigolivre.org.br/}. A sua instalação não será incluída nesta primeira versão deste manual.
 
-\chapter{Utilização da classe pgeeltex}
+\chapter{Utilização da classe utfprcptex}
 
 \begin{citacao}
 \itshape Antes de utilizar esta classe, você precisa saber o que é uma classe Latex de formatação. Se você não souber o que ela faz e como deve ser utilizada, é fortemente recomendado fazer uma busca na internet ou em algum livro do assunto. Consulte as referências bibliográficas no final deste manual.
 \end{citacao}
 
-Neste capítulo serão apresentadas as opções disponibilizadas pela classe \utfprtex bem como algumas opções da classe \abnTeX~ que são utilizadas na formatação do documento de acordo com o padrão do Programa de Pós-graduação em Engenharia Elétrica. Além das opções da classe, os comandos disponibilizados por ela também serão apresentados, de acordo com cada parte do documento ao qual se referem.
+Neste capítulo serão apresentadas as opções disponibilizadas pela classe \utfprtex~ bem como algumas opções da classe \abnTeX~ que são utilizadas na formatação do documento de acordo com o padrão do Programa de Pós-graduação em Engenharia Elétrica. Além das opções da classe, os comandos disponibilizados por ela também serão apresentados, de acordo com cada parte do documento ao qual se referem.
 
-\section{Opções da classe}
-
-A classe \utfprtex suporta todas as opções da classe \abnTeX. Além destas, algumas tiveram que ser criadas de modo a tornar o documento fiel ao padrão desejado. As opções definidas na classe \utfprtex têm nos seus nomes o prefixo PGTEX. A Tabela \ref{tab:opcoesPgeeltex} apresenta as opções definidas com suas descrições bem como as opções do \abnTeX~que devem ser utilizadas para que o documento gerado esteja de acordo com o padrão da pós-graduação.
-
-\begin{table}[htb]
-  \centering
-	\caption{Opções da classe \utfprtex.}
-  \begin{tabular}{l|c}
-    \hline
-    Opção & Descrição \\ \hline
-    \verb|PGTEXmunbering| & \begin{minipage}[c]{0.6\textwidth} Aplica estilo de numeração do \utfprtex, com algarismos romanos centralizados no rodapé da parte pré-textual e algarismos arábicos no canto superior direito no corpo do texto, sendo a numeração reiniciada neste ponto. \end{minipage}\\ \hline
-    \verb|PGTEXtese| & \begin{minipage}[c]{0.6\textwidth} Formata o documento para uma tese de doutorado. \end{minipage}\\ \hline
-    \verb|PGTEXdissertacao| & \begin{minipage}[c]{0.6\textwidth} Formata o documento para uma dissertação de mestrado. \end{minipage}\\ \hline
-    \verb|PGTEXqualify| &  \begin{minipage}[c]{0.6\textwidth} Formata o documento para um exame de qualificação.\end{minipage}\\ \hline
-    \verb|PGTEXtrabalho| &  \begin{minipage}[c]{0.6\textwidth} Formata o documento para um trabalho acadêmico, com capa diferente, página A4 e impressão em apenas um lado da folha.\end{minipage}\\ \hline
-    \verb|PGTEXdraft| &  \begin{minipage}[c]{0.6\textwidth} Formata o documento para uma versão \textit{draft} em página A4 e impressão em apenas um lado da folha, ideal para enviar à banca examinadora.\end{minipage}\\ \hline
-    \end{tabular}
-	\label{tab:opcoesPgeeltex}
-\end{table}
-
-A formatação para teses e dissertações é praticamente idêntica. As únicas diferenças estão na parte pré-textual do documento, na substituição das palavras referentes ao grau de formação do autor (mestre ou doutor) e na natureza do documento (dissertação ou tese).
-
-As opções da classe \abnTeX~ utilizadas para formatar o documento de acordo com o padrão desejado são apresentadas na Tabela \ref{tab:opcoesAbntex}.
-
-\begin{table}[htb]
-  \centering
-	\caption{Opções da classe \abnTeX.}
-  \begin{tabular}{l|c}
-    \hline
-    Opção & Descrição \\ \hline
-    \verb|ruledheader| & \begin{minipage}[c]{0.6\textwidth} Cabeçalho com traço decorativo e nome da seção. \end{minipage}\\ \hline
-    \verb|oneside| & \begin{minipage}[c]{0.6\textwidth} Impressão em apenas um lado da folha. Para impressão em frente e verso, utilize a opção \verb|twoside| \end{minipage}\\ \hline
-    \verb|normaltoc| & \begin{minipage}[c]{0.6\textwidth} De acordo com a norma NBR 6027, os números das páginas dos ítens do sumário devem vir precedidos por "p.". Este comportamento é ativo com a opção \verb|tocabnt|, e desativado com \verb|normaltoc|. \end{minipage}\\ \hline
-    \verb|espacoumemeio| & \begin{minipage}[c]{0.6\textwidth} Espaçamento entre linhas 1,5. Espaçamento simples e duplo podem ser obtidos com as opções \verb|espacosimples| e \verb|espacoduplo|, respectivamente.\end{minipage}\\ \hline
-    \end{tabular}
-	\label{tab:opcoesAbntex}
-\end{table}
-
-Além destas opções, a classe \abnTeX~ disponibiliza diversas outras que podem ser utilizadas a vontade pelo autor, caso este queira utilizar o modelo \utfprtex para outros fins com uma formatação personalizada. No entanto, nestes casos é melhor utilizar o pacote \abnTeX~ diretamente, caso nenhuma das alterações impostas pela classe \utfprtex seja necessária. A forma de utilização da classe \abnTeX~ e suas opções são claramente expostas no seu manual \cite{abntex-doc}, cuja leitura é FORTEMENTE recomendada.
+%\section{Opções da classe}
+%
+%A classe \utfprtex~ suporta todas as opções da classe \abnTeX. Além destas, algumas tiveram que ser criadas de modo a tornar o documento fiel ao padrão desejado. As opções definidas na classe \utfprtex~ têm nos seus nomes o prefixo PGTEX. A Tabela \ref{tab:opcoesPgeeltex} apresenta as opções definidas com suas descrições bem como as opções do \abnTeX~ que devem ser utilizadas para que o documento gerado esteja de acordo com o padrão da pós-graduação.
+%
+%\begin{table}[htb]
+%  \centering
+%	\caption{Opções da classe \utfprtex.}
+%  \begin{tabular}{l|c}
+%    \hline
+%    Opção & Descrição \\ \hline
+%    \verb|PGTEXmunbering| & \begin{minipage}[c]{0.6\textwidth} Aplica estilo de numeração do \utfprtex, com algarismos romanos centralizados no rodapé da parte pré-textual e algarismos arábicos no canto superior direito no corpo do texto, sendo a numeração reiniciada neste ponto. \end{minipage}\\ \hline
+%    \verb|PGTEXtese| & \begin{minipage}[c]{0.6\textwidth} Formata o documento para uma tese de doutorado. \end{minipage}\\ \hline
+%    \verb|PGTEXdissertacao| & \begin{minipage}[c]{0.6\textwidth} Formata o documento para uma dissertação de mestrado. \end{minipage}\\ \hline
+%    \verb|PGTEXqualify| &  \begin{minipage}[c]{0.6\textwidth} Formata o documento para um exame de qualificação.\end{minipage}\\ \hline
+%    \verb|PGTEXtrabalho| &  \begin{minipage}[c]{0.6\textwidth} Formata o documento para um trabalho acadêmico, com capa diferente, página A4 e impressão em apenas um lado da folha.\end{minipage}\\ \hline
+%    \verb|PGTEXdraft| &  \begin{minipage}[c]{0.6\textwidth} Formata o documento para uma versão \textit{draft} em página A4 e impressão em apenas um lado da folha, ideal para enviar à banca examinadora.\end{minipage}\\ \hline
+%    \end{tabular}
+%	\label{tab:opcoesPgeeltex}
+%\end{table}
+%
+%A formatação para teses e dissertações é praticamente idêntica. As únicas diferenças estão na parte pré-textual do documento, na substituição das palavras referentes ao grau de formação do autor (mestre ou doutor) e na natureza do documento (dissertação ou tese).
+%
+%As opções da classe \abnTeX~ utilizadas para formatar o documento de acordo com o padrão desejado são apresentadas na Tabela \ref{tab:opcoesAbntex}.
+%
+%\begin{table}[htb]
+%  \centering
+%	\caption{Opções da classe \abnTeX.}
+%  \begin{tabular}{l|c}
+%    \hline
+%    Opção & Descrição \\ \hline
+%    \verb|ruledheader| & \begin{minipage}[c]{0.6\textwidth} Cabeçalho com traço decorativo e nome da seção. \end{minipage}\\ \hline
+%    \verb|oneside| & \begin{minipage}[c]{0.6\textwidth} Impressão em apenas um lado da folha. Para impressão em frente e verso, utilize a opção \verb|twoside| \end{minipage}\\ \hline
+%    \verb|normaltoc| & \begin{minipage}[c]{0.6\textwidth} De acordo com a norma NBR 6027, os números das páginas dos ítens do sumário devem vir precedidos por "p.". Este comportamento é ativo com a opção \verb|tocabnt|, e desativado com \verb|normaltoc|. \end{minipage}\\ \hline
+%    \verb|espacoumemeio| & \begin{minipage}[c]{0.6\textwidth} Espaçamento entre linhas 1,5. Espaçamento simples e duplo podem ser obtidos com as opções \verb|espacosimples| e \verb|espacoduplo|, respectivamente.\end{minipage}\\ \hline
+%    \end{tabular}
+%	\label{tab:opcoesAbntex}
+%\end{table}
+%
+%Além destas opções, a classe \abnTeX~ disponibiliza diversas outras que podem ser utilizadas a vontade pelo autor, caso este queira utilizar o modelo \utfprtex para outros fins com uma formatação personalizada. No entanto, nestes casos é melhor utilizar o pacote \abnTeX~ diretamente, caso nenhuma das alterações impostas pela classe \utfprtex seja necessária. A forma de utilização da classe \abnTeX~ e suas opções são claramente expostas no seu manual \cite{abntex-doc}, cuja leitura é FORTEMENTE recomendada.
 
 \section{Comandos da classe}
 \label{sec:comandos}
 
 
 Alguns comandos adicionais foram definidos pela classe \utfprtex. %De acordo com o tipo de documento (tese, dissertação, etc.) selecionado pela respectiva opção da classe utilizada, o número de comandos necessários pode variar.
-Todos os comandos definidos nesta classe tem em seu nome o sufixo PGTEX. Caso contrário, ou é um comando do \abnTeX~ ou um comando das classes padrões do \LaTeX.
+Todos os comandos definidos nesta classe tem em seu nome o sufixo UTFPR. Caso contrário, ou é um comando do \abnTeX~ ou um comando das classes padrões do \LaTeX.
 
 
 Os comandos a seguir devem ser definidos no preâmbulo do documento. Ou seja, antes do comando \verb|\begin{document}|. Estes comandos servem para armazenar as informações relativas ao trabalho para que sejam utilizadas na criação e formatação dos elementos pré-textuais. A definição destes comandos é obrigatória de acordo com os elementos pré-textuais desta classe a serem utilizados (capa, folha de rosto, folha de aprovação, resumo e abstract).
@@ -215,66 +216,138 @@ Insere \verb|nome| como sendo o nome do autor do texto. Utilizado na capa, folha
 Insere \verb|titulo do documento| como sendo o título da tese ou dissertação. Utilizado na capa, folha de rosto, folha de aprovação, resumo e abstract.
 
 \vspace{3ex}\noindent
-\verb|\titlePGTEX{document title}|
+\verb|\title{document title}|
 
 Insere \verb|document title| como sendo o título em inglês do trabalho, usando na criação do abstract. Utilizado somente no abstract.
 
 \vspace{3ex}\noindent
-\verb|\orientadorPGTEX[]{Grau}{Nome do orientador}|
+\verb|\orientador[]{Grau}{Nome do orientador}|
 
-Insere \verb|Nome do orientador| como sendo o nome do(a) orientador(a) do trabalho. O grau de formação deve ser indicado no respectivo campo. Possui um campo opcional (entre colchetes [ ]) em que pode ser modificada a palavra precedente ao nome do orientador. Se este campo não for preenchido, a palavra "Orientador" é utilizada. Se o orientador do trabalho for do sexo feminino, você deve preencher este campo com a palavra "Orientadora".
-
-\vspace{3ex}\noindent
-\verb|\coorientadorPGTEX[]{Grau}{Nome do co-orientador}|
-
-Insere o nome do co-orientador do trabalho. Tem o mesmo funcionamento do comando \verb|\orientadorPGTEX|. Utilizado somente na folha de aprovação.
+Insere \verb|Nome do orientador| como sendo o nome do(a) orientador(a) do trabalho. O grau de formação deve ser indicado no respectivo campo. Possui um campo opcional (entre colchetes [ ]) em que pode ser modificada a palavra precedente ao nome do orientador. Se este campo não for preenchido, a palavra ``Orientador'' é utilizada. Se o orientador do trabalho for do sexo feminino, você deve preencher este campo com a palavra "Orientadora".
 
 \vspace{3ex}\noindent
-\verb|\coordenadorPGTEX[Grau]{Nome do coordenador}|
+\verb|\coorientador[]{Grau}{Nome do co-orientador}|
 
-Insere o nome do coordenador do programa de pós-graduação. Tem o mesmo funcionamento do comando \verb|\orientadorPGTEX|. Utilizado somente na folha de aprovação.
-
-\vspace{3ex}\noindent
-\verb|\areaconcentracaoPGTEX{Area}|
-
-Insere a área de concentração do trabalho, dada pelo texto \verb|Area| no argumento do comando. Utilizado na folha de aprovação, resumo e abstract.
+Insere o nome do co-orientador do trabalho. Tem o mesmo funcionamento do comando \verb|\orientador|. Utilizado somente na folha de aprovação.
 
 \vspace{3ex}\noindent
-\verb|\concentrationareaPGTEX{Area}|
+\verb|\coordenadorUTFPR[]{Grau}{Nome do coordenador}|
 
-Insere a área de concentração em inglês do trabalho, dada pelo texto \verb|Area| no argumento do comando. Utilizado no abstract.
+Insere o nome do coordenador do programa de pós-graduação. Tem o mesmo funcionamento do comando \verb|\orientador|. Utilizado somente na folha de aprovação.
 
 \vspace{3ex}\noindent
-\verb|\palavraschavePGTEX{palavra 1, palavra 2, palavra 3, ... n}|
+\verb|\titulacao{titulacao}|
+
+Insere a titulação a ser conferida, dada pelo texto \verb|titulacao| no argumento do comando. Utilizado nas folhas de rosto de de aprovação.
+
+\vspace{3ex}\noindent
+\verb|\area{area}|
+
+Insere a área de concentração do trabalho, dada pelo texto \verb|area| no argumento do comando. Utilizado nas folhas de rosto de de aprovação.
+
+\vspace{3ex}\noindent
+\verb|\palavraschave{palavra 1, palavra 2, palavra 3, ... n}|
 
 Insere a lista de palavras chave. Utilizado somente no resumo.
 
 \vspace{3ex}\noindent
-\verb|\keywordsPGTEX{keyword 1, keyword 2, keyword 3, ... n}|
+\verb|\keywords{keyword 1, keyword 2, keyword 3, ... n}|
 
 Insere a lista de palavras chave em inglês. Utilizado somente no abstract.
 
 
 \vspace{3ex}\noindent
-\verb|\mesPGTEX{mes}|
+\verb|\datadefesaUTFPR{dia/mes/ano}|
 
-Insere o mês da defesa do trabalho dado pelo texto \verb|mes| no argumento do comando. É utilizado na folha de rosto, resumo e abstract.
-
-\vspace{3ex}\noindent
-\verb|\mesPGTEX[month]{mes}|
-
-Insere o mês da defesa do trabalho. Este comando tem dois argumentos. O texto no primeiro argumento (opcional, entre colchetes) será utilizado no abstract como o nome do mês em inglês. O texto do segundo argumento deve conter o mês em português, que será utilizado na folha de rosto e resumo.
+Insere data da defesa do trabalho dado pelo texto \verb|dia/mes/ano| no argumento do comando. É utilizado na folha de aprovação.
 
 \vspace{3ex}\noindent
-\verb|\anoPGTEX{ano}|
+\verb|\data{ano}|
 
-Insere o ano da defesa dado pelo texto \verb|ano| no argumento do comando. É utilizado na capa, folha de rosto resumo e abstract.
+Insere o ano da defesa dado pelo texto \verb|ano| no argumento do comando. É utilizado na capa e folha de rosto.
 
 
 \vspace{3ex}\noindent
-\verb|\bancaAPGTEX[Dr.]{Membro A da banca} ... \bancaEPGTEX[Dr.]{Membro E da banca}|
+\lstinline!\primeiroassina[Dr.]{Membro A da banca} ... \quartoassina[Dr.]{Membro E da banca}!
 
-Este conjunto de comandos é utilizado para inserir o nome dos membros da banca de avaliação do trabalho. São utilizados somente pela folha de aprovação. Cada um dos comandos, \verb|\bancaAPGTEX|, \verb|\bancaBPGTEX|, \verb|\bancaCPGTEX|, \verb|\bancaDPGTEX| e \verb|\bancaEPGTEX| é utilizado para definir cada um dos membros da banca. Estes comandos possuem um argumento obrigatório, dado pelo texto \verb|Membro X da banca| que corresponde ao nome da pessoa. O grau de titulação de cada membro pode ser informado pelo campo opcional entre colchetes. Se este campo não for especificado, a palavra "Doutor" é utilizada como padrão.
+Este conjunto de comandos é utilizado para inserir o nome dos membros da banca de avaliação do trabalho. São utilizados somente pela folha de aprovação. Cada um dos comandos, \verb|\primeiroassina|, \verb|\segundoassina|, \verb|\terceiroassina| e \verb|\quartoassina| é utilizado para definir cada um dos membros da banca. Estes comandos possuem um argumento obrigatório, dado pelo texto \verb|Membro X da banca| que corresponde ao nome da pessoa. O grau de titulação de cada membro pode ser informado pelo campo opcional entre colchetes. Se este campo não for especificado, a palavra ``Doutor'' é utilizada como padrão.
+
+
+\vspace{3ex}\noindent
+\verb|\textoaprovacao{texto}|
+
+Insere texto a ser utilizado na folha de aprovação do trabalho.
+
+\vspace{3ex}\noindent
+\verb|\local{local}|
+
+Insere o local de apresentação do  trabalho. Utilizado na capa, folha de rosto e folha de aprovação.
+
+
+\vspace{3ex}\noindent
+\verb|\comentario{comentario}|
+
+Insere o comentário a ser apresentado na folha de rosto.
+
+
+\vspace{3ex}\noindent
+\verb|\cita{SOBRENOME, Nome}|
+
+Insere a citação do autor do trabalho para ser utilizado no resumo e abstract.
+
+%\vspace{3ex}\noindent
+%\verb|\nivel{nivel}|
+%
+%Insere
+
+\vspace{3ex}\noindent
+\verb|\documento{documento}|
+
+
+Insere o tipo do documento (Trabalho de Conclusão, Dissertação...). Utilizado na capa, folha de rosto, folha de aprovação, resumo e abstract.
+
+
+\vspace{3ex}\noindent
+\verb|\unidade{unidade}|
+
+Insere a unidade da instituição a qual pertence o curso. Utilizado na capa. É um comando opcional.
+
+
+\vspace{3ex}\noindent
+\verb|\instituicao{instituicao}|
+
+Insere o nome da instituição. É utilizado na capa, folha de rosto e folha de aprovação.
+
+\vspace{3ex}\noindent
+\verb|\departamento{departamento}|
+
+Insere o nome do departamento ao qual o programa ou curso esta vincula, se houver. É utilizado na capa.
+
+\vspace{3ex}\noindent
+\verb|\programa{programa}|
+
+Insere o nome do programa ou curso ao qual o trabalho esta vinculado. É utilizado na capa e folha de aprovação.
+
+\vspace{3ex}\noindent
+\verb|\discUTFPR{disciplina}|
+
+Insere o nome do laboratório na capa de trabalhos acadêmicos.
+
+
+\vspace{3ex}\noindent
+\verb|\labUTFPR{laboratório}|
+
+Insere o nome do laboratório na capa de trabalhos acadêmicos. É um comando opcional.
+
+
+
+\vspace{3ex}\noindent
+\verb|\autordois{nome} ... \autorquatro{nome}|
+
+Este conjunto de comandos é utilizado para inserir o nome dos autores no caso de elaboração de trabalhos acadêmicos ou trabalhos de conclusão de curso. São utilizados somente pela pelo comando \verb|\capatrab|. Cada um dos comandos, \verb|\autordois|, \verb|\autortres| e \verb|\autorquatro| é utilizado para definir cada um dos autores do trabalho. Estes comandos possuem um argumento obrigatório, dado pelo texto \verb|autor| que corresponde ao nome da pessoa.
+
+
+
 
 %
 %\subsection{Comandos utilizados com as opções PGTEXtese}
@@ -296,75 +369,78 @@ Para mostrar os elementos pré-textuais do documento alguns comandos foram defini
 
 \subsection{Capa}
 
-O comando \verb|\capaPGTEX| é utilizado para mostrar a capa do documento, de acordo com o padrão do PPGEEL UFSC. Para que a capa seja criada corretamente, algumas informações devem ser fornecidas pelo usuário, como título, nome do autor, etc. Estas informações são fornecidas através dos comandos, apresentados na Seção \ref{sec:comandos}, os quais devem ser definidos no preâmbulo do documento.
+O comando \verb|\capa| é utilizado para mostrar a capa do documento, de acordo com o padrão da UTFPR. Para que a capa seja criada corretamente, algumas informações devem ser fornecidas pelo usuário, como título, nome do autor, etc. Estas informações são fornecidas através dos comandos, apresentados na Seção \ref{sec:comandos}, os quais devem ser definidos no preâmbulo do documento.
 
-Para a capa, os comandos utilizados são: \verb|\autor{}|, \verb|\titulo{}|, \verb|\anoPGTEX{}| e \verb|\local{}|.
+Para a capa, os comandos utilizados são:\lstinline!\instituicao{}!, \lstinline!\unidade{}!, \lstinline!\departamento{}!, \lstinline!\programa{}!, \lstinline!\documento{}!, \lstinline!\autor{}!, \lstinline!\titulo{}!, \lstinline!\data! e \lstinline!\local{}!.
 
 \subsection{Folha de rosto}
 
-O comando \verb|\folhaderostoPGTEX| é utilizado para mostrar a folha de rosto do documento. Para isso, os seguintes comandos devem ser definidos no preâmbulo do documento: \verb|\autor{}|, \verb|\titulo{}|, \verb|\anoPGTEX{}|, \verb|\mesPGTEX{}| e \verb|\local{}|.
+O comando \verb|\folhaderosto| é utilizado para mostrar a folha de rosto do documento. Para isso, os seguintes comandos devem ser definidos no preâmbulo do documento: \verb|\autor{}|, \verb|\comentario{}|, \verb|\titulo{}|, \verb|\orientador[]{}{}|, \verb|\coorientador[]{}{}|, \verb|\data{}| e \verb|\local{}|.
 
 \subsection{Folha de aprovação}
 
-A folha de aprovação é mostrada com o comando \verb|\folhadeaprovacaoPGTEX|. Este por sua vez, depende dos comandos \verb|\autor{}|, \verb|\titulo{}|, \verb|\orientadorPGTEX[]{}{}|, \verb|\coorienta-| \verb|dorPGTEX[]{}{}| (se houver) e dos comandos dos membros da banca dados por \verb|\bancaAPGTEX[]{}|, \verb|\bancaBPGTEX[]{}|, \verb|\bancaCPGTEX[]{}|,  \verb|\bancaDPGTEX[]{}|, \verb|\bancaEPGTEX[]{}|, \verb|\bancaFPGTEX[]{}| e \verb|\bancaGPGTEX[]{}| de acordo com seu número.
+A folha de aprovação é mostrada com o comando \verb|\termodeaprovacao|. Este por sua vez, depende dos comandos \verb|\autor{}|, \verb|\titulo{}|, \verb|\textoaprovacao{}|, \verb|\datadefesaUTFRP{}|, \verb|\coordenadorUTFPR[]{}{}|, \verb|\orientador[]{}{}|, \verb|\coorienta-| \verb|dor[]{}{}| (se houver) e dos comandos dos membros da banca dados por \verb|\primeiroassina[]{}|, \verb|\segundoassina[]{}|, \verb|\terceiroassina[]{}|  e \verb|\quartoassina[]{}| de acordo com seu número.
 
 As instruções para a organização da banca examinadora são as seguintes:
 \begin{itemize}
-	\item O primeiro membro da banca, definido pelo comando \verb|\bancaAPGTEX| é o presidente da banca (provavelmente o orientador);
-	\item O segundo membro será automaticamente o Co-orientador se ele existir e for definido pelo comando \verb|\coorientadorPGTEX|;
-	\item Os demais membros da banca são definidos pelos comandos \verb|\bancaBPGTEX|, \verb|\bancaCPGTEX| e \verb|\bancaDPGTEX|;
-	\item Deixando os parâmetros dos comandos dos membros da banca vazios (como por exemplo \verb|\bancaAPGTEX{}|), as respectivas linhas de assinatura não aparecerão;
+	\item O primeiro membro da banca, definido pelo comando \verb|\orientador| é o presidente da banca;
+	\item O segundo membro será automaticamente o Co-orientador se ele existir e for definido pelo comando \verb|\coorientador|;
+	\item Os demais membros da banca são definidos pelos comandos \verb|\primeiroassina[]{}|, \verb|\segundoassina[]{}|, \verb|\terceiroassina[]{}|  e \verb|\quartoassina[]{}|;
+	\item Deixando os parâmetros dos comandos dos membros da banca vazios (como por exemplo \verb|\primeiroassina{}|), as respectivas linhas de assinatura não aparecerão;
 	\item Os comandos suportam um parâmetro adicional, entre colchetes, onde é colocado o grau de titulação do respectivo membro da banca. Se este parâmetro adicional não for utilizado, então o valor padrão \textit{Doutor} é atribuído.
 \end{itemize}
 
 \subsection{Dedicatória}
 
-No modelo \utfprtex foram definidas duas formas de formatação da dedicatório. A primeira forma está de acordo com o modelo em pdf apresentado no site do PGEEL - UFSC, a qual pode ser inserida através de um ambiente específico, chamado \verb|dedicatoriaPGTEX|. Este ambiente é utilizado da seguinte forma:
+No modelo \utfprtex\ foi definida uma forma de formatação dedicatória. De acordo com as normas para elaboração de trabalhos acadêmicos da UTFPR \cite {UTFPR2008}, a qual pode ser inserida através de um ambiente específico, chamado \verb|dedicatoria|. Este ambiente é utilizado da seguinte forma:
 
-\verb|\begin{dedicatoriaPGTEX}|
-
-\verb|Texto da dedicatória.|
-
-\verb|\end{dedicatoriaPGTEX}|
-
-A segunda forma, consiste de uma página sem título com o texto da dedicatória apresentado em estilo itálico, deslocado 6 cm da margem esquerda e 7 cm da margem superior. A largura da caixa de texto da dedicatória é de 8 cm. Esta segunda forma pode ser utilizada através do ambiente \verb|dedicatoria1PGTEX|, utilizado da seguinte maneira:
-
-\verb|\begin{dedicatoria1PGTEX}|
+\verb|\begin{dedicatoria}|
 
 \verb|Texto da dedicatória.|
 
-\verb|\end{dedicatoria1PGTEX}|
+\verb|\end{dedicatoria}|
 
 
 \subsection{Agradecimentos}
 
-Os agradecimentos pelo trabalho são inseridos da mesma forma que a dedicatória, porém através do ambiente \verb|agradecimentosPGTEX|:
+Os agradecimentos pelo trabalho são inseridos da mesma forma que a dedicatória, porém através do ambiente \verb|agradecimentos|:
 
 
-\verb|\begin{agradecimentosPGTEX}|
+\verb|\begin{agradecimentos}|
 
 \verb|Texto dos agradecimentos.|
 
-\verb|\end{agradecimentosPGTEX}|
+\verb|\end{agradecimentos}|
+
+\subsection{Epígrafe}
+
+A epígrafe é inserida da mesma forma que a dedicatória, porém através do ambiente \verb|epigrafe|:
+
+
+\verb|\begin{epigrafe}|
+
+\verb|Texto da epígrafe.|
+
+\verb|\end{epigrafe}|
 
 \subsection{Resumo e abstract}
 
-Da mesma forma que a dedicatória e os agradecimentos, foram definidos ambientes para a inserção dos textos do resumo e do \textit{abstract} (resumo em inglês). Os ambientes definidos são \verb|resumoPGTEX| e \verb|abstractPGTEX|. Estes ambientes são utilizados da seguinte forma:
+Da mesma forma que a dedicatória e os agradecimentos, foram definidos ambientes para a inserção dos textos do resumo e do \textit{abstract} (resumo em inglês). Os ambientes definidos são \verb|resumo| e \verb|abstract|. Estes ambientes são utilizados da seguinte forma:
 
 
-\verb|\begin{resumoPGTEX}|
+\verb|\begin{resumo}|
 
 \verb|Escreva aqui o texto de seu resumo... |
 
-\verb|\end{resumoPGTEX}|
+\verb|\end{resumo}|
 
 e
 
-\verb|\begin{abstractPGTEX}|
+\verb|\begin{abstract}|
 
 \verb|Write here the English version of your Resumo... |
 
-\verb|\end{abstractPGTEX}|
+\verb|\end{abstract}|
 
 O cabeçalho das páginas do resumo e \textit{abstract} são montados automaticamente pela classe uma vez que os comandos apresentados na seção \ref{sec:comandos} estejam corretamente preenchidos no preâmbulo do documento.
 
@@ -374,7 +450,7 @@ Veja o exemplo na documentação do \utfprtex.
 
 \subsection{Lista de Siglas e Abreviações}
 
-Você pode utilizar o \utfprtex para gerar uma lista de siglas e abreviações de forma automática automática. O método descrito aqui é baseado no pacote \verb|nomencl|. Se você tiver mais dúvidas, pode consultar o manual deste pacote \cite{nomencl}.
+Você pode utilizar o \utfprtex\ para gerar uma lista de siglas e abreviações de forma automática. O método descrito aqui é baseado no pacote \verb|nomencl|. Se você tiver mais dúvidas, pode consultar o manual deste pacote \cite{nomencl}.
 
 Para gerar a lista de siglas no \utfprtex você deve fazer o seguinte:
 
@@ -383,15 +459,16 @@ Para gerar a lista de siglas no \utfprtex você deve fazer o seguinte:
 	\item Inserir o comando \verb|\listadesiglas| no ponto do texto onde você quer que a lista de siglas apareça. Por exemplo, após a lista de tabelas;
 	\item Na primeira vez que você for definir uma sigla no texto, utilize o comando \verb|\sigla|. Este comando gera uma nova entrada na lista de siglas. Dois parâmetros são necessários para ele: o significado da sigla e a sigla em si. Por exemplo:
 	
-	\verb|\sigla[Agência Nacional de Energia Elétrica]{ANEEL}|
+	\verb|\sigla{ANEEL}{Agência Nacional de Energia Elétrica}|
 	
-	Este comando irá inserir automaticamente a sigla no texto e entre parênteses. O significado da sigla não é inserido automaticamente no texto, você deve digitá-lo novamente. Se você não quiser que a sigla apareça entre parênteses no texto, utilize a versão \textit{estrelada} do comando: \verb|\sigla*[descrição]{sigla}|.
-	\item Para que a lista de siglas apareça, você deve rodar o programa \textit{makeindex} após rodar o Latex e em seguida rodar o Latex novamente. A linha de comando do \textit{makeindex} é a seguinte:
+	Este comando irá inserir automaticamente o significado no texto e a sigla entre parênteses. Se você não quiser que a sigla apareça entre parênteses no texto, utilize a versão \textit{estrelada} do comando: \verb|\sigla*{sigla}{descrição}|.
+    
+\item Para que a lista de siglas apareça, o programa \textit{makeindex} deve ser rodado após rodar o Latex e em seguida rodar o Latex novamente. A linha de comando do \textit{makeindex} é a seguinte:
 	
 	\verb|makeindex.exe nome_arquivo.nlo -s nomencl.ist -o nome_arquivo.nls|
 	
 	Onde \verb|nome_arquivo| é o nome do seu arquivo principal do documento, sem a extensão \verb|.tex|.
-	
+    A classe \utfprtex\ possui um comando interno que executa esse processo automaticamente.
 	Se você utiliza o Texniccenter como editor, configure-o para rodar o \textit{makeindex} automaticamente a cada vez que você compila o seu projeto apenas apertando a tecla F7. Veja a seguir como fazer isso.	
 \end{enumerate}
 
@@ -401,7 +478,7 @@ Configurando o texniccenter para rodar o \textit{makeindex}:
 	\item Vá no menu Build/Define output profile;
 	\item Clique no profile LaTeX $\Rightarrow$ DVI;
 	\item Desmarque a caixa de seleção \textit{Do not use makeindex in this profile};
-	\item Nos campo abaixo, se já não estiver configurado, indique o caminho onde está o \textit{makeindex.exe};
+	\item Nos campo abaixo, se já não estiver configurado, indique o caminho onde está o textit{makeindex.exe};
 	\item No campo dos argumentos a serem passados para o \textit{makeindex} coloque o seguinte:
 	
 	\verb|"%bm".nlo -s nomencl.ist -o "%bm".nls|
@@ -409,7 +486,7 @@ Configurando o texniccenter para rodar o \textit{makeindex}:
 	\item No menu Project/Properties do texniccenter, marque a caixa de seleção \textit{Uses Makeindex}.
 \end{enumerate}
 
-Pronto, assim que você compilar o seu projeto no Texniccenter, o mesmo se encarregará de rodar o makeindex. Você pode fazer a mesma coisa em outros \textit{profiles} também.
+Pronto, assim que você compilar o seu projeto no Texniccenter, o mesmo se encarregará de rodar makeindex. Você pode fazer a mesma coisa em outros \textit{profiles} também.
 
 A largura das colunas da lista de siglas é calculada de acordo com a largura da maior sigla presente no texto. Este valor fica armazenado em um arquivo com extensão \verb|.tmp| na pasta do seu arquivo tex principal. Se você quiser \textit{resetar} o tamanho máximo, apague este arquivo e rode novamente o latex.
 
@@ -421,19 +498,15 @@ Veja mais exemplos da lista de siglas no documento exemplo que acompanha o \utfp
 
 A lista de símbolos funciona de forma semelhante a um sumário (\textit{table of contents}). Os símbolos aparecem na ordem em que foram definidos no texto.
 
-Para gerar a lista de símbolos no \utfprtex você deve fazer o seguinte:
+Para gerar a lista de símbolos no \utfprtex\ você deve fazer o seguinte:
 
 
 \begin{enumerate}
 	\item Inserir o comando \verb|\listadesimbolos| no ponto do texto onde você quer que a lista de símbolos apareça. Por exemplo, após a lista de siglas;
-	\item Na primeira vez que você for definir um símbolo no texto, utilize o comando \verb|\simb|. Este comando gera uma nova entrada na lista de símbolos. Dois parâmetros são necessários para ele: o significado da símbolo e o símbolo em si, utilizando a seguinte sintaxe: \verb|\simb[descrição]{símbolo}|.
-	
-	O símbolo inserido com o comando \verb|\simb| é convertido automaticamente para o modo matemático, ou seja, você não deve digitar o código do símbolo com os caracteres \$\$.
+	\item Na primeira vez que você for definir um símbolo no texto, utilize o comando \verb|\simbolo|. Este comando gera uma nova entrada na lista de símbolos. Dois parâmetros são necessários para ele: o significado da símbolo e o símbolo em si, utilizando a seguinte sintaxe: \verb|\\simbolo{símbolo}{descrição}|.	
 \end{enumerate}
 
-Não use o comando \verb|\simb| dentro de um ambiente de equações como o \verb|equation|, pois neste caso a largura do símbolo para formatação da lista de símbolos não será calculada corretamente e poderão haver sobreposições de caracteres.
-
-A largura máxima da coluna da lista de símbolos é armazenada no mesmo arquivo \verb|.tmp| da lista de siglas. Então, da mesma forma, se você quiser \textit{resetar} a largura máxima, apague o arquivo \verb|.tmp|.
+Não use o comando \verb|\simbolo| dentro de um ambiente de equações como o \verb|equation|, pois neste caso a largura do símbolo para formatação da lista de símbolos não será calculada corretamente e poderão haver sobreposições de caracteres.
 
 Veja mais exemplos da lista de símbolos no documento exemplo que acompanha o \utfprtex.
 
@@ -451,7 +524,7 @@ Para maiores detalhes, leia a documentação do \abnTeX.
 
 \section{A bibliografia}
 
-A classe \utfprtex utiliza como estilos de bibliografia a citação alfanumérica da classe \abnTeX~ definida através do comando \verb|\usepackage[alf]{abntcite}| no preâmbulo do documento. Para mais informações sobre como utilizar este sistema de bibliografia, veja \cite{abntex-alf}.
+A classe \utfprtex\ utiliza como estilos de bibliografia a citação alfanumérica da classe \abnTeX~ definida através do comando \verb|\usepackage[alf]{abntcite}| no preâmbulo do documento. Para mais informações sobre como utilizar este sistema de bibliografia, veja \cite{abntex-alf}.
 
 Exemplos de citação de referências bibliográficas:
 
@@ -466,7 +539,7 @@ Exemplos de citação de referências bibliográficas:
 % Bibliografia o arquivo
 %\def\refname{Referências Bibliográficas}
 %\bibliographystyle{abnt-alf} % Estilo autor-data
-\bibliography{ManualUTFPRCPtex}    % As referencias deste texto estão no arquivo modelotese.bib
+\bibliography{ManualUTFPRCPTeX}    % As referencias deste texto estão no arquivo modelotese.bib
 
 % Elementos pós-textuais
 %\anexo
