@@ -1,15 +1,16 @@
-%% Exemplo de utilizacao do estilo de formatacao normas-utf-tex (http://normas-utf-tex.sourceforge.net)
-%% Autores: Hugo Vieira Neto (hvieir@utfpr.edu.br)
-%%          Diogo Rosa Kuiaski (diogo.kuiaski@gmail.com)
+%% Exemplo de Utilizacao do Estilo de formatacao utfprcptex  (http://http://code.google.com/p/utfprcptex/)
+%% para elaboração de Teses, Dissertações, etc...
+%% Autores: Rodrigo Rodrigues Sumar (sumar@utfpr.edu.br)
+%%          Bruno Augusto Angélico (bangelico@utfpr.edu.br)
 %% Colaboradores:
-%%          Cézar M. Vargas Benitez <cesarvargasb@gmail.com>
-%%          Marcos Talau <talau@users.sourceforge.net>
+%%
+%%
 
 
 \documentclass[openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
 %\documentclass[oneside]{normas-utf-tex} %oneside = para dissertacoes com numero de paginas menor que 100 (apenas frente da folha)
 
-\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=3, abnt-etal-list=0]{abntcite} %configuracao correta das referencias bibliograficas.
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=3, abnt-etal-list=0]{abntcite} %configuracao correta das referencias bibliográficas.
 
 \usepackage[brazil]{babel} % pacote portugues brasileiro
 \usepackage[latin1]{inputenc} % pacote para acentuacao direta
@@ -44,6 +45,7 @@
 \documento{Trabalho de Conclusão}
 \nivel{Técnologia}
 \titulacao{Técnologo}
+\area{Automação Industrial}
 \titulo{\MakeUppercase{T\'itulo em Portugu\^es}} % titulo do trabalho em portugues
 \title{\MakeUppercase{Title in English}} % titulo do trabalho em ingles
 \autor{Nome do Autor} % autor do trabalho
@@ -51,15 +53,14 @@
 
 \palavraschave{Palavra-chave 1, Palavra-chave 2, ...} % palavras-chave do trabalho
 \keywords{Keyword 1, Keyword 2, ...} % palavras-chave do trabalho em ingles
-
-\comentario{\UTFPRdocumentodata\ apresentado ao \UTFPRprogramadata\ da \ABNTinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em Automação Industrial''.}
-
+\comentario{\UTFPRdocumentodata\ apresentado ao \UTFPRprogramadata\ da \ABNTinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em \UTFPRareadata\''.}
 
 
-\orientador[Orientador]{Grau}{Nome do Orientador} % nome do orientador do trabalho
+
+\orientador[Orientador]{Prof. Dr.}{Nome do Orientador} % nome do orientador do trabalho
 %\orientador[Orientadora:]{Nome da Orientadora} % <- no caso de orientadora, usar esta sintaxe
 %\coorientador{Nome do Co-orientador} % nome do co-orientador do trabalho, caso exista
-\coorientador[Co-orientadora]{Grau}{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
+\coorientador[Co-orientadora]{Profa. Dra.}{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
 %\coorientador[Co-orientadores:]{Nome do Co-orientador} % no caso de 2 co-orientadores, usar esta sintaxe
 %\coorientadorb{}	% este comando inclui o nome do 2o co-orientador
 
@@ -68,7 +69,7 @@
 \data{\the\year} % ano automático
 
 %%%% Folha de Aprovação
-\textoaprovacao{Este \UTFPRdocumentodata\ foi julgado adequado para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em Automação Industrial'' e aprovado em sua forma final pelo \UTFPRprogramadata\ da \ABNTinstituicaodata.}
+\textoaprovacao{Este \UTFPRdocumentodata\ foi julgado adequado para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata\'' e aprovado em sua forma final pelo \UTFPRprogramadata\ da \ABNTinstituicaodata.}
 \primeiroassina[Doutor, UFSC]{Primeiro Membro}
 \segundoassina{Segundo Membro}
 \terceiroassina{Terceiro Membro}

@@ -39,7 +39,7 @@
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
 %para ordenar automaticamente a lista de siglas
-\immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}
+\immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
 
 \LoadClass{abnt}
 
@@ -130,7 +130,9 @@
 \renewcommand{\orientador}[3][Orientador]%
   {\renewcommand{\ABNTorientadorname}{#3}%
    \renewcommand{\ABNTorientadordata}{#2}
-   \renewcommand{\UTFPRorientadorStr}{#1}}
+   \renewcommand{\UTFPRorientadorStr}{#1}
+}
+
 
 \providecommand{\UTFPRcoorientadorname}{}
 \providecommand{\UTFPRcoorientadordata}{}
@@ -138,7 +140,8 @@
 \renewcommand{\coorientador}[3][Co-orientador]%
   {\renewcommand{\UTFPRcoorientadorname}{#3}%
    \renewcommand{\UTFPRcoorientadordata}{#2}%
-   \renewcommand{\UTFPRcoorientadorStr}{#1}}
+   \renewcommand{\UTFPRcoorientadorStr}{#1}
+}
 
 
 %200611: mais coorientadores
@@ -584,7 +587,7 @@
 		{\settowidth{\siglamaxwidth}{#1}}% seta o valor da maior com o tamanho da atual.
 		{}\ignorespaces
 \nomenclature{#1}{#2}%
-{#1}}
+{#2}}
 
 % Este comando redefine o codigo relevante do nomencl.sty
 \newcommand{\fazlistasiglas}[1][Lista de Siglas]{
@@ -929,9 +932,9 @@
 \typeout{+===================================================================+}
 \typeout{|      Modelo de teses e dissertações da UTFPR.                }
 \typeout{|      Alterado conforme regras de 2009.       }
-\typeout{|      Desenvolvido por                                 }
+\typeout{|      Desenvolvido por  UTFP-CP                               }
 \typeout{|      Versão:                                             }
-\typeout{|   $LastChangedDate: 2009-07-17 15:33:40 -0300 (sex, 17 jul 2009)$  }
+\typeout{|   $LastChangedDate: 2012-01-14 11:06:40 -0300 (sab, 14 jan 2012)$  }
 \typeout{+===================================================================+}
 
 % Salvando arquivo temporário com dados a serem utilizados na próxima "rodada"
