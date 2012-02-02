@@ -462,7 +462,7 @@ Para gerar a lista de siglas no \utfprtex você deve fazer o seguinte:
 	\verb|\sigla{ANEEL}{Agência Nacional de Energia Elétrica}|
 	
 	Este comando irá inserir automaticamente o significado no texto e a sigla entre parênteses. Se você não quiser que a sigla apareça entre parênteses no texto, utilize a versão \textit{estrelada} do comando: \verb|\sigla*{sigla}{descrição}|.
-    
+
 \item Para que a lista de siglas apareça, o programa \textit{makeindex} deve ser rodado após rodar o Latex e em seguida rodar o Latex novamente. A linha de comando do \textit{makeindex} é a seguinte:
 	
 	\verb|makeindex.exe nome_arquivo.nlo -s nomencl.ist -o nome_arquivo.nls|
@@ -503,7 +503,7 @@ Para gerar a lista de símbolos no \utfprtex\ você deve fazer o seguinte:
 
 \begin{enumerate}
 	\item Inserir o comando \verb|\listadesimbolos| no ponto do texto onde você quer que a lista de símbolos apareça. Por exemplo, após a lista de siglas;
-	\item Na primeira vez que você for definir um símbolo no texto, utilize o comando \verb|\simbolo|. Este comando gera uma nova entrada na lista de símbolos. Dois parâmetros são necessários para ele: o significado da símbolo e o símbolo em si, utilizando a seguinte sintaxe: \verb|\\simbolo{símbolo}{descrição}|.	
+	\item Na primeira vez que você for definir um símbolo no texto, utilize o comando \verb|\simbolo|. Este comando gera uma nova entrada na lista de símbolos. Dois parâmetros são necessários para ele: o significado da símbolo e o símbolo em si, utilizando a seguinte sintaxe: \verb|\simbolo{símbolo}{descrição}|.	
 \end{enumerate}
 
 Não use o comando \verb|\simbolo| dentro de um ambiente de equações como o \verb|equation|, pois neste caso a largura do símbolo para formatação da lista de símbolos não será calculada corretamente e poderão haver sobreposições de caracteres.
