@@ -185,8 +185,8 @@
 		\end{center}
 		\vfill
 		\begin{center}
-			\textbf{\MakeUppercase{\ABNTlocaldata}}\par
-			\textbf{\ABNTdatadata}
+			\MakeUppercase{\ABNTlocaldata}\par
+			\ABNTdatadata
 		\end{center}
 	\end{titlepage}
 }
@@ -227,8 +227,8 @@
 		\end{center}
         \vfill
         \begin{center}
-			\textbf{\MakeUppercase{\ABNTlocaldata}}\par
-			\textbf{\MakeUppercase{\ABNTdatadata}}
+			\MakeUppercase{\ABNTlocaldata}\par
+			\MakeUppercase{\ABNTdatadata}
 		\end{center}
 	\end{titlepage}
 }
@@ -261,8 +261,8 @@
 		\end{minipage}
 		\vfill
 		\begin{center}
-			\textbf{\MakeUppercase{\ABNTlocaldata}}\par
-			\textbf{\ABNTdatadata}
+			\MakeUppercase{\ABNTlocaldata}\par
+			\ABNTdatadata
 		\end{center}
 	\end{titlepage}
 }
