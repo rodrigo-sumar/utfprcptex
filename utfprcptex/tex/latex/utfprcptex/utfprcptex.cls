@@ -40,7 +40,6 @@
 % O comando a seguir executa o makeindex automaticamente
 %para ordenar automaticamente a lista de siglas
 \immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
-
 \LoadClass{abnt}
 
 \makeatletter	%Para que se entenda o @
@@ -103,6 +102,9 @@
 
 \providecommand{\UTFPRautorquatrodata}{}
 \newcommand{\autorquatro}[1]{\renewcommand{\UTFPRautorquatrodata}{#1}}
+
+\providecommand{\UTFPRautorcincodata}{}
+\newcommand{\autorcinco}[1]{\renewcommand{\UTFPRautorcincodata}{#1}}
 
 \providecommand{\UTFPRcitadata}{}
 \newcommand{\cita}[1]{\renewcommand{\UTFPRcitadata}{#1}}
@@ -195,7 +197,13 @@
 % CAPA TRABALHO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\capatrab}{
-	\begin{titlepage}
+\if@twocolumn
+  \@restonecoltrue\onecolumn
+\else
+  \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty}%
+\setcounter{page}{-1}
 	   \begin{center}
             \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}}\par
@@ -223,6 +231,7 @@
 				\UTFPRifnotempty{\UTFPRautordoisdata}{\large\MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
 				\UTFPRifnotempty{\UTFPRautortresdata}{\large\MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
 				\UTFPRifnotempty{\UTFPRautorquatrodata}{\large\MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
+                \UTFPRifnotempty{\UTFPRautorcincodata}{\large\MakeUppercase{\UTFPRautorcincodata}\\}{\vspace{18pt}}
 			\end{espacosimples}
 		\end{center}
         \vfill
@@ -230,7 +239,8 @@
 			\MakeUppercase{\ABNTlocaldata}\par
 			\MakeUppercase{\ABNTdatadata}
 		\end{center}
-	\end{titlepage}
+\if@restonecol\twocolumn \else \newpage \fi
+\espaco{\ABNTespacodefault}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

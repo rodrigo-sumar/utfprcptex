@@ -13,18 +13,23 @@
 \usepackage[brazil]{babel} % Pacote de linguagem (babel)
 \usepackage[latin1]{inputenc} %Pacote para poder utilizar acentos ~ ^ '`
 \usepackage{graphicx}
+\usepackage{listings}
+\lstset{breaklines=true,basicstyle=\ttfamily}
 %\usepackage{ctable}
 \usepackage{amstext,amsmath}
 \usepackage[alf,bibjustif,recuo=1cm]{abntcite}
 \bibliographystyle{abnt-num}
 
-\instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
+%O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
+\fazlistasiglas[Lista de Abreviaturas e Siglas] % Parâmetro opcional é o título da lista.
+
+\instituicao{Universidade Tecnológica Federal do Paraná}
 \programa{Curso Superior de Técnologia em Automação Industrial}
-\autor{NOME DO PRIMEIRO AUTOR}
+\author{NOME DO PRIMEIRO AUTOR}
 \autordois{NOME DO SEGUNDO AUTOR}
 \autortres{NOME DO TERCEIRO AUTOR}
 \titulo{Aqui vai o TITULO DO TRAbalho QUE sera TransmFORmado Em TODAS MAIusculas}
-\labUTFPR{Laborat\'orio de Sistemas de Pot\^encia}
+\labUTFPR{Laboratório de Sistemas de Potência}
 \orientador[Professor]{}{Nome do Professor}
 \local{Cornélio Procópio}
 \data{Janeiro de 2012}
@@ -32,16 +37,17 @@
 \makeindex
 \begin{document}
 \capatrab
-
-\tableofcontents
-\ProximoForaDoSumario\listadesimbolos
-\ProximoForaDoSumario\listoffigures
-\ProximoForaDoSumario\listoftables
-
+% listas (opcionais, mas recomenda-se a partir de 5 elementos)
+\listadefiguras % geracao automatica da lista de figuras
+\listadetabelas % geracao automatica da lista de tabelas
+\listadesiglas % geracao automatica da lista de siglas
+\listadesimbolos % geracao automatica da lista de simbolos
+% sumario
+\sumario % geracao automatica do sumario
 \chapter{Introdução}
 Aqui vai a introdução do trabalho.
 
-Nesse arquivo de exemplo aparecem algumas dicas para quem está começando a trabalhar em \LaTeX, principalmente na área de Engenharia Elétrica, cujos trabalhos normalmente envolvem uma grande quantidade de equações, tabelas e figuras. Esse documento não tem a pretensão de ser um manual, tampouco uma apostila de \LaTeX, visto que existe uma grande quantidade desse tipo de material de boa qualidade disponíveis na internet. É recomendado também ler os manuais das classes PGTEX e ABNTEX, pois muitas das futuras dúvidas podem estar respondidas lá.
+Nesse arquivo de exemplo aparecem algumas dicas para quem está começando a trabalhar em \LaTeX, principalmente na área de Engenharia Elétrica, cujos trabalhos normalmente envolvem uma grande quantidade de equações, tabelas e figuras. Esse documento não tem a pretensão de ser um manual, tampouco uma apostila de \LaTeX, visto que existe uma grande quantidade desse tipo de material de boa qualidade disponíveis na internet. É recomendado também ler os manuais das classes \utfprtex~ e ABNTEX, pois muitas das futuras dúvidas podem estar respondidas lá.
 
 \chapter{Exemplos úteis de equações para quem está começando}
 
@@ -141,7 +147,11 @@ A grande maioria das tabelas utilizadas em \LaTeX  são simples, apenas com um ca
     \end{tabular}
 \end{table}
 
-Isso não quer dizer que tabelas mais complexas não possam ser elaboradas de acordo com a necessidade. Para citar uma referência no meio do texto, basta usar o comando \verb+\cite{}+ no local onde será inserido a informação bibliográfica, e o comando no final do trabalho \verb+\\bibliography{arquivo}+, onde ``arquivo'' é o arquivo .bib contendo as referências. Por exemplo, se neste parágrafo tivesse sido utilizado como referência o livro ``Power Generation, Operation and Control'' dos autores WOOD, A. J. e WOLLENBERG, B. F, ao final da frase apareceria \cite{wood}, e no final do arquivo seria criada a seção de referências, como aparece nesse arquivo de exemplo.
+Isso não quer dizer que tabelas mais complexas não possam ser elaboradas de acordo com a necessidade. Para citar uma referência no meio do texto, basta usar o comando \verb+\cite{}+ no local onde será inserido a informação bibliográfica, e o comando no final do trabalho \lstinline!\\bibliography{arquivo}!, onde ``arquivo'' é o arquivo .bib contendo as referências. Por exemplo, se neste parágrafo tivesse sido utilizado como referência o livro ``Power Generation, Operation and Control'' dos autores WOOD, A. J. e WOLLENBERG, B. F, ao final da frase apareceria \cite{wood}, e no final do arquivo seria criada a seção de referências, como aparece nesse arquivo de exemplo.
+
+\section{Siglas e s\'imbolos}
+
+O pacote \textsc{abn}\TeX\ permite ainda a defini\c{c}\~ao de siglas e s\'imbolos com indexa\c{c}\~ao autom\'atica atrav\'es dos comandos {\ttfamily \textbackslash sigla\{\}\{\}} e {\ttfamily \textbackslash simbolo\{\}\{\}}. Por exemplo, o significado das siglas \sigla{PPGEE}{Programa de Programa de Pós-Graduação em Engenharia Elétrica}, \sigla{COELT}{Coordenação de Eletrotécnica} e \sigla{UTFPR}{Universidade Tecnológica Federal do Paraná} aparecem automaticamente na lista de siglas, bem como o significado dos s\'imbolos \simbolo{$\lambda$}{comprimento de onda},\simbolo{$v$}{velocidade} e \simbolo{$f$}{frequ\^encia} aparecem automaticamente na lista de s\'imbolos.
 
 \bibliography{Exemplo}
 %

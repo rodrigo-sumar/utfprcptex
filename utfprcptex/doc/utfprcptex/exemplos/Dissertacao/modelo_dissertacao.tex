@@ -10,6 +10,14 @@
 \documentclass[openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
 %\documentclass[oneside]{normas-utf-tex} %oneside = para dissertacoes com numero de paginas menor que 100 (apenas frente da folha)
 
+\usepackage[pdftex,colorlinks=false,plainpages=false,pdfpagelabels]{hyperref}
+%% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
+%% Comentar se o pacote hyperref não estiver sendo utilizado.
+\pdfstringdefDisableCommands{\edef\uppercase{}}
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax
+}
+
 \usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=3, abnt-etal-list=0]{abntcite} %configuracao correta das referencias bibliográficas.
 
 \usepackage[brazil]{babel} % pacote portugues brasileiro
@@ -24,13 +32,7 @@
 %\fontetipo{arial}
 
 
-%\usepackage{hyperref}
-% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
-% Comentar se o pacote hyperref não estiver sendo utilizado.
-%\pdfstringdefDisableCommands{\edef\uppercase{}}
-%\pdfstringdefDisableCommands{%
-%\let\MakeUppercase\relax
-%}
+
 
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
 \fazlistasiglas[Lista de Abreviaturas e Siglas] % Parâmetro opcional é o título da lista.
@@ -77,7 +79,7 @@
 \datadefesaUTFPR{29/07/2011}
 %---------- Inicio do Documento ----------
 \begin{document}
-
+\hypersetup{pageanchor=false}
 \capa % geracao automatica da capa
 \folhaderosto % geracao automatica da folha de rosto
 \termodeaprovacao % <- ainda a ser implementado corretamente
@@ -107,6 +109,7 @@ Texto do resumo (m\'aximo de 500 palavras).
 Abstract text (maximum of 500 words).
 \end{abstract}
 
+
 % listas (opcionais, mas recomenda-se a partir de 5 elementos)
 \listadefiguras % geracao automatica da lista de figuras
 \listadetabelas % geracao automatica da lista de tabelas
@@ -115,7 +118,7 @@ Abstract text (maximum of 500 words).
 
 % sumario
 \sumario % geracao automatica do sumario
-
+\hypersetup{pageanchor=true}
 
 %---------- Inicio do Texto ----------
 % recomenda-se a escrita de cada capitulo em um arquivo texto separado (exemplo: intro.tex, fund.tex, exper.tex, concl.tex, etc.) e a posterior inclusao dos mesmos no mestre do documento utilizando o comando \input{}, da seguinte forma:
