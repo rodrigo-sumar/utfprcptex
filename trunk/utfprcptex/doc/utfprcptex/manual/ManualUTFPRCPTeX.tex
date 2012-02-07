@@ -2,6 +2,13 @@
 \documentclass[openright]{utfprcptex}
 % O significado das opções é apresentado no texto.
 
+\usepackage[pdftex,colorlinks=false,plainpages=false]{hyperref}
+%% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
+%% Comentar se o pacote hyperref não estiver sendo utilizado.
+\pdfstringdefDisableCommands{\edef\uppercase{}}
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax
+}
 %\usepackage[latin1]{inputenc}
 %\usepackage[brazil]{babel}
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
