@@ -22,9 +22,9 @@
 % ---------- Preambulo ----------
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
 \unidade{Câmpus Cornélio Procópio}
-\programa{Programa de Pós-Graduação em Engenharia Elétrica}
+\coordenacao{Programa de Pós-Graduação em Engenharia Elétrica}
 \documento{O \utfprtex~ e uma classe de formatação para Dissertações e Trabalhos de Conclusão do
-\UTFPRprogramadata\ da \ABNTinstituicaodata\ do \UTFPRunidadedata.}
+\UTFPRcoordenacaodata\ da \ABNTinstituicaodata\ do \UTFPRunidadedata.}
 \nivel{}
 \titulacao{}
 \titulo{\MakeUppercase{Manual do \utfprtex}}
@@ -326,14 +326,20 @@ Insere a unidade da instituição a qual pertence o curso. Utilizado na capa. É um
 Insere o nome da instituição. É utilizado na capa, folha de rosto e folha de aprovação.
 
 \vspace{3ex}\noindent
-\verb|\departamento{departamento}|
+\verb|\diretoria{diretoria}|
 
-Insere o nome do departamento ao qual o programa ou curso esta vincula, se houver. É utilizado na capa.
+Insere o nome da diretoria a qual o programa ou curso esta vincula, se houver. É utilizado na capa.
 
 \vspace{3ex}\noindent
-\verb|\programa{programa}|
+\verb|\coordenacao{coordenacao}|
 
-Insere o nome do programa ou curso ao qual o trabalho esta vinculado. É utilizado na capa e folha de aprovação.
+Insere o nome da coordenação ao qual o curso esta vinculado. É utilizado na capa e folha de aprovação.
+
+
+\vspace{3ex}\noindent
+\verb|\curso{curso}|
+
+Insere o nome do curso ao qual o trabalho esta vinculado. É utilizado na capa e folha de aprovação.
 
 \vspace{3ex}\noindent
 \verb|\discUTFPR{disciplina}|
