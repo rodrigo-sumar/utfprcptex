@@ -35,6 +35,8 @@
 \RequirePackage{lastpage}
 \RequirePackage{perpage}
 \RequirePackage[overload]{textcase}
+\RequirePackage{fancyhdr}
+\RequirePackage{xcolor}
 \PassOptionsToPackage{hyperindex=false}{hyperref}
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
@@ -64,11 +66,14 @@
   }
 }
 
-\providecommand{\UTFPRdepartamentodata}{}
-\newcommand{\departamento}[1]{\renewcommand{\UTFPRdepartamentodata}{#1}}
+\providecommand{\UTFPRdiretoriadata}{}
+\newcommand{\diretoria}[1]{\renewcommand{\UTFPRdiretoriadata}{#1}}
 
-\providecommand{\UTFPRprogramadata}{}
-\newcommand{\programa}[1]{\renewcommand{\UTFPRprogramadata}{#1}}
+\providecommand{\UTFPRcoordenacaodata}{}
+\newcommand{\coordenacao}[1]{\renewcommand{\UTFPRcoordenacaodata}{#1}}
+
+\providecommand{\UTFPRcursodata}{}
+\newcommand{\curso}[1]{\renewcommand{\UTFPRcursodata}{#1}}
 
 \providecommand{\UTFPRareadata}{}
 \newcommand{\area}[1]{\renewcommand{\UTFPRareadata}{#1}}
@@ -158,12 +163,10 @@
 		\begin{center}
 		  \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}\par}
-				\UTFPRifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}\par}
-                \ABNTifnotempty{\UTFPRdepartamentodata}
-				{
-					\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdepartamentodata}\par
-				}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRprogramadata}\par}	
+				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}\par}
+                \ABNTifnotempty{\UTFPRdiretoriadata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdiretoriadata}\par}
+                \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcoordenacaodata}\par}
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcursodata}\par}	
 		\end{espacosimples}		
 	 \end{center}		
 		\vspace{12pt}	
@@ -208,11 +211,9 @@
             \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}}\par
 				\UTFPRifnotempty{\UTFPRunidadedata}{{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}}\par}
-               \ABNTifnotempty{\UTFPRdepartamentodata}
-				{
-					{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdepartamentodata}\par}
-				}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRprogramadata}\par}
+               \ABNTifnotempty{\UTFPRdiretoriadata}{{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdiretoriadata}\par}}
+                               \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcoordenacaodata}\par}
+				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcursodata}\par}
                 {\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRlab}\par}
                 {\fontsize{12}{13}\selectfont DISCIPLINA: \MakeUppercase{\UTFPRdiscip}\par}
                 {\fontsize{12}{13}\selectfont DOCENTE: \MakeUppercase{\ABNTorientadorname}}	
@@ -312,19 +313,52 @@
 \newcommand{\datadefesaUTFPR}[1]%
 	{\renewcommand{\UTFPRdatadefesa}{#1}}
 
+\renewcommand{\headrule}{\hrule height\headrulewidth \vspace{0.3mm} {\color{yellow} \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+
+\setlength{\headheight}{20mm}
+\addtolength{\headheight}{\baselineskip}
+\renewcommand{\headrulewidth}{1pt}
+
+\fancypagestyle{aprovacao}{
+\fancyhf{}
+\lhead{
+\begin{minipage}[c][24mm][c]{30mm}
+\centering \includegraphics[width=22mm]{brasao.png}
+\end{minipage}
+}
+\chead{
+\begin{minipage}[c][24mm][c]{100mm}
+\begin{center}
+\begin{espacosimples}
+{\fontsize{10}{12}\selectfont Minstério da Educação \\}
+{\fontsize{10}{12}\selectfont \ABNTinstituicaodata \\}
+{\fontsize{10}{12}\selectfont  \UTFPRunidadedata \\}
+\ABNTifnotempty{\UTFPRdiretoriadata}{\fontsize{10}{12}\selectfont \UTFPRdiretoriadata \\}
+\ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{10}{12}\selectfont \UTFPRcoordenacaodata \\}
+\ABNTifnotempty{\UTFPRcursodata}{\fontsize{10}{12}\selectfont \UTFPRcursodata \\}	
+\end{espacosimples}		
+\end{center}
+\end{minipage}
+}
+\rhead{
+\begin{minipage}[c][24mm][c]{30mm}
+\centering \includegraphics[width=30mm]{logo-utfpr.png}
+\end{minipage}
+}
+}
+
+
 \newcommand{\termodeaprovacao}
 {
 \if@openright{\cleardoublepage}\else\clearpage\fi
-\thispagestyle{empty}
+\thispagestyle{aprovacao}
     \espaco{1}
-		\begin{center}
-			\large\ABNTautordata
+        \begin{center}
+			\textbf{TERMO DE APROVAÇÃO} \\[20pt]
+			\ABNTtitulodata \\[10pt]
+			por \\[10pt]
+    		\ABNTautordata \\[-10mm]
 		\end{center}
-		\vspace{5mm}
-		\begin{center}
-			\large\ABNTtitulodata
-		\end{center}
-		\vspace{5mm}
 		\begin{espacosimples}
 			\ABNTtextoaprovacaodata
 		\end{espacosimples}
@@ -334,7 +368,7 @@
 \setlength{\ABNTsignwidth}{0.7\linewidth}
 {\centering \ABNTlocaldata,  \UTFPRdatadefesa.}
 \assinatura{\UTFPRcoordenadorname, \UTFPRcoordenadordata \\ \UTFPRcoordenadorStr~do Curso}%
-\vspace{1cm}
+%\vspace{8mm}
 {\noindent\bfseries\selectfont Banca Examinadora:}
 \assinatura{\ABNTorientadorname, \ABNTorientadordata \\ \UTFPRorientadorStr}%
 \vfill
@@ -442,7 +476,7 @@
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
 		\setlength\parskip{12pt}
-		\UTFPRcitadata. \ABNTtitulodata. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRprogramadata,
+		\UTFPRcitadata. \ABNTtitulodata. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
 		\ABNTinstituicaodata. \ABNTlocaldata, \ABNTdatadata.\par
 }%
 {
@@ -462,7 +496,7 @@
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
 		\setlength\parskip{12pt}
-		\UTFPRcitadata. \UTFPRtitledata. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRprogramadata,
+		\UTFPRcitadata. \UTFPRtitledata. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
 		\ABNTinstituicaodata. \ABNTlocaldata, \ABNTdatadata. \par
 }%
 {
