@@ -37,6 +37,7 @@
 \RequirePackage[overload]{textcase}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
+%\RequirePackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper]{geometry}
 \PassOptionsToPackage{hyperindex=false}{hyperref}
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
@@ -60,10 +61,9 @@
 \newcommand{\fontetipo}[1]%
 {\ifthenelse{\equal{#1}{times}}% se times
   {\usepackage{times}} % entao fonte Times (Nimbus Roman)
-  { \ifthenelse{\equal{#1}{arial}}
-  %senao fonte Helvetica (Nimbus Sans)
+  {\ifthenelse{\equal{#1}{arial}} %senao fonte Helvetica (Nimbus Sans)
    {\renewcommand*\familydefault{\sfdefault}\usepackage{helvet}}
-  }
+   }
 }
 
 \providecommand{\UTFPRdiretoriadata}{}
@@ -313,14 +313,12 @@
 \newcommand{\datadefesaUTFPR}[1]%
 	{\renewcommand{\UTFPRdatadefesa}{#1}}
 
-\renewcommand{\headrule}{\hrule height\headrulewidth \vspace{0.3mm} {\color{yellow} \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
-
-\setlength{\headheight}{20mm}
-\addtolength{\headheight}{\baselineskip}
-\renewcommand{\headrulewidth}{1pt}
-
 \fancypagestyle{aprovacao}{
 \fancyhf{}
+\setlength{\headheight}{18mm}
+\renewcommand{\headrule}{\hrule height\headrulewidth \vspace{0.3mm} {\color{yellow} \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+\addtolength{\headheight}{\baselineskip}
+\renewcommand{\headrulewidth}{1pt}
 \lhead{
 \begin{minipage}[c][24mm][c]{30mm}
 \centering \includegraphics[width=22mm]{brasao.png}
@@ -352,6 +350,7 @@
 {
 \if@openright{\cleardoublepage}\else\clearpage\fi
 \thispagestyle{aprovacao}
+
     \espaco{1}
         \begin{center}
 			\textbf{TERMO DE APROVAÇÃO} \\[20pt]
