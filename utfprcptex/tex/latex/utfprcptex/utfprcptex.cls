@@ -13,10 +13,6 @@
 %
 % This work has the LPPL maintenance status `maintained'.
 %
-% The Current Maintainer of this work is normas-utf-sf.net.
-%
-% This work consists of the file normas-utf-tex.cls
-
 % dependência: abntex >= 0.9-beta2
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,13 +27,13 @@
 
 \RequirePackage[brazil]{babel} % pacote portugues brasileiro
 \RequirePackage[latin1]{inputenc} % pacote para acentuacao direta
+\RequirePackage[T1]{fontenc}
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{perpage}
 \RequirePackage[overload]{textcase}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
-%\RequirePackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper]{geometry}
 \PassOptionsToPackage{hyperindex=false}{hyperref}
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
@@ -57,14 +53,15 @@
 
 \newlength{\siglawidth}
 \newlength{\siglamaxwidth}
-
+% Comando para selecionar o tipo de fonte
 \newcommand{\fontetipo}[1]%
-{\ifthenelse{\equal{#1}{times}}% se times
-  {\usepackage{times}} % entao fonte Times (Nimbus Roman)
-  {\ifthenelse{\equal{#1}{arial}} %senao fonte Helvetica (Nimbus Sans)
-   {\renewcommand*\familydefault{\sfdefault}\usepackage{helvet}}
-   }
+{
+\ifthenelse{\equal{#1}{times}}
+           {\usepackage{times}}{} % Times (Nimbus Roman)
+\ifthenelse{\equal{#1}{arial}}
+           {\renewcommand*\familydefault{\sfdefault}\usepackage[scaled]{uarial}}{}% Arial
 }
+
 
 \providecommand{\UTFPRdiretoriadata}{}
 \newcommand{\diretoria}[1]{\renewcommand{\UTFPRdiretoriadata}{#1}}
