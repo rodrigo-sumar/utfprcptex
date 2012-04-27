@@ -28,6 +28,12 @@
 \RequirePackage[brazil]{babel} % pacote portugues brasileiro
 \RequirePackage[latin1]{inputenc} % pacote para acentuacao direta
 \RequirePackage[T1]{fontenc}
+\RequirePackage{array}
+\RequirePackage{rotating}
+\RequirePackage{multirow}
+\RequirePackage{colortbl}
+\RequirePackage{hhline}
+\definecolor{meucinza}{rgb}{0.5, 0.5, 0.5}
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{perpage}
@@ -40,6 +46,7 @@
 %para ordenar automaticamente a lista de siglas
 \immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
 \LoadClass{abnt}
+\RequirePackage[format=hang,singlelinecheck=false,labelfont=bf,labelsep=endash,textfont=bf,justification=justified]{caption}
 
 \makeatletter	%Para que se entenda o @
 
@@ -62,6 +69,14 @@
            {\renewcommand*\familydefault{\sfdefault}\usepackage[scaled]{uarial}}{}% Arial
 }
 
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% ENTRADAS REFERENTES A INSTITUICAO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\UTFPRunidadedata}{}
+\newcommand{\unidade}[1]{\renewcommand{\UTFPRunidadedata}{#1}}
 
 \providecommand{\UTFPRdiretoriadata}{}
 \newcommand{\diretoria}[1]{\renewcommand{\UTFPRdiretoriadata}{#1}}
@@ -75,26 +90,29 @@
 \providecommand{\UTFPRareadata}{}
 \newcommand{\area}[1]{\renewcommand{\UTFPRareadata}{#1}}
 
-\providecommand{\UTFPRdocumentodata}{}
-\newcommand{\documento}[1]{\renewcommand{\UTFPRdocumentodata}{#1}}
-
 \providecommand{\UTFPRniveldata}{}
 \newcommand{\nivel}[1]{\renewcommand{\UTFPRniveldata}{#1}}
 
 \providecommand{\UTFPRtitulacaodata}{}
 \newcommand{\titulacao}[1]{\renewcommand{\UTFPRtitulacaodata}{#1}}
 
-\providecommand{\UTFPRunidadedata}{}
-\newcommand{\unidade}[1]{\renewcommand{\UTFPRunidadedata}{#1}}
-
-% Disciplina:
 \providecommand{\UTFPRdiscip}{}
 \newcommand{\discipUTFPR}[1]{\renewcommand{\UTFPRdiscip}{#1}}
 
-% Laboratório:
 \providecommand{\UTFPRlab}{}
 \newcommand{\labUTFPR}[1]{\renewcommand{\UTFPRlab}{#1}}
 
+\providecommand{\UTFPRcoordenadorname}{}
+\providecommand{\UTFPRcoordenadordata}{}
+\providecommand{\UTFPRcoordenadorStr}{}
+\newcommand{\coordenadorUTFPR}[3][Coordenador]%
+  {\renewcommand{\UTFPRcoordenadorname}{#3}%
+   \renewcommand{\UTFPRcoordenadordata}{#2}
+   \renewcommand{\UTFPRcoordenadorStr}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% ENTRADAS REFERENTES AOS AUTORES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \providecommand{\UTFPRautordoisdata}{}
 \newcommand{\autordois}[1]{\renewcommand{\UTFPRautordoisdata}{#1}}
@@ -111,6 +129,20 @@
 \providecommand{\UTFPRcitadata}{}
 \newcommand{\cita}[1]{\renewcommand{\UTFPRcitadata}{#1}}
 
+%%% USADOS NO MODELO DE PRE PROJETOS %%%%%%
+\providecommand{\UTFPRemailaluno}{}
+\newcommand{\emailaluno}[1]{\renewcommand{\UTFPRemailaluno}{#1}}
+
+\providecommand{\UTFPRfone}{}
+\newcommand{\fonealuno}[1]{\renewcommand{\UTFPRfone}{#1}}
+%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% ENTRADAS REFERENTES AO DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\UTFPRdocumentodata}{}
+\newcommand{\documento}[1]{\renewcommand{\UTFPRdocumentodata}{#1}}
+
 \providecommand{\UTFPRtitledata}{}
 \renewcommand{\title}[1]{\renewcommand{\UTFPRtitledata}{#1}}
 
@@ -120,15 +152,9 @@
 \providecommand{\UTFPRkeywordsdata}{}
 \newcommand{\keywords}[1]{\renewcommand{\UTFPRkeywordsdata}{#1}}
 
-\newcommand{\UTFPRifnotempty}[3]{\ifthenelse{\not\equal{#1}{}}{#2}{#3}}
-
-\providecommand{\UTFPRcoordenadorname}{}
-\providecommand{\UTFPRcoordenadordata}{}
-\providecommand{\UTFPRcoordenadorStr}{}
-\newcommand{\coordenadorUTFPR}[3][Coordenador]%
-  {\renewcommand{\UTFPRcoordenadorname}{#3}%
-   \renewcommand{\UTFPRcoordenadordata}{#2}
-   \renewcommand{\UTFPRcoordenadorStr}{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% ENTRADAS REFERENTES AOS ORIENTADORS E MEMBROS DA BANCA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \providecommand{\UTFPRorientadorStr}{}
 \renewcommand{\orientador}[3][Orientador]%
@@ -136,7 +162,6 @@
    \renewcommand{\ABNTorientadordata}{#2}
    \renewcommand{\UTFPRorientadorStr}{#1}
 }
-
 
 \providecommand{\UTFPRcoorientadorname}{}
 \providecommand{\UTFPRcoorientadordata}{}
@@ -147,10 +172,23 @@
    \renewcommand{\UTFPRcoorientadorStr}{#1}
 }
 
+%%% USADOS NO MODELO DE PRE PROJETOS %%%%%%
+\providecommand{\UTFPRemailori}{}
+\newcommand{\emailorientador}[1]{\renewcommand{\UTFPRemailori}{#1}}
+
+\providecommand{\UTFPRemailcoori}{}
+\newcommand{\emailcoorientador}[1]{\renewcommand{\UTFPRemailcoori}{#1}}
+%%%%%%
 
 %200611: mais coorientadores
 \providecommand{\UTFPRcoorientadorbdata}{}
 \newcommand{\coorientadorb}[1]{\renewcommand{\UTFPRcoorientadorbdata}{#1}}
+
+%%%%%%%% OUTROS COMANDOS %%%%%%%%%%%%%
+\newcommand{\UTFPRifnotempty}[3]{\ifthenelse{\not\equal{#1}{}}{#2}{#3}}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CAPA DISSERTACAO
@@ -159,36 +197,36 @@
 	\begin{titlepage}
 		\begin{center}
 		  \begin{espacosimples}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}\par}
-				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}\par}
-                \ABNTifnotempty{\UTFPRdiretoriadata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdiretoriadata}\par}
-                \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcoordenacaodata}\par}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcursodata}\par}	
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
+				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRunidadedata}\par}
+                \ABNTifnotempty{\UTFPRdiretoriadata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRdiretoriadata}\par}
+                \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcoordenacaodata}\par}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcursodata}\par}	
 		\end{espacosimples}		
 	 \end{center}		
 		\vspace{12pt}	
 		\begin{center}
 			\begin{espacosimples}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTautordata}\\}
-				\UTFPRifnotempty{\UTFPRautordoisdata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautortresdata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautorquatrodata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTautordata}\par}
+				\UTFPRifnotempty{\UTFPRautordoisdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautordoisdata}\par}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautortresdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautortresdata}\par}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautorquatrodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorquatrodata}\par}{\vspace{18pt}}
 			\end{espacosimples}
 		\end{center}
 		\vspace{60pt}
 		\begin{center}
 		  \begin{espacosimples}
-		       {\fontsize{12}{14}\selectfont \ABNTchapterfont \ABNTtitulodata \par}
+		       {\fontsize{14}{14}\selectfont \bf \ABNTtitulodata \par}
 		  \end{espacosimples}
 		\end{center}
 		\vspace{12pt}
 		\begin{center}
-			{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdocumentodata}}%
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRdocumentodata} \par}%
 		\end{center}
 		\vfill
 		\begin{center}
-			\MakeUppercase{\ABNTlocaldata}\par
-			\ABNTdatadata
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTlocaldata} \par}
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}} 
 		\end{center}
 	\end{titlepage}
 }
@@ -206,39 +244,141 @@
 \setcounter{page}{-1}
 	   \begin{center}
             \begin{espacosimples}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\ABNTinstituicaodata}}\par
-				\UTFPRifnotempty{\UTFPRunidadedata}{{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRunidadedata}}\par}
-               \ABNTifnotempty{\UTFPRdiretoriadata}{{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRdiretoriadata}\par}}
-                               \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcoordenacaodata}\par}
-				{\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRcursodata}\par}
-                {\fontsize{12}{14}\selectfont \MakeUppercase{\UTFPRlab}\par}
-                {\fontsize{12}{13}\selectfont DISCIPLINA: \MakeUppercase{\UTFPRdiscip}\par}
-                {\fontsize{12}{13}\selectfont DOCENTE: \MakeUppercase{\ABNTorientadorname}}	
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}}\par
+				\UTFPRifnotempty{\UTFPRunidadedata}{{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRunidadedata}}\par}
+                \ABNTifnotempty{\UTFPRdiretoriadata}{{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRdiretoriadata}\par}}
+                \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcoordenacaodata}\par}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcursodata}\par}
+                {\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRlab}\par}
+                {\fontsize{12}{13}\selectfont \bf DISCIPLINA: \MakeUppercase{\UTFPRdiscip}\par}
+                {\fontsize{12}{13}\selectfont \bf DOCENTE: \MakeUppercase{\ABNTorientadorname}}	
 	       \end{espacosimples}		
 	 \end{center}		
 		\vfill
 		\begin{center}
 		  \begin{espacosimples}
-			\large\ABNTchapterfont \MakeUppercase{\ABNTtitulodata} \par
+			{\fontsize{14}{14}\selectfont \bf \MakeUppercase{\ABNTtitulodata}} \par
 			\end{espacosimples}
 		\end{center}
         \vfill
 		\begin{center}
 			\begin{espacosimples}
-				\large\MakeUppercase{\ABNTautordata}\\
-				\UTFPRifnotempty{\UTFPRautordoisdata}{\large\MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautortresdata}{\large\MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautorquatrodata}{\large\MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
-                \UTFPRifnotempty{\UTFPRautorcincodata}{\large\MakeUppercase{\UTFPRautorcincodata}\\}{\vspace{18pt}}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTautordata}}\par
+				\UTFPRifnotempty{\UTFPRautordoisdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautordoisdata}\par}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautortresdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautortresdata}\par}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautorquatrodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorquatrodata}\par}{\vspace{18pt}}
+                \UTFPRifnotempty{\UTFPRautorcincodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorcincodata}\par}{\vspace{18pt}}
 			\end{espacosimples}
 		\end{center}
         \vfill
         \begin{center}
-			\MakeUppercase{\ABNTlocaldata}\par
-			\MakeUppercase{\ABNTdatadata}
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTlocaldata}}\par
+			{\fontsize{12}{14}\selectfont \bf  \MakeUppercase{\ABNTdatadata}}
 		\end{center}
 \if@restonecol\twocolumn \else \newpage \fi
 \espaco{\ABNTespacodefault}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CAPA PARA PRE-PROPOSTA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\capapre}{
+\UTFPRifnotempty{\UTFPRcoorientadorname}
+% SE TIVER COOORIENTADOR
+{ \fontsize{12}{14}\selectfont
+     \begin{titlepage}
+      \begin{center}
+		  \begin{espacosimples}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
+				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRunidadedata}\par}
+                \ABNTifnotempty{\UTFPRdiretoriadata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRdiretoriadata}\par}
+                \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcoordenacaodata}\par}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcursodata}\\}	
+		\end{espacosimples}		
+	 \end{center}
+      \noindent \newline
+      \begin{center}
+      \begin{tabular}{| C{5cm} |}
+            \hline
+           \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\
+            \hline
+      \end{tabular}\vspace{30pt}
+      \end{center}
+     \begin{center}
+		  \begin{espacosimples}
+		       {\fontsize{14}{14}\selectfont  \bf \ABNTtitulodata \par}
+		  \end{espacosimples}
+	 \end{center}\vspace{12pt}
+    \begin{espacosimples} \noindent
+     \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
+            \hline
+            \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & 123456 & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            \hline
+            \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
+            \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
+            \multicolumn{2}{|l|}{\textbf{E-mail do orientador:}} & \multicolumn{2}{l|} {}\\
+            \multicolumn{2}{|l|}{\texttt{\UTFPRemailori}} &  \multicolumn{2}{l|}{} \\
+            \hline
+            \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRcoorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do coorientador:}}\\
+            \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \UTFPRcoorientadordata~  \UTFPRcoorientadorname} &  \multicolumn{2}{l|}{} \\
+            \multicolumn{2}{|l|}{\textbf{E-mail do coorientador:}} & \multicolumn{2}{l|} {}\\
+            \multicolumn{2}{|l|}{\texttt{\UTFPRemailcoori}} &  \multicolumn{2}{l|}{} \\ \hline
+      \end{tabular}
+      \end{espacosimples}
+      \vfill
+      \begin{center}
+			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTlocaldata} \par}
+			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTdatadata}}
+		\end{center}
+\end{titlepage}
+} 
+% SE NAO TIVER 
+{ \fontsize{12}{14}\selectfont
+     \begin{titlepage}
+      \begin{center}
+		  \begin{espacosimples}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
+				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRunidadedata}\par}
+                \ABNTifnotempty{\UTFPRdiretoriadata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRdiretoriadata}\par}
+                \ABNTifnotempty{\UTFPRcoordenacaodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcoordenacaodata}\par}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRcursodata}\\}	
+		\end{espacosimples}		
+	 \end{center}
+      \noindent \newline
+      \begin{center}
+      \begin{tabular}{| C{5cm} |}
+            \hline
+            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\ 
+            \hline
+      \end{tabular}\vspace{30pt}
+      \end{center}
+     \begin{center}
+		  \begin{espacosimples}
+		       {\fontsize{14}{14}\selectfont  \bf \ABNTtitulodata \par}
+		  \end{espacosimples}
+	 \end{center}\vspace{12pt}
+    \begin{espacosimples}\noindent
+     \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
+            \hline
+            \noindent \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & 123456 & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            \hline
+            \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
+            \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
+            \multicolumn{2}{|l|}{\textbf{E-mail do orientador:}} & \multicolumn{2}{l|} {}\\
+            \multicolumn{2}{|l|}{\texttt{\UTFPRemailori}} &  \multicolumn{2}{l|}{} \\
+            \hline
+     \end{tabular}
+      \end{espacosimples}
+      \vfill
+      \begin{center}
+			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTlocaldata} \par}
+			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTdatadata}}
+		\end{center}
+\end{titlepage}
+}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -250,27 +390,28 @@
 		\espaco{1.1}
 		\begin{center}
 			\begin{espacosimples}
-				\large\MakeUppercase{\ABNTautordata}\\
-				\UTFPRifnotempty{\UTFPRautordoisdata}{\large\MakeUppercase{\UTFPRautordoisdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautortresdata}{\large\MakeUppercase{\UTFPRautortresdata}\\}{\vspace{18pt}}
-				\UTFPRifnotempty{\UTFPRautorquatrodata}{\large\MakeUppercase{\UTFPRautorquatrodata}\\}{\vspace{18pt}}
+				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTautordata}}\par
+				\UTFPRifnotempty{\UTFPRautordoisdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautordoisdata}\par}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautortresdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautortresdata}\par}{\vspace{18pt}}
+				\UTFPRifnotempty{\UTFPRautorquatrodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorquatrodata}\par}{\vspace{18pt}}
+                \UTFPRifnotempty{\UTFPRautorcincodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorcincodata}\par}{\vspace{18pt}}
 			\end{espacosimples}
 		\end{center}
 		\vspace{96pt}
 		\begin{center}
-			\large\ABNTchapterfont \ABNTtitulodata \par%\MakeUppercase{\ABNTtitulodata}\par
+			{\fontsize{14}{14}\selectfont  \bf \ABNTtitulodata \par}
 		\end{center}
 		\vspace{60pt}
 		\hspace{.35\textwidth}	
 		\begin{minipage}{.55\textwidth}
 			\begin{espacosimples}
-				\ABNTcomentariodata \\[1.5mm] \UTFPRorientadorStr: \ABNTorientadordata~  \ABNTorientadorname   \ABNTifnotempty{\UTFPRcoorientadorname}{\\[1.5mm] \UTFPRcoorientadorStr: \UTFPRcoorientadordata~ \UTFPRcoorientadorname}
+				\fontsize{12}{14}\selectfont \ABNTcomentariodata \\[1.5mm] \UTFPRorientadorStr: \ABNTorientadordata~  \ABNTorientadorname   \ABNTifnotempty{\UTFPRcoorientadorname}{\\[1.5mm] \UTFPRcoorientadorStr: \UTFPRcoorientadordata~ \UTFPRcoorientadorname}
 				\end{espacosimples}		
 		\end{minipage}
 		\vfill
 		\begin{center}
-			\MakeUppercase{\ABNTlocaldata}\par
-			\ABNTdatadata
+			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTlocaldata} \par}
+			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTdatadata}}
 		\end{center}
 	\end{titlepage}
 }
@@ -501,6 +642,7 @@
 	\newpage
 }
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE FIGURAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -666,6 +808,45 @@
        \fi
 %		 \addtolength{\siglamaxwidth}{1ex}
 \printnomenclature[\the\siglamaxwidth]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% LISTA DE QUADROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\listadequadros}{%
+  \ifthenelse{\boolean{@twocolumn}}%
+    {\setboolean{ABNTrestorecol}{true}\onecolumn}%
+    {\setboolean{ABNTrestorecol}{false}}%
+  \setchaptertype{listadequadros}
+  \pretextualchapter{LISTA DE QUADROS}
+  \@starttoc{qdr}%
+  \ifthenelse{\boolean{ABNTrestorecol}}{\twocolumn}{}%
+}%
+
+\newcounter{quadro}
+\setcounter{quadro}{0}
+\newcommand{\ext@quadro}{qdr}
+\newcommand{\quadro}[1]{%
+	\captionsetup{type=quadro,name=Quadro}%FIXME só funciona em TEXLIVE
+	\caption[#1]{#1}
+}
+
+\newcommand{\quadfillnum}[1]{%
+  {\hspace{1em}\normalfont\dotfill}\nobreak
+  \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
+
+
+\newcommand{\l@quadro}[2]
+{
+	\leftskip 3.4em
+	\rightskip 1.8em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.8em
+	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	{\MakeUppercase{Quadro} \normalfont #1}\nobreak \quadfillnum{#2}
+}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -927,24 +1108,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\captionfonts}{\small}
 
-\long\def\@makecaption#1#2{
-	\vskip\abovecaptionskip
-	\sbox\@tempboxa{{\captionfonts \textbf{#1: #2}}}%
-	\ifdim \wd\@tempboxa >\hsize
-		{\captionfonts \textbf{#1: #2}\par}
-	\else
-		\hbox to\hsize{\hfil\box\@tempboxa\hfil}%
-	\fi
-	\vskip\belowcaptionskip
-}
+%\long\def\@makecaption#1#2{
+%	\vskip\abovecaptionskip
+%	\sbox\@tempboxa{{\captionfonts \textbf{#1: #2}}}%
+%	\ifdim \wd\@tempboxa >\hsize
+%		{\captionfonts \textbf{#1: #2}\par}
+%	\else
+%		\hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+%	\fi
+%	\vskip\belowcaptionskip
+%}
 
 \newcommand{\fonte}[1]
 {
-	\begin{flushleft}
-		\begin{spacing}{\taxaespacomeio}
+\begin{flushleft}
+        \begin{spacing}{0.1}
 			\par
 		\end{spacing}
-		\centering\small{\textbf{Fonte: #1}}
+		\small{\textbf{Fonte: #1}}
 	\end{flushleft}
 }
 
