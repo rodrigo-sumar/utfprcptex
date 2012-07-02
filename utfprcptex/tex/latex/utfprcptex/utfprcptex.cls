@@ -33,13 +33,13 @@
 \RequirePackage{multirow}
 \RequirePackage{colortbl}
 \RequirePackage{hhline}
-\definecolor{meucinza}{rgb}{0.5, 0.5, 0.5}
 \RequirePackage{ifthen}
 \RequirePackage{lastpage}
 \RequirePackage{perpage}
 \RequirePackage[overload]{textcase}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
+\definecolor{meucinza}{rgb}{0.5, 0.5, 0.5}
 \PassOptionsToPackage{hyperindex=false}{hyperref}
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
@@ -60,6 +60,8 @@
 
 \newlength{\siglawidth}
 \newlength{\siglamaxwidth}
+\newlength{\simbwidth}
+\newlength{\simbmaxwidth}
 % Comando para selecionar o tipo de fonte
 \newcommand{\fontetipo}[1]%
 {
@@ -288,7 +290,8 @@
 % SE TIVER COOORIENTADOR
 { \fontsize{12}{14}\selectfont
      \begin{titlepage}
-      \begin{center}
+     \renewcommand{\thepage}{title}
+       \begin{center}
 		  \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
 				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRunidadedata}\par}
@@ -337,7 +340,8 @@
 % SE NAO TIVER 
 { \fontsize{12}{14}\selectfont
      \begin{titlepage}
-      \begin{center}
+     \renewcommand{\thepage}{title}
+           \begin{center}
 		  \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
 				\ABNTifnotempty{\UTFPRunidadedata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRunidadedata}\par}
@@ -729,23 +733,36 @@
 {
 	\pretextualchapter{LISTA DE S\'IMBOLOS}
 	\begin{espacosimples}  %cesar230511
-	\@starttoc{lsb}
+	{\setlength{\parindent}{0cm}
+	 % Abrindo arquivo para leitura e verificando se ele existe:
+		 \newread\instream
+		 \immediate\openin\instream= \jobname.tmp
+		 \ifeof\instream
+		 	\message{\jobname.tmp nao existe ainda. Rode o latex novamente.} % Na primeira vez.
+       \else
+       	\immediate\read\instream to \auxcommand % O comando no arquivo temporario é salvo em \auxcommand.
+       	\immediate\closein\instream % Fechando o arquivo.
+       	\auxcommand % Executando o comando lido.
+       \fi
+	 \addtolength{\simbmaxwidth}{1em}
+	 \@starttoc{los}}
 	\end{espacosimples}
 }
 
 \newcommand{\simbolo}[2]
 {
-	{\addcontentsline{lsb}{simbolo}{\numberline{#1}{#2}}}#1%
+     \settowidth{\simbwidth}{#1}\ignorespaces
+     \ifthenelse{\lengthtest{\simbwidth > \simbmaxwidth}} % Se o novo simbolo é maior,
+     {\settowidth{\simbmaxwidth}{#1}} % seta o valor da maior com o tamanho da atual.
+     {}\ignorespaces
+	  \ifthenelse{\equal{#2}{}}
+		  {\addcontentsline{los}{simbolo}{\protect\parbox[t]{\protect\simbmaxwidth}{#1}}}
+		  {\addcontentsline{los}{simbolo}{\protect\parbox[t]{\protect\simbmaxwidth}{#1} \protect\parbox[t]{\protect\textwidth - \protect\simbmaxwidth}{#2}}}\ignorespaces #1
 }
 
-\newcommand{\l@simbolo}[2]
-{
-	\vspace{-0.75cm}
-	\leftskip 0em
-	\parindent 0em
-	\@tempdima 5em
-	\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-	{\normalfont #1}\hfil\nobreak\par
+% como a entrada ser´a impressa
+\newcommand\l@simbolo[2]{
+	\parbox[b]{\textwidth}{#1}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1162,6 +1179,8 @@
 % do latex.
 \newwrite\outputstream
 \immediate\openout\outputstream=\jobname.tmp
+% Salvando comando contendo a largura do maior simbolo:
+\immediate\write\outputstream{\string\setlength{\simbmaxwidth}{\the\simbmaxwidth}}
 % Salvando comando contendo a largura da maior sigla:
 \immediate\write\outputstream{\string\setlength{\siglamaxwidth}{\the\siglamaxwidth}}
 % Fechando stream:

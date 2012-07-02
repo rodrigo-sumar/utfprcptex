@@ -7,7 +7,7 @@
 %
 % 2012
 
-\documentclass[dvips,notes=hide]{beamer}
+\documentclass[pdflatex,notes=hide]{beamer}
 
 %
 % CONVERTA PARA PDF USANDO O DVIPS!!!
@@ -18,7 +18,7 @@
 \usepackage{pgfpages}
 %\pgfpagesuselayout{2 on 1 with notes landscape}[a4paper,border shrink=5mm]
 %\usepackage{graphicx}
-
+\usepackage{pgf}
 \usepackage[latin1]{inputenc}
 \usepackage[brazil]{babel}
 
@@ -27,10 +27,12 @@
           bullet=circle,% Use circles instead of squares for bullets.
           titleline=true,% Show a line below the frame title.
           alternativetitlepage=true,% Use the fancy title page.
-          titlepagelogo=logo-utfpr-cp.eps,% Logo for the first page.
+          titlepagelogo=logo-utfpr-cp,% Logo for the first page.
           ]{UTFPR}
 
-\logo{\includegraphics[height=30px]{logo-utfpr.eps}}
+
+
+\logo{\pgfputat{\pgfxy(-1,-1)}{\pgfbox[center,base]{\includegraphics[height=20px]{logo-utfpr}}}}
 
 \useoutertheme{decolinesUTFPR}
 \setbeamertemplate{blocks}[rounded][shadow=true]
@@ -47,7 +49,8 @@
 %\setbeameroption{show only notes}
 
 \author[Rodrigo Sumar]{Rodrigo Sumar \and Rodrigo Sumar}
-\title[Exemplo]{Exemplo de Apresentação}
+\title[Exemplo]{Exemplo de Apresentação Exemplo de Apresentação Exemplo de Apresentação Exemplo}
+\subtitle{fasdffasd}
 \institute[UTFPR-CP]{Universidade Técnologica Federal do Paraná \\ Campus Cornélio Procópio \\ Paraná, Brasil}
 \date[SIGLA]{Nome da conferência ou tipo de apresentação \\ Local, 2009}
 

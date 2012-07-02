@@ -9,8 +9,7 @@
 \pdfstringdefDisableCommands{%
 \let\MakeUppercase\relax
 }
-%\usepackage[latin1]{inputenc}
-%\usepackage[brazil]{babel}
+
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
 \usepackage{graphicx} % pacote grafico
 \usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=2, abnt-etal-list=3]{abntcite}
@@ -45,52 +44,44 @@
 \begin{document} % Início do documento.
 
 \capa % geracao automatica da capa
-%\folhaderosto % geracao automatica da folha de rosto
-%\termodeaprovacao % <- ainda a ser implementado corretamente
-
-% dedicatória (opcional)
-%\begin{dedicatoria}
-%Texto da dedicat\'oria.
-%\end{dedicatoria}
-
-% agradecimentos (opcional)
-%\begin{agradecimentos}
-%Texto dos agradecimentos.
-%\end{agradecimentos}
-
-% epigrafe (opcional)
-%\begin{epigrafe}
-%Texto da ep\'igrafe.
-%\end{epigrafe}
-
-%resumo
-%\begin{resumo}
-%Texto do resumo (m\'aximo de 500 palavras).
-%\end{resumo}
-
-%abstract
-%\begin{abstract}
-%Abstract text (maximum of 500 words).
-%\end{abstract}
-
-% listas (opcionais, mas recomenda-se a partir de 5 elementos)
-%\listadefiguras % geracao automatica da lista de figuras
-%\listadetabelas % geracao automatica da lista de tabelas
-%\listadesiglas % geracao automatica da lista de siglas
-%\listadesimbolos % geracao automatica da lista de simbolos
 
 % sumario
 \sumario % geracao automatica do sumario
 
 \chapter{Introdução}
 
-O \utfprtex~ é uma classe de formatação para Dissertações e Trabalhos de Conclusão de Curso \ABNTinstituicaodata~ do \UTFPRunidadedata.
+O \utfprtex~ é uma classe de formatação para Dissertações, Trabalhos de Conclusão de Curso, Propostas de TCC e Trabalhos Acadêmicos da \ABNTinstituicaodata~ do \UTFPRunidadedata.
 
 Por ser uma classe (modelo) o \utfprtex~ é invocado nas primeiras linhas do seu documento escrito no LaTeX, com o comando \verb|\documentclass|.
 
 Este modelo é baseado no {\abnTeX} (http://abntex.codigolivre.org.br/)
 
 Veja instruções abaixo de como instalar o \abnTeX~ bem como o \utfprtex.
+
+\section{Pacotes Necessários a Execução do \utfprtex}
+
+Além do pacote \abnTeX~, a instalação dos seguintes pacotes é necessária para a execução da classe \utfprtex:
+\begin{itemize}
+\item babel - Necessário para hifenização em portugues.
+\item inputenc - Pacote para acentuação direta.
+\item fontenc - Necessário para seleção da condificação das fontes.
+\item array - Estende os ambientes tabular e array. 
+\item rotating - Rotacionar tabelas.
+\item multirow - Permite a utilização de multiplas linhas em uma tabela.
+\item colortbl - Permite colorir as linhas ou colunas das tabelas.
+\item hhline - Permite melhor iteração das linhas duplas horizontais com as verticais.
+\item ifthen - Efetuar teste do tipo se-senão
+\item lastpage - Permitir a referencia a ultima pagina do documento.
+\item perpage - Manter os contadores ordenados e permitir a numeração.
+\item textcase - Conversão do texto para caixa alta.
+\item fancyhdr - Pacote necessário para a geração da folha de aprovação.
+\item xcolor - Utilizado para criar novas cores.
+\item hyperref - Adicionar links ao documento.
+\item nomencl - Pacote necessário para a lista de siglas.
+\item caption - Pacote necessário para a formatação das legendas.
+\item times - Selecionar fonte Times.
+\item uarial - Selecionar fonte Arial.
+\end{itemize}
 
 
 \section{Instalação do \utfprtex }
@@ -206,7 +197,7 @@ Neste capítulo serão apresentadas as opções disponibilizadas pela classe \utfprt
 \label{sec:comandos}
 
 
-Alguns comandos adicionais foram definidos pela classe \utfprtex. %De acordo com o tipo de documento (tese, dissertação, etc.) selecionado pela respectiva opção da classe utilizada, o número de comandos necessários pode variar.
+Alguns comandos adicionais foram definidos pela classe \utfprtex. De acordo com o tipo de documento (dissertação, tcc, trabalho,  etc.) a ser elaborado, o número de comandos necessários pode variar.
 Todos os comandos definidos nesta classe tem em seu nome o sufixo UTFPR. Caso contrário, ou é um comando do \abnTeX~ ou um comando das classes padrões do \LaTeX.
 
 
@@ -361,28 +352,24 @@ Este conjunto de comandos é utilizado para inserir o nome dos autores no caso de
 
 
 
-
-%
-%\subsection{Comandos utilizados com as opções PGTEXtese}
-%
-%\begin{table}[htbp]
-%  \centering
-%  \footnotesize
-%	\caption{Comandos da classe \texorpdfstring{\utfprtex}{pgeeltex} de acordo com o tipo de documento.}
-%  \begin{tabular}{m{3cm}|m{2cm}|m{3cm}|m{6cm}} \hline
-%   &\multicolumn{2}{c|}{Opção utilizada (tipo de documento)} &  \\
-% Comando & \verb|PGTEXtese| & \verb|PGTEXdissertacao| & Descrição \\ \hline
-%    \end{tabular}
-%	\label{tab:comandos}
-%\end{table}
-
 \section{Elementos pré-textuais}
 
 Para mostrar os elementos pré-textuais do documento alguns comandos foram definidos na classe \utfprtex. Todos estes comandos devem ser utilizados \textbf{depois} do comando de início do documento dado por \verb|\begin{document}|.
 
 \subsection{Capa}
-
+\subsubsection{Capa Dissertação e TCC}
 O comando \verb|\capa| é utilizado para mostrar a capa do documento, de acordo com o padrão da UTFPR. Para que a capa seja criada corretamente, algumas informações devem ser fornecidas pelo usuário, como título, nome do autor, etc. Estas informações são fornecidas através dos comandos, apresentados na Seção \ref{sec:comandos}, os quais devem ser definidos no preâmbulo do documento.
+
+Para a capa, os comandos utilizados são:\lstinline!\instituicao{}!, \lstinline!\unidade{}!, \lstinline!\departamento{}!, \lstinline!\programa{}!, \lstinline!\documento{}!, \lstinline!\autor{}!, \lstinline!\titulo{}!, \lstinline!\data! e \lstinline!\local{}!.
+
+
+\subsubsection{Capa Trabalho Acadêmico}
+O comando \verb|\capatrab| é utilizado para mostrar a capa do documento, de acordo com o padrão da UTFPR. Para que a capa seja criada corretamente, algumas informações devem ser fornecidas pelo usuário, como título, nome do autor, etc. Estas informações são fornecidas através dos comandos, apresentados na Seção \ref{sec:comandos}, os quais devem ser definidos no preâmbulo do documento.
+
+Para a capa, os comandos utilizados são:\lstinline!\instituicao{}!, \lstinline!\unidade{}!, \lstinline!\departamento{}!, \lstinline!\programa{}!, \lstinline!\documento{}!, \lstinline!\autor{}!, \lstinline!\titulo{}!, \lstinline!\data! e \lstinline!\local{}!.
+
+\subsubsection{Capa Pré-Proposta}
+O comando \verb|\capapre| é utilizado para mostrar a capa do documento, de acordo com o padrão da UTFPR. Para que a capa seja criada corretamente, algumas informações devem ser fornecidas pelo usuário, como título, nome do autor, etc. Estas informações são fornecidas através dos comandos, apresentados na Seção \ref{sec:comandos}, os quais devem ser definidos no preâmbulo do documento.
 
 Para a capa, os comandos utilizados são:\lstinline!\instituicao{}!, \lstinline!\unidade{}!, \lstinline!\departamento{}!, \lstinline!\programa{}!, \lstinline!\documento{}!, \lstinline!\autor{}!, \lstinline!\titulo{}!, \lstinline!\data! e \lstinline!\local{}!.
 
