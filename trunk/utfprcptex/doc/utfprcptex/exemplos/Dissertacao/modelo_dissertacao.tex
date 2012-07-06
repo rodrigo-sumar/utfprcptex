@@ -5,7 +5,7 @@
 %% Colaboradores:
 %%
 %%
-\documentclass[openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
+\documentclass[twoside,openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
 
 \usepackage[pdftex,colorlinks=false,plainpages=false,pdfpagelabels]{hyperref}
 %% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
@@ -46,7 +46,7 @@
 \nivel{Mestrado}
 \titulacao{Mestre}
 \area{Engenharia Elétrica}
-\titulo{\MakeUppercase{T\'itulo em Portugu\^es}} % titulo do trabalho em portugues
+\titulo{\MakeUppercase{T\'itulo em Portugu\^es sdsd dsdsd sddsds dsdsd sdsdsd dsdsds}} % titulo do trabalho em portugues
 \title{\MakeUppercase{Title in English}} % titulo do trabalho em ingles
 \autor{Nome do Autor} % autor do trabalho
 \cita{SOBRENOME, Nome} % sobrenome (maiusculas), nome do autor do trabalho
@@ -80,7 +80,8 @@
 \begin{document}
 \hypersetup{pageanchor=false}
 \capa % geracao automatica da capa
-\folhaderosto % geracao automatica da folha de rosto
+\folhaderosto[comficha] % geracao automatica da folha de rosto
+
 \termodeaprovacao % <- ainda a ser implementado corretamente
 
 % dedicatória (opcional)
@@ -126,9 +127,9 @@ Abstract text (maximum of 500 words).
 \input{capitulo2/cap2.tex}
 \input{capitulo3/cap3.tex}
 
+
 %---------- Referencias ----------
 \bibliography{referencias/referencias} % geracao automatica das referencias a partir do arquivo reflatex.bib
-\label{uref}
 
 %---------- Apendices (opcionais) ----------
 \apendice

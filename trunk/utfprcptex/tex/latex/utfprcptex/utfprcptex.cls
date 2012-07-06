@@ -23,8 +23,13 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{utfprcptex}[2011/12/12 Classe de Normas para Trabalhos da UTFPR]
 
-\PassOptionsToClass{pagestart=firstchapter,chapter=TITLE,section=TITLE}{abnt}
-
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{abnt}}
+\ProcessOptions
+\LoadClass[cleardoublepage=plain,
+pagestart=firstchapter,
+chapter=TITLE,
+section=TITLE
+]{abnt}
 \RequirePackage[brazil]{babel} % pacote portugues brasileiro
 \RequirePackage[latin1]{inputenc} % pacote para acentuacao direta
 \RequirePackage[T1]{fontenc}
@@ -39,13 +44,14 @@
 \RequirePackage[overload]{textcase}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
+\usepackage{remreset}		% reinicia contadores
 \definecolor{meucinza}{rgb}{0.5, 0.5, 0.5}
 \PassOptionsToPackage{hyperindex=false}{hyperref}
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
 %para ordenar automaticamente a lista de siglas
 \immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
-\LoadClass{abnt}
+
 \RequirePackage[format=hang,singlelinecheck=false,labelfont=bf,labelsep=endash,textfont=bf,justification=justified]{caption}
 
 \makeatletter	%Para que se entenda o @
@@ -79,6 +85,9 @@
 
 \providecommand{\UTFPRunidadedata}{}
 \newcommand{\unidade}[1]{\renewcommand{\UTFPRunidadedata}{#1}}
+
+\providecommand{\UTFPRabrev}{}
+\newcommand{\abreviatura}[1]{\renewcommand{\UTFPRabrev}{#1}}
 
 \providecommand{\UTFPRdiretoriadata}{}
 \newcommand{\diretoria}[1]{\renewcommand{\UTFPRdiretoriadata}{#1}}
@@ -196,7 +205,17 @@
 % CAPA DISSERTACAO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\capa}{
-	\begin{titlepage}
+\if@openright		% Garante que se a página for "direita"
+     \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 		\begin{center}
 		  \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
@@ -230,7 +249,9 @@
 			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTlocaldata} \par}
 			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}} 
 		\end{center}
-	\end{titlepage}
+\vspace{1cm}
+\if@restonecol\twocolumn \else \newpage \fi
+\if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -242,8 +263,7 @@
 \else
   \@restonecolfalse\newpage
 \fi
-\thispagestyle{empty}%
-\setcounter{page}{-1}
+\thispagestyle{empty}
 	   \begin{center}
             \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}}\par
@@ -278,6 +298,7 @@
 			{\fontsize{12}{14}\selectfont \bf  \MakeUppercase{\ABNTdatadata}}
 		\end{center}
 \if@restonecol\twocolumn \else \newpage \fi
+\if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
 \espaco{\ABNTespacodefault}
 }
 
@@ -289,8 +310,13 @@
 \UTFPRifnotempty{\UTFPRcoorientadorname}
 % SE TIVER COOORIENTADOR
 { \fontsize{12}{14}\selectfont
-     \begin{titlepage}
-     \renewcommand{\thepage}{title}
+     \if@twocolumn
+  \@restonecoltrue\onecolumn
+\else
+  \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty}
+     \renewcommand{\thepage}{}
        \begin{center}
 		  \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
@@ -335,12 +361,18 @@
 			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTlocaldata} \par}
 			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTdatadata}}
 		\end{center}
-\end{titlepage}
+\if@restonecol\twocolumn \else \newpage \fi
+\if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
 } 
 % SE NAO TIVER 
 { \fontsize{12}{14}\selectfont
-     \begin{titlepage}
-     \renewcommand{\thepage}{title}
+\if@twocolumn
+  \@restonecoltrue\onecolumn
+\else
+  \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty}
+     \renewcommand{\thepage}{}
            \begin{center}
 		  \begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTinstituicaodata}\par}
@@ -381,17 +413,29 @@
 			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTlocaldata} \par}
 			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTdatadata}}
 		\end{center}
-\end{titlepage}
+\if@restonecol\twocolumn \else \newpage \fi
+\if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
 }
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FOLHA DE ROSTO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\folhaderosto}
+\renewcommand{\folhaderosto}[1][semficha]
 {
-	\begin{titlepage}
-		\espaco{1.1}
+\if@openright		% Garante que se a página for "direita"
+    \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\renewcommand{\thepage}{}
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
+    \espaco{1.1}
 		\begin{center}
 			\begin{espacosimples}
 				{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTautordata}}\par
@@ -417,8 +461,38 @@
 			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTlocaldata} \par}
 			{\fontsize{12}{14}\selectfont  \bf \MakeUppercase{\ABNTdatadata}}
 		\end{center}
-	\end{titlepage}
+\vspace{1cm}
+\ifthenelse{\equal{#1}{comficha}}
+    {%\newpage
+     \mbox{}
+     \vfill
+     \conteudofichacatalografica
+    }{}
 }
+%%%%%%%
+%%%% Ficha catalografica
+%%%%%%%
+\providecommand{\UTFPRassuntoum}{}
+\providecommand{\UTFPRassuntodois}{}
+\providecommand{\UTFPRassuntotres}{}
+\providecommand{\UTFPRassuntoquatro}{}
+\newcommand{\assuntos}[4]{
+                     \renewcommand{\UTFPRassuntoum}{#1}
+                     \renewcommand{\UTFPRassuntodois}{#1}
+                     \renewcommand{\UTFPRassuntotres}{#1}
+                     \renewcommand{\UTFPRassuntoquatro}{#4}
+                     }
+\providecommand{\UTFPRcutter}{}
+\newcommand{\cutter}[1]{\renewcommand{\UTFPRcutter}{#1}}
+
+\providecommand{\UTFPRcdd}{}
+\newcommand{\cdd}[1]{\renewcommand{\UTFPRcdd}{#1}}
+
+\newcommand{\conteudofichacatalografica}{
+\include{fichacatalografica}
+}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -490,9 +564,19 @@
 
 \newcommand{\termodeaprovacao}
 {
-\if@openright{\cleardoublepage}\else\clearpage\fi
+\if@openright		% Garante que se a página for "direita"
+    \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
+\renewcommand{\thepage}{}
 \thispagestyle{aprovacao}
-
     \espaco{1}
         \begin{center}
 			\textbf{TERMO DE APROVAÇÃO} \\[20pt]
@@ -546,15 +630,25 @@
 		}
 \espaco{\ABNTespacodefault}
 \if@openright\cleardoublepage\else\clearpage\fi
+\thispagestyle{empty}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   DEDICATORIA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{dedicatoria}%
-{%
-	\if@openright\cleardoublepage\else\clearpage\fi%
-	\setchaptertype{}
+{
+\if@openright		% Garante que se a página for "direita"
+   \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 	\pretextualchapter{}
 	\vfill
 	\begin{flushright}
@@ -567,7 +661,8 @@
 			\end{espacosimples}
 		\end{minipage}
 	\end{flushright}
-	\newpage
+\if@openright\cleardoublepage\else\clearpage\fi
+\thispagestyle{empty}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -575,12 +670,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{agradecimentos}%
 {%
-	\if@openright\cleardoublepage\else\clearpage\fi%
-	\setchaptertype{}
+\if@openright		% Garante que se a página for "direita"
+    \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 	\pretextualchapter{AGRADECIMENTOS}%
 }%
 {
-	\newpage
+\if@openright\cleardoublepage\else\clearpage\fi%
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -588,8 +693,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newenvironment{epigrafe}%
 {%
-	\if@openright\cleardoublepage\else\clearpage\fi%
-	\setchaptertype{}
+\if@openright		% Garante que se a página for "direita"
+    \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 	\pretextualchapter{}
 	\vfill
 	\begin{flushright}
@@ -602,7 +716,8 @@
 			\end{espacosimples}
 		\end{minipage}
 	\end{flushright}
-	\newpage
+\if@openright\cleardoublepage\else\clearpage\fi
+\thispagestyle{empty}
 }
 
 
@@ -611,8 +726,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewenvironment{resumo}%
 {%
-	\if@openright\cleardoublepage\else\clearpage\fi%
-	\setchaptertype{resumo}
+\if@openright		% Garante que se a página for "direita"
+    \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 	\pretextualchapter{\MakeUppercase{\resumoname}}%
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
@@ -623,7 +747,8 @@
 {
 		\par \textbf{Palavras-chave:} \UTFPRpalavraschavedata
 	\end{espacosimples}
-	\newpage
+\if@openright\cleardoublepage\else\clearpage\fi
+\thispagestyle{empty}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -631,8 +756,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewenvironment{abstract}%
 {%
-	\if@openright\cleardoublepage\else\clearpage\fi%
-	\setchaptertype{abstract}
+\if@openright		% Garante que se a página for "direita"
+    \cleardoublepage	% ele pula uma página para deixar o anverso em branco
+\else
+    \clearpage
+\fi
+\if@twocolumn		% Força que a página seja de uma coluna apenas
+    \@restonecoltrue\onecolumn
+\else
+    \@restonecolfalse\newpage
+\fi
+\thispagestyle{empty} 	% Define o estilo desta página como vazio
 	\pretextualchapter{\MakeUppercase{\ABNTabstractname}}%
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
@@ -643,7 +777,8 @@
 {
 		\par \textbf{Keywords:} \UTFPRkeywordsdata
 		\end{espacosimples}
-	\newpage
+\if@openright\cleardoublepage\else\clearpage\fi
+\thispagestyle{empty}
 }
 
 
@@ -664,7 +799,6 @@
 	\ifthenelse{\boolean{@twocolumn}}
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
-	\setchaptertype{listoffigures}
 	\pretextualchapter{LISTA DE FIGURAS}
 	\begin{espacosimples}
 	\@starttoc{lof}
@@ -703,7 +837,7 @@
 	\ifthenelse{\boolean{@twocolumn}}
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
-	\setchaptertype{listoftables}
+%	\setchaptertype{listoftables}
 	\pretextualchapter{LISTA DE TABELAS}
 	\begin{espacosimples}
 	\@starttoc{lot}
@@ -834,7 +968,7 @@
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
-  \setchaptertype{listadequadros}
+%  \setchaptertype{listadequadros}
   \pretextualchapter{LISTA DE QUADROS}
   \@starttoc{qdr}%
   \ifthenelse{\boolean{ABNTrestorecol}}{\twocolumn}{}%
@@ -1090,6 +1224,9 @@
 	\@schapter
 }
 
+
+
+
 % Altera a posicao da numeracao de paginas dos elementos textuais
 \renewcommand{\ABNTchaptermark}[1]
 {
@@ -1107,7 +1244,10 @@
 	\fi			
 	\renewcommand{\chaptertitlepagestyle}{plainheader}
 	\renewcommand{\thepage}{\arabic{page}}
-	\addtocounter{page}{1}
+	\addtocounter{page}{0}
+
+
+
 
 % Observacoes:
 % \@twosidetrue considera as paginas pares e impares.
