@@ -247,7 +247,7 @@ section=TITLE
 		\vfill
 		\begin{center}
 			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTlocaldata} \par}
-			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}} 
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}}
 		\end{center}
 \vspace{1cm}
 \if@restonecol\twocolumn \else \newpage \fi
@@ -363,8 +363,8 @@ section=TITLE
 		\end{center}
 \if@restonecol\twocolumn \else \newpage \fi
 \if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
-} 
-% SE NAO TIVER 
+}
+% SE NAO TIVER
 { \fontsize{12}{14}\selectfont
 \if@twocolumn
   \@restonecoltrue\onecolumn
@@ -386,7 +386,7 @@ section=TITLE
       \begin{center}
       \begin{tabular}{| C{5cm} |}
             \hline
-            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\ 
+            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\
             \hline
       \end{tabular}\vspace{30pt}
       \end{center}
@@ -464,6 +464,7 @@ section=TITLE
 \vspace{1cm}
 \ifthenelse{\equal{#1}{comficha}}
     {%\newpage
+    \setcounter{page}\z@
      \mbox{}
      \vfill
      \conteudofichacatalografica
