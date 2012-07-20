@@ -953,7 +953,7 @@ section=TITLE
 		 \ifeof\instream
 		 	\message{\jobname.tmp nao existe ainda. Rode o latex novamente.} % Na primeira vez.
        \else
-        % \immediate\read\instream to \auxcommand % O primeiro comando é o da lista de simbolos.
+        \immediate\read\instream to \auxcommand % O primeiro comando é o da lista de simbolos.
        	\immediate\read\instream to \auxcommand % O comando no arquivo temporario é salvo em \auxcommand.
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
