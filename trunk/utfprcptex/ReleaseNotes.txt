@@ -1,0 +1,13 @@
+\numerodemembrosnabanca{numero de membros}
+
+Este comando é utilizado para definir se os campos de assinaturas dos membros da banca na folha de aprovação serão colocados em uma ou duas colunas. Se o orientador e/ou o coorientador não fizerem parte da banca eles não deverão ser considerados no numero total de membros.
+
+
+\orientadornabanca{sim ou nao}
+
+Este comando é utilizado para definir se o campo de assinatura do orientador será inserido entre os membros da banca ou não. No caso de o orientador não participar da banca sua assinatura constará junto a do coordenador do curso.
+
+
+\coorientadornabanca{sim ou nao}
+
+Este comando é utilizado para definir se o campo de assinatura do coorientador será inserido entre os membros da banca ou não. No caso de o coorientador não participar da banca sua assinatura constará junto a do coordenador do curso.

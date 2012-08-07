@@ -247,10 +247,25 @@ Insere o ano da defesa dado pelo texto \verb|ano| no argumento do comando. É uti
 
 
 \vspace{3ex}\noindent
-\lstinline!\primeiroassina[Dr.]{Membro A da banca} ... \quartoassina[Dr.]{Membro E da banca}!
+\lstinline!\primeiroassina[Dr.]{Membro A da banca} ... \setimoassina[Dr.]{Membro E da banca}!
 
-Este conjunto de comandos é utilizado para inserir o nome dos membros da banca de avaliação do trabalho. São utilizados somente pela folha de aprovação. Cada um dos comandos, \verb|\primeiroassina|, \verb|\segundoassina|, \verb|\terceiroassina| e \verb|\quartoassina| é utilizado para definir cada um dos membros da banca. Estes comandos possuem um argumento obrigatório, dado pelo texto \verb|Membro X da banca| que corresponde ao nome da pessoa. O grau de titulação de cada membro pode ser informado pelo campo opcional entre colchetes. Se este campo não for especificado, a palavra ``Doutor'' é utilizada como padrão.
+Este conjunto de comandos é utilizado para inserir o nome dos membros da banca de avaliação do trabalho. São utilizados somente pela folha de aprovação. Cada um dos comandos, \lstinline!\primeiroassina!, \lstinline!\segundoassina!, \lstinline!\terceiroassina!, \lstinline!\quartoassina!, \lstinline!\quintoassina!, \lstinline!\sextoassina! e \lstinline!\setimoassina! é utilizado para definir cada um dos membros da banca. Estes comandos possuem um argumento obrigatório, dado pelo texto \verb|Membro X da banca| que corresponde ao nome da pessoa. O grau de titulação de cada membro pode ser informado pelo campo opcional entre colchetes. Se este campo não for especificado, a palavra ``Doutor'' é utilizada como padrão.
 
+
+\vspace{3ex}\noindent
+\lstinline!\numerodemembrosnabanca{numero de membros}!
+
+Este comando é utilizado para definir se os campos de assinaturas dos membros da banca na folha de aprovação serão colocados em uma ou duas colunas. Se o orientador e/ou o coorientador não fizerem parte da banca eles não deverão ser considerados no numero total de membros.
+
+\vspace{3ex}\noindent
+\lstinline!\orientadornabanca{sim ou nao}!
+
+Este comando é utilizado para definir se o campo de assinatura do orientador será inserido entre os membros da banca ou não. No caso de o orientador não participar da banca sua assinatura constará junto a do coordenador do curso.
+
+\vspace{3ex}\noindent
+\lstinline!\coorientadornabanca{sim ou nao}!
+
+Este comando é utilizado para definir se o campo de assinatura do coorientador será inserido entre os membros da banca ou não. No caso de o coorientador não participar da banca sua assinatura constará junto a do coordenador do curso.
 
 \vspace{3ex}\noindent
 \verb|\textoaprovacao{texto}|
@@ -337,23 +352,23 @@ O conjunto de comandos,obrigatórios, foi definido caso se faça a opção pela gera
 
 \vspace{3ex}\noindent
 \verb|\abreviatura{sigla}|
-Insere a sigla da instituição na Ficha Catalográfica. 
+Insere a sigla da instituição na Ficha Catalográfica.
 
 
 \vspace{3ex}\noindent
 \verb|\assuntos{Assunto 1}{Assunto 2}{Assunto 3}{Assunto 4}|
 
-Insere os assuntos do trabalho, fornecidos pela biblioteca, na Ficha Catalográfica. 
+Insere os assuntos do trabalho, fornecidos pela biblioteca, na Ficha Catalográfica.
 
 \vspace{3ex}\noindent
 \verb|\cutter{XXXXx}|
 
-Insere {\it Cutter}, fornecido pela biblioteca, na Ficha Catalográfica. 
+Insere {\it Cutter}, fornecido pela biblioteca, na Ficha Catalográfica.
 
 \vspace{3ex}\noindent
 \verb|\cdd{CDD-XXX.X}|
 
-Insere CDD, fornecido pela biblioteca, na Ficha Catalográfica. 
+Insere CDD, fornecido pela biblioteca, na Ficha Catalográfica.
 
 \section{Elementos pré-textuais}
 
@@ -378,30 +393,30 @@ Para a capa, os comandos utilizados são:\lstinline!\instituicao{}!, \lstinline!\
 
 \subsection{Folha de rosto}
 
-O comando \verb|\folhaderosto[opção]| é utilizado para mostrar a folha de rosto do documento. Para isso, os seguintes comandos devem ser definidos no preâmbulo do documento: \verb|\autor{}|, \verb|\comentario{}|, \verb|\titulo{}|, \verb|\orientador[]{}{}|, \verb|\coorientador[]{}{}|, \verb|\data{}| e \verb|\local{}|. O parâmetro opcional serve para indicar se a folha de rosto será gerada com ou sem ficha catalográfica. 
+O comando \verb|\folhaderosto[opção]| é utilizado para mostrar a folha de rosto do documento. Para isso, os seguintes comandos devem ser definidos no preâmbulo do documento: \verb|\autor{}|, \verb|\comentario{}|, \verb|\titulo{}|, \verb|\orientador[]{}{}|, \verb|\coorientador[]{}{}|, \verb|\data{}| e \verb|\local{}|. O parâmetro opcional serve para indicar se a folha de rosto será gerada com ou sem ficha catalográfica.
 
 \subsubsection{Ficha Catalográfica}
-No caso de se utilizar o comando \verb|\folhaderosto[opção]| com a opção de gerar a ficha catalográfica, ao se compilar o documento a classe irá buscar um arquivo nomeado {\it fichacatalografica.tex} o mesmos diretório em que se encontra o arquivo \TeX~ principal do trabalho. Portanto, ao se optar pela ficha catalográfica, tal arquivo deve existir. 
+No caso de se utilizar o comando \verb|\folhaderosto[opção]| com a opção de gerar a ficha catalográfica, ao se compilar o documento a classe irá buscar um arquivo nomeado {\it fichacatalografica.tex} o mesmos diretório em que se encontra o arquivo \TeX~ principal do trabalho. Portanto, ao se optar pela ficha catalográfica, tal arquivo deve existir.
 
-O arquivo disponibiliado no modelo faz uso dos seguintes comandos, que dever ser definidos: \verb|\abreviatura{sigla}|,  \verb|\assuntos{Assunto 1}{Assunto 2}{Assunto 3}{Assunto 4}|, \verb|\cutter{XXXXx}|, \verb|\cdd{CDD-XXX.X}|.
+O arquivo disponibiliado no modelo faz uso dos seguintes comandos, que dever ser definidos: \verb|\abreviatura{sigla}|,  \lstinline!\assuntos{Assunto 1}{Assunto 2}{Assunto 3}{Assunto 4}!, \verb|\cutter{XXXXx}|, \verb|\cdd{CDD-XXX.X}|.
 
 
 \subsection{Folha de aprovação}
 
-A folha de aprovação é mostrada com o comando \verb|\termodeaprovacao|. Este por sua vez, depende dos comandos \verb|\autor{}|, \verb|\titulo{}|, \verb|\textoaprovacao{}|, \verb|\datadefesaUTFRP{}|, \verb|\coordenadorUTFPR[]{}{}|, \verb|\orientador[]{}{}|, \verb|\coorienta-| \verb|dor[]{}{}| (se houver) e dos comandos dos membros da banca dados por \verb|\primeiroassina[]{}|, \verb|\segundoassina[]{}|, \verb|\terceiroassina[]{}|  e \verb|\quartoassina[]{}| de acordo com seu número.
+A folha de aprovação é mostrada com o comando \verb|\termodeaprovacao|. Este por sua vez, depende dos comandos \verb|\autor{}|, \verb|\titulo{}|, \verb|\textoaprovacao{}|, \verb|\datadefesaUTFRP{}|, \verb|\coordenadorUTFPR[]{}{}|, \verb|\orientador[]{}{}|, \lstinline!\coorientador[]{}{}! (se houver) e dos comandos dos membros da banca dados por \lstinline!\primeiroassina!, \lstinline!\segundoassina!, \lstinline!\terceiroassina!, \lstinline!\quartoassina!, \lstinline!\quintoassina!, \lstinline!\sextoassina! e \lstinline!\setimoassina! de acordo com seu número. Adicionalmente tem-se os comandos \lstinline!\numerodemembrosnabanca{numero de membros}!, \lstinline!\orientadornabanca{sim ou nao}! e \lstinline!\coorientadornabanca{sim ou nao}!.
 
 As instruções para a organização da banca examinadora são as seguintes:
 \begin{itemize}
 	\item O primeiro membro da banca, definido pelo comando \verb|\orientador| é o presidente da banca;
 	\item O segundo membro será automaticamente o Co-orientador se ele existir e for definido pelo comando \verb|\coorientador|;
-	\item Os demais membros da banca são definidos pelos comandos \verb|\primeiroassina[]{}|, \verb|\segundoassina[]{}|, \verb|\terceiroassina[]{}|  e \verb|\quartoassina[]{}|;
+	\item Os demais membros da banca são definidos pelos comandos \lstinline!\primeiroassina!, \lstinline!\segundoassina!, \lstinline!\terceiroassina!, \lstinline!\quartoassina!, \lstinline!\quintoassina!, \lstinline!\sextoassina! e \lstinline!\setimoassina!;
 	\item Deixando os parâmetros dos comandos dos membros da banca vazios (como por exemplo \verb|\primeiroassina{}|), as respectivas linhas de assinatura não aparecerão;
 	\item Os comandos suportam um parâmetro adicional, entre colchetes, onde é colocado o grau de titulação do respectivo membro da banca. Se este parâmetro adicional não for utilizado, então o valor padrão \textit{Doutor} é atribuído.
 \end{itemize}
 
 
 
-Caso se faça a 
+Caso se faça a
 
 
 
