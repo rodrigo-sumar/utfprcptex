@@ -5,7 +5,7 @@
 %% Colaboradores:
 %%
 %%
-\documentclass[twoside,openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
+\documentclass[oneside,openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
 
 \usepackage[pdftex,colorlinks=false,plainpages=false,pdfpagelabels]{hyperref}
 %% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
@@ -22,6 +22,8 @@
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
 \usepackage{graphicx} % pacote grafico
 
+
+
 % Para fonte Times (Nimbus Roman) descomente linha abaixo
 %\fontetipo{times}
 
@@ -29,7 +31,7 @@
 \fontetipo{arial}
 
 %Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
-%\usepackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper]{geometry}
+\usepackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper]{geometry}
 
 
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
@@ -69,18 +71,28 @@
 \data{\the\year} % ano automático
 
 %%%% Folha de Aprovação
-\textoaprovacao{Esta \UTFPRdocumentodata\ foi julgada adequada para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata'' e aprovado em sua forma final pelo \UTFPRcoordenacaodata\ da \ABNTinstituicaodata.}
-\primeiroassina[Doutor, UFSC]{Primeiro Membro}
-\segundoassina{Segundo Membro}
-\terceiroassina{Terceiro Membro}
-\quartoassina{Quarto Membro}
-\datadefesaUTFPR{29/07/2011}
 
+
+\textoaprovacao{Esta \UTFPRdocumentodata\ foi julgada adequada para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata'' e aprovado em sua forma final pelo \UTFPRcoordenacaodata\ da \ABNTinstituicaodata.}
+\numerodemembrosnabanca{5} % Isso decide se a lista de assinaturas será colocada em duas colunas
+\orientadornabanca{sim} % Se faz parte da banca definir como sim
+\coorientadornabanca{sim} % Se faz parte da banca definir como sim
+\primeiroassina[Título \\ Universidade]{Primeiro Membro da Banca}
+\segundoassina[Título \\Universidade]{Segundo Membro da Banca}
+\terceiroassina[Título \\Universidade]{Terceiro Membro da Banca}
+\quartoassina[Título \\Universidade]{Quarto Membro da Banca}
+\quintoassina[Título \\Universidade]{Quinto Membro da Banca}
+\sextoassina[Título \\Universidade]{Sexto Membro da Banca}
+\setimoassina[Título \\Universidade]{Sétimo Membro da Banca}
+\datadefesaUTFPR{29/07/2011}
+%%%% Comentar para versao impressa
+\versaoeletronica{``A Folha de Aprovação assinada encontra-se na Coordenação do Curso do Programa''}% Texto a ser inserido na versão eletronica do documento.
 %---------- Inicio do Documento ----------
 \begin{document}
 \hypersetup{pageanchor=false}
 \capa % geracao automatica da capa
-\folhaderosto[comficha] % geracao automatica da folha de rosto
+\folhaderosto[semficha] % geracao automatica da folha de rosto
+
 
 \termodeaprovacao % <- ainda a ser implementado corretamente
 

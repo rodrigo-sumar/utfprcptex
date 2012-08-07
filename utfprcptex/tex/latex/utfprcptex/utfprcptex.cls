@@ -52,7 +52,13 @@ section=TITLE
 %para ordenar automaticamente a lista de siglas
 \immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
 
-\RequirePackage[format=hang,singlelinecheck=false,labelfont=bf,labelsep=endash,textfont=bf,justification=justified]{caption}
+\RequirePackage[
+format=hang,singlelinecheck=false,labelfont=bf,labelsep=endash,textfont=bf,
+justification=justified
+]{caption}
+
+
+
 
 \makeatletter	%Para que se entenda o @
 
@@ -94,6 +100,16 @@ section=TITLE
 
 \providecommand{\UTFPRcoordenacaodata}{}
 \newcommand{\coordenacao}[1]{\renewcommand{\UTFPRcoordenacaodata}{#1}}
+%\newcommand{\coordenacao}[1]{
+%\ifthenelse{\equal{#1}{Programa de Pós-Graduação em Engenharia Elétrica}}
+%           {\renewcommand{\UTFPRcoordenacaodata}{#1}}
+%{
+%\ifthenelse{\equal{#1}{Coordenação de Eletrotécnica}}
+%           {\renewcommand{\UTFPRcoordenacaodata}{#1}}
+%{\renewcommand{\UTFPRcoordenacaodata}{Coordenação de Dança de Salão}}
+%}
+%}
+
 
 \providecommand{\UTFPRcursodata}{}
 \newcommand{\curso}[1]{\renewcommand{\UTFPRcursodata}{#1}}
@@ -247,7 +263,7 @@ section=TITLE
 		\vfill
 		\begin{center}
 			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTlocaldata} \par}
-			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}}
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}} 
 		\end{center}
 \vspace{1cm}
 \if@restonecol\twocolumn \else \newpage \fi
@@ -363,8 +379,8 @@ section=TITLE
 		\end{center}
 \if@restonecol\twocolumn \else \newpage \fi
 \if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
-}
-% SE NAO TIVER
+} 
+% SE NAO TIVER 
 { \fontsize{12}{14}\selectfont
 \if@twocolumn
   \@restonecoltrue\onecolumn
@@ -386,7 +402,7 @@ section=TITLE
       \begin{center}
       \begin{tabular}{| C{5cm} |}
             \hline
-            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\
+            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\ 
             \hline
       \end{tabular}\vspace{30pt}
       \end{center}
@@ -464,7 +480,7 @@ section=TITLE
 \vspace{1cm}
 \ifthenelse{\equal{#1}{comficha}}
     {%\newpage
-    \setcounter{page}\z@
+     \setcounter{page}\z@
      \mbox{}
      \vfill
      \conteudofichacatalografica
@@ -501,6 +517,19 @@ section=TITLE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \providecommand{\ABNTtextoaprovacaodata}{}
 \newcommand{\textoaprovacao}[1]{\renewcommand{\ABNTtextoaprovacaodata}{#1}}
+\providecommand{\UTFPRversaoeletronica}{}
+\newcommand{\versaoeletronica}[1]{\renewcommand{\UTFPRversaoeletronica}{#1}}
+
+
+% Banca - Ate 4 membros, fora orientador e coorientador.
+% Se o nro de membros passar de 4, serão geradas duas colunas
+\providecommand\orientadorbancadata{nao}
+\providecommand\coorientadorbancadata{nao}
+\newcounter{nrobanca}
+\setcounter{nrobanca}{4}
+\newcommand\numerodemembrosnabanca[1]{\setcounter{nrobanca}{#1}}
+\newcommand\orientadornabanca[1]{\renewcommand\orientadorbancadata{#1}}
+\newcommand\coorientadornabanca[1]{\renewcommand\coorientadorbancadata{#1}}
 
 \providecommand{\ABNTprimeiroassinanome}{}
 \providecommand{\ABNTprimeiroassinadata}{}
@@ -526,13 +555,34 @@ section=TITLE
 {\renewcommand{\ABNTquartoassinanome}{#2}%
 \renewcommand{\ABNTquartoassinadata}{#1}}
 
+\providecommand{\ABNTquintoassinanome}{}
+\providecommand{\ABNTquintoassinadata}{}
+\newcommand{\quintoassina}[2][Doutor]%
+{\renewcommand{\ABNTquintoassinanome}{#2}%
+\renewcommand{\ABNTquintoassinadata}{#1}}
+
+\providecommand{\ABNTsextoassinanome}{}
+\providecommand{\ABNTsextoassinadata}{}
+\newcommand{\sextoassina}[2][Doutor]%
+{\renewcommand{\ABNTsextoassinanome}{#2}%
+\renewcommand{\ABNTsextoassinadata}{#1}}
+
+\providecommand{\ABNTsetimoassinanome}{}
+\providecommand{\ABNTsetimoassinadata}{}
+\newcommand{\setimoassina}[2][Doutor]%
+{\renewcommand{\ABNTsetimoassinanome}{#2}%
+\renewcommand{\ABNTsetimoassinadata}{#1}}
+
+
 \providecommand{\UTFPRdatadefesa}{}
 \newcommand{\datadefesaUTFPR}[1]%
 	{\renewcommand{\UTFPRdatadefesa}{#1}}
 
 \fancypagestyle{aprovacao}{
-\fancyhf{}
-\setlength{\headheight}{18mm}
+\fancyhead{}
+\setlength{\topmargin}{-12mm}
+\setlength{\footskip}{0mm}
+\setlength{\headheight}{15mm}
 \renewcommand{\headrule}{\hrule height\headrulewidth \vspace{0.3mm} {\color{yellow} \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
 \addtolength{\headheight}{\baselineskip}
 \renewcommand{\headrulewidth}{1pt}
@@ -560,6 +610,8 @@ section=TITLE
 \centering \includegraphics[width=30mm]{logo-utfpr.png}
 \end{minipage}
 }
+
+\ABNTifnotempty{\UTFPRversaoeletronica}{\fontsize{10}{12}\selectfont \fancyfoot[C]{\UTFPRversaoeletronica}}
 }
 
 
@@ -578,7 +630,7 @@ section=TITLE
 \thispagestyle{empty} 	% Define o estilo desta página como vazio
 \renewcommand{\thepage}{}
 \thispagestyle{aprovacao}
-    \espaco{1}
+   \espaco{1}
         \begin{center}
 			\textbf{TERMO DE APROVAÇÃO} \\[20pt]
 			\ABNTtitulodata \\[10pt]
@@ -594,13 +646,32 @@ section=TITLE
 \setlength{\ABNTsignwidth}{0.7\linewidth}
 {\centering \ABNTlocaldata,  \UTFPRdatadefesa.}
 \assinatura{\UTFPRcoordenadorname, \UTFPRcoordenadordata \\ \UTFPRcoordenadorStr~do Curso}%
-%\vspace{8mm}
+\ifthenelse{\equal{\orientadorbancadata}{nao}}
+{\vspace{0.5em}  \addtocounter{nrobanca}{1}
+\assinatura{\ABNTorientadorname, \ABNTorientadordata \\ \UTFPRorientadorStr}%
+}{}
+\ABNTifnotempty{\UTFPRcoorientadorname}{
+\ifthenelse{\equal{\coorientadorbancadata}{nao}}
+{\vspace{0.5em} \addtocounter{nrobanca}{1}
+\assinatura{\UTFPRcoorientadorname, \UTFPRcoorientadordata \\ \UTFPRcoorientadorStr}
+}
+}{}
 {\noindent\bfseries\selectfont Banca Examinadora:}
+\ifnum \value{nrobanca} > 6
+{
+\begin{multicols}{2}\setlength{\ABNTsignwidth}{0.9\linewidth}
+\ifthenelse{\equal{\orientadorbancadata}{sim}}
+{
 \assinatura{\ABNTorientadorname, \ABNTorientadordata \\ \UTFPRorientadorStr}%
 \vfill
+}{}
 \ABNTifnotempty{\UTFPRcoorientadorname}{
+\ifthenelse{\equal{\coorientadorbancadata}{sim}}
+{
 \assinatura{\UTFPRcoorientadorname, \UTFPRcoorientadordata \\ \UTFPRcoorientadorStr}
-\vfill}
+\vfill
+}
+}{}
         \ABNTifnotempty{\ABNTprimeiroassinadata}%
 		{
 		\begin{center}
@@ -629,6 +700,73 @@ section=TITLE
             \vfill
 		\end{center}
 		}
+\ABNTifnotempty{\ABNTquintoassinadata}%
+		{%
+		\begin{center}
+			\assinatura{\ABNTquintoassinanome, \ABNTquintoassinadata}
+            \vfill
+		\end{center}
+		}
+\ABNTifnotempty{\ABNTsextoassinadata}%
+		{%
+		\begin{center}
+			\assinatura{\ABNTsextoassinanome, \ABNTsextoassinadata}
+            \vfill
+		\end{center}
+		}
+\ABNTifnotempty{\ABNTsetimoassinadata}%
+		{%
+		\begin{center}
+			\assinatura{\ABNTsetimoassinanome, \ABNTsetimoassinadata}
+            \vfill
+		\end{center}
+		}
+\end{multicols}
+}
+\else
+{
+\ifthenelse{\equal{\orientadorbancadata}{sim}}
+{
+\assinatura{\ABNTorientadorname, \ABNTorientadordata \\ \UTFPRorientadorStr}%
+\vfill
+}{}
+\ABNTifnotempty{\UTFPRcoorientadorname}{
+\ifthenelse{\equal{\coorientadorbancadata}{sim}}
+{
+\assinatura{\UTFPRcoorientadorname, \UTFPRcoorientadordata \\ \UTFPRcoorientadorStr}
+\vfill
+}
+}{}
+        \ABNTifnotempty{\ABNTprimeiroassinadata}%
+		{
+		\begin{center}
+    	    \assinatura{\ABNTprimeiroassinanome, \ABNTprimeiroassinadata}
+            \vfill
+		\end{center}
+		}
+		\ABNTifnotempty{\ABNTsegundoassinadata}%
+		{
+		\begin{center}
+			\assinatura{\ABNTsegundoassinanome, \ABNTsegundoassinadata}
+            \vfill
+		\end{center}
+		}
+		\ABNTifnotempty{\ABNTterceiroassinadata}%
+		{
+		\begin{center}
+			\assinatura{\ABNTterceiroassinanome, \ABNTterceiroassinadata}
+            \vfill
+		\end{center}
+		}
+		\ABNTifnotempty{\ABNTquartoassinadata}%
+		{%
+		\begin{center}
+			\assinatura{\ABNTquartoassinanome, \ABNTquartoassinadata}
+            \vfill
+		\end{center}
+		}
+}
+\fi
 \espaco{\ABNTespacodefault}
 \if@openright\cleardoublepage\else\clearpage\fi
 \thispagestyle{empty}
@@ -1311,9 +1449,9 @@ section=TITLE
 \typeout{+===================================================================+}
 \typeout{|      Modelo de teses e dissertações da UTFPR.                }
 \typeout{|      Alterado conforme regras de 2009.       }
-\typeout{|      Desenvolvido por  UTFP-CP                               }
+\typeout{|      Desenvolvido por  UTFPR-CP                               }
 \typeout{|      Versão:                                             }
-\typeout{|   $LastChangedDate: 2012-01-14 11:06:40 -0300 (sab, 14 jan 2012)$  }
+\typeout{|   $LastChangedDate: 2012-08-02 16:27:00 -0300 (qui, 02 ago 2012)$  }
 \typeout{+===================================================================+}
 
 % Salvando arquivo temporário com dados a serem utilizados na próxima "rodada"
