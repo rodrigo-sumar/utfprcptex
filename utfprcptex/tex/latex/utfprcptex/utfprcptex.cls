@@ -263,7 +263,7 @@ justification=justified
 		\vfill
 		\begin{center}
 			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTlocaldata} \par}
-			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}} 
+			{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\ABNTdatadata}}
 		\end{center}
 \vspace{1cm}
 \if@restonecol\twocolumn \else \newpage \fi
@@ -379,8 +379,8 @@ justification=justified
 		\end{center}
 \if@restonecol\twocolumn \else \newpage \fi
 \if@twoside\setcounter{page}\z@ \else\setcounter{page}{1} \fi	% Reseta o contador de páginas. Parece não ser necessário aqui
-} 
-% SE NAO TIVER 
+}
+% SE NAO TIVER
 { \fontsize{12}{14}\selectfont
 \if@twocolumn
   \@restonecoltrue\onecolumn
@@ -402,7 +402,7 @@ justification=justified
       \begin{center}
       \begin{tabular}{| C{5cm} |}
             \hline
-            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\ 
+            \fontsize{14}{14}\selectfont  \bf PRÉ-PROJETO \\
             \hline
       \end{tabular}\vspace{30pt}
       \end{center}
@@ -880,7 +880,7 @@ justification=justified
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
 		\setlength\parskip{12pt}
-		\UTFPRcitadata. \ABNTtitulodata. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
+		\UTFPRcitadata. \textbf{\ABNTtitulodata}. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
 		\ABNTinstituicaodata. \ABNTlocaldata, \ABNTdatadata.\par
 }%
 {
@@ -910,7 +910,7 @@ justification=justified
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
 		\setlength\parskip{12pt}
-		\UTFPRcitadata. \UTFPRtitledata. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
+		\UTFPRcitadata. \textbf{\UTFPRtitledata.} \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
 		\ABNTinstituicaodata. \ABNTlocaldata, \ABNTdatadata. \par
 }%
 {
