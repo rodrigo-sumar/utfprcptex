@@ -7,6 +7,7 @@
 %%
 \documentclass[oneside,openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
 
+
 \usepackage[pdftex,colorlinks=false,plainpages=false,pdfpagelabels]{hyperref}
 %% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
 %% Comentar se o pacote hyperref não estiver sendo utilizado.
@@ -21,8 +22,21 @@
 \usepackage[latin1]{inputenc} % pacote para acentuacao direta
 \usepackage{amsmath,amsfonts,amssymb} % pacote matematico
 \usepackage{graphicx} % pacote grafico
+\usepackage[bottom]{footmisc}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ambientes para definições, exemplos e teoremas
+\newtheorem{problema}{Problema}
+\newtheorem{definicao}{Definição}
+\newtheorem{proposicao}{Proposição}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}{Corolário}
+\newtheorem{exemplo}{Exemplo}
+\newenvironment {prova}
+{\noindent {\it Demonstração.}} {{\par\hfill$\Box$ \\}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Para fonte Times (Nimbus Roman) descomente linha abaixo
 %\fontetipo{times}
@@ -31,12 +45,13 @@
 \fontetipo{arial}
 
 %Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
-\usepackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper]{geometry}
+\usepackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper
+            %,showframe
+            ]{geometry}
 
 
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
-\fazlistasiglas[Lista de Abreviaturas e Siglas] % Parâmetro opcional é o título da lista.
-
+\fazlistasiglas[Lista de Siglas] % Parâmetro opcional é o título da lista.
 
 % ---------- Preambulo ----------
 \instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
@@ -53,8 +68,8 @@
 \autor{Nome do Autor} % autor do trabalho
 \cita{SOBRENOME, Nome} % sobrenome (maiusculas), nome do autor do trabalho
 
-\palavraschave{Palavra-chave 1, Palavra-chave 2, ...} % palavras-chave do trabalho
-\keywords{Keyword 1, Keyword 2, ...} % palavras-chave do trabalho em ingles
+\palavraschave{Palavra-chave 1. Palavra-chave 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho - Devem ser inseridas de 3 a 5 palavras chave
+\keywords{Keyword 1. Keyword 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho em ingles - Devem ser inseridas de 3 a 5 palavras chave
 \comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRcoordenacaodata\ da \ABNTinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em \UTFPRareadata''.}
 
 
@@ -68,7 +83,7 @@
 
 \coordenadorUTFPR[Coordenadora]{Grau}{Nome do coordenador} % Coordenador do PPGEEL
 \local{Cornélio Procópio} % cidade
-\data{\the\year} % ano automático
+\data{\UTFPRanodefesa} % Aqui deve ir o ano da defesa.
 
 %%%% Folha de Aprovação
 
@@ -84,7 +99,7 @@
 \quintoassina[Título \\Universidade]{Quinto Membro da Banca}
 \sextoassina[Título \\Universidade]{Sexto Membro da Banca}
 \setimoassina[Título \\Universidade]{Sétimo Membro da Banca}
-\datadefesaUTFPR{29/07/2011}
+\datadefesaUTFPR{29}{07}{2012} %% A data deve ser inserida no formato dd/mm/aaaa
 %%%% Comentar para versao impressa
 \versaoeletronica{``A Folha de Aprovação assinada encontra-se na Coordenação do Curso do Programa''}% Texto a ser inserido na versão eletronica do documento.
 %---------- Inicio do Documento ----------
@@ -125,10 +140,11 @@ Abstract text (maximum of 500 words).
 % listas (opcionais, mas recomenda-se a partir de 5 elementos)
 \listadefiguras % geracao automatica da lista de figuras
 \listadetabelas % geracao automatica da lista de tabelas
-\listadequadros
-\listadesiglas % geracao automatica da lista de siglas
+\listadequadros % geracao automatica da lista de quadros
+\listadesiglas  % geracao automatica da lista de siglas
+\listadeabreviaturas  % geracao automatica da lista de abreviaturas
 \listadesimbolos % geracao automatica da lista de simbolos
-
+%\listofalgorithms %%%%% EM FASE DE TESTES
 % sumario
 \sumario % geracao automatica do sumario
 \hypersetup{pageanchor=true}

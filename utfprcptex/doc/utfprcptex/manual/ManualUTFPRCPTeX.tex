@@ -403,7 +403,7 @@ O arquivo disponibiliado no modelo faz uso dos seguintes comandos, que dever ser
 
 \subsection{Folha de aprovação}
 
-A folha de aprovação é mostrada com o comando \verb|\termodeaprovacao|. Este por sua vez, depende dos comandos \verb|\autor{}|, \verb|\titulo{}|, \verb|\textoaprovacao{}|, \verb|\datadefesaUTFRP{}|, \verb|\coordenadorUTFPR[]{}{}|, \verb|\orientador[]{}{}|, \lstinline!\coorientador[]{}{}! (se houver) e dos comandos dos membros da banca dados por \lstinline!\primeiroassina!, \lstinline!\segundoassina!, \lstinline!\terceiroassina!, \lstinline!\quartoassina!, \lstinline!\quintoassina!, \lstinline!\sextoassina! e \lstinline!\setimoassina! de acordo com seu número. Adicionalmente tem-se os comandos \lstinline!\numerodemembrosnabanca{numero de membros}!, \lstinline!\orientadornabanca{sim ou nao}! e \lstinline!\coorientadornabanca{sim ou nao}!.
+A folha de aprovação é mostrada com o comando \verb|\termodeaprovacao|. Este por sua vez, depende dos comandos \verb|\autor{}|, \verb|\titulo{}|, \verb|\textoaprovacao{}|, \verb|\datadefesaUTFRP{dia}{mes}{ano}|, \verb|\coordenadorUTFPR[]{}{}|, \verb|\orientador[]{}{}|, \lstinline!\coorientador[]{}{}! (se houver) e dos comandos dos membros da banca dados por \lstinline!\primeiroassina!, \lstinline!\segundoassina!, \lstinline!\terceiroassina!, \lstinline!\quartoassina!, \lstinline!\quintoassina!, \lstinline!\sextoassina! e \lstinline!\setimoassina! de acordo com seu número. Adicionalmente tem-se os comandos \lstinline!\numerodemembrosnabanca{numero de membros}!, \lstinline!\orientadornabanca{sim ou nao}! e \lstinline!\coorientadornabanca{sim ou nao}!.
 
 As instruções para a organização da banca examinadora são as seguintes:
 \begin{itemize}
@@ -478,9 +478,9 @@ Veja o exemplo na documentação do \utfprtex.
 
 
 
-\subsection{Lista de Siglas e Abreviações}
+\subsection{Lista de Siglas}
 
-Você pode utilizar o \utfprtex\ para gerar uma lista de siglas e abreviações de forma automática. O método descrito aqui é baseado no pacote \verb|nomencl|. Se você tiver mais dúvidas, pode consultar o manual deste pacote \cite{nomencl}.
+Você pode utilizar o \utfprtex\ para gerar uma lista de siglas de forma automática. O método descrito aqui é baseado no pacote \verb|nomencl|. Se você tiver mais dúvidas, pode consultar o manual deste pacote \cite{nomencl}.
 
 Para gerar a lista de siglas no \utfprtex você deve fazer o seguinte:
 
@@ -522,7 +522,15 @@ A largura das colunas da lista de siglas é calculada de acordo com a largura da 
 
 Veja mais exemplos da lista de siglas no documento exemplo que acompanha o \utfprtex.
 
+\subsection{Lista de Abreviaturas}
 
+Você pode utilizar o \utfprtex\ para gerar uma lista de abreviaturas de forma automática. Na primeira vez que você for definir uma abreviatura no texto, utilize o comando \verb|\abrevi|. Este comando gera uma nova entrada na lista de abreviatura. Dois parâmetros são necessários para ele: o significado da abreviatura e a abreviatura em si. Por exemplo:
+	
+	\verb|\abrevi{V. Exa.}{Vossa Excelência}|
+
+Inserir o comando \verb|\listadeabreviaturas| no ponto do texto onde você quer que a lista de abreviaturas apareça. A classe esta configurada para ordenar a lista em ordem alfabética.
+
+Veja mais exemplos da lista de abreviaturas no documento exemplo que acompanha o \utfprtex.
 
 \subsection{Lista de Símbolos}
 

@@ -34,6 +34,7 @@ section=TITLE
 \RequirePackage[latin1]{inputenc} % pacote para acentuacao direta
 \RequirePackage[T1]{fontenc}
 \RequirePackage{array}
+\RequirePackage{index}
 \RequirePackage{rotating}
 \RequirePackage{multirow}
 \RequirePackage{colortbl}
@@ -51,18 +52,24 @@ section=TITLE
 % O comando a seguir executa o makeindex automaticamente
 %para ordenar automaticamente a lista de siglas
 \immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
+\immediate\write18{makeindex \jobname.abreviax -s tabela-siglas.ist -o \jobname.abrevia}\relax
 
 \RequirePackage[
 format=hang,singlelinecheck=false,labelfont=bf,labelsep=endash,textfont=bf,
 justification=justified
 ]{caption}
+\renewcommand{\captionfont}{\fontsize{10}{12}\selectfont}
+% Package for pretty algorithms
+\RequirePackage[ruled]{algorithm}
+% Package for pretty algorithms
 
-
+\RequirePackage{algorithmic}
+\floatname{algorithm}{Procedure}
 
 
 \makeatletter	%Para que se entenda o @
 
-
+\setlength\parskip{0pt} %% Alterado para zero para o espacamento entre paragrafos ser de aproximadamente 1.5 linhas.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Segunda parte: Declaração das opções da UTFPR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,6 +81,8 @@ justification=justified
 \newlength{\siglamaxwidth}
 \newlength{\simbwidth}
 \newlength{\simbmaxwidth}
+\newlength{\abrevwidth}
+\newlength{\abrevmaxwidth}
 % Comando para selecionar o tipo de fonte
 \newcommand{\fontetipo}[1]%
 {
@@ -84,6 +93,9 @@ justification=justified
 }
 
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% ENTRADAS REFERENTES A INSTITUICAO
@@ -100,16 +112,6 @@ justification=justified
 
 \providecommand{\UTFPRcoordenacaodata}{}
 \newcommand{\coordenacao}[1]{\renewcommand{\UTFPRcoordenacaodata}{#1}}
-%\newcommand{\coordenacao}[1]{
-%\ifthenelse{\equal{#1}{Programa de Pós-Graduação em Engenharia Elétrica}}
-%           {\renewcommand{\UTFPRcoordenacaodata}{#1}}
-%{
-%\ifthenelse{\equal{#1}{Coordenação de Eletrotécnica}}
-%           {\renewcommand{\UTFPRcoordenacaodata}{#1}}
-%{\renewcommand{\UTFPRcoordenacaodata}{Coordenação de Dança de Salão}}
-%}
-%}
-
 
 \providecommand{\UTFPRcursodata}{}
 \newcommand{\curso}[1]{\renewcommand{\UTFPRcursodata}{#1}}
@@ -253,7 +255,7 @@ justification=justified
 		\vspace{60pt}
 		\begin{center}
 		  \begin{espacosimples}
-		       {\fontsize{14}{14}\selectfont \bf \ABNTtitulodata \par}
+		       {\fontsize{14}{14}\selectfont \bf \MakeUppercase \ABNTtitulodata \par}
 		  \end{espacosimples}
 		\end{center}
 		\vspace{12pt}
@@ -352,7 +354,7 @@ justification=justified
       \end{center}
      \begin{center}
 		  \begin{espacosimples}
-		       {\fontsize{14}{14}\selectfont  \bf \ABNTtitulodata \par}
+		       {\fontsize{14}{14}\selectfont  \bf \MakeUppercase \ABNTtitulodata \par}
 		  \end{espacosimples}
 	 \end{center}\vspace{12pt}
     \begin{espacosimples} \noindent
@@ -463,10 +465,11 @@ justification=justified
 		\end{center}
 		\vspace{96pt}
 		\begin{center}
-			{\fontsize{14}{14}\selectfont  \bf \ABNTtitulodata \par}
+			{\fontsize{14}{14}\selectfont  \bf \MakeUppercase \ABNTtitulodata \par}
 		\end{center}
 		\vspace{60pt}
-		\hspace{.35\textwidth}	
+		%\hspace{.35\textwidth}	
+        \hfill
 		\begin{minipage}{.55\textwidth}
 			\begin{espacosimples}
 				\fontsize{12}{14}\selectfont \ABNTcomentariodata \\[1.5mm] \UTFPRorientadorStr: \ABNTorientadordata~  \ABNTorientadorname   \ABNTifnotempty{\UTFPRcoorientadorname}{\\[1.5mm] \UTFPRcoorientadorStr: \UTFPRcoorientadordata~ \UTFPRcoorientadorname}
@@ -574,15 +577,20 @@ justification=justified
 \renewcommand{\ABNTsetimoassinadata}{#1}}
 
 
-\providecommand{\UTFPRdatadefesa}{}
-\newcommand{\datadefesaUTFPR}[1]%
-	{\renewcommand{\UTFPRdatadefesa}{#1}}
+\providecommand{\UTFPRdiadefesa}{}
+\providecommand{\UTFPRmesdefesa}{}
+\providecommand{\UTFPRanodefesa}{}
+\newcommand{\datadefesaUTFPR}[3]%
+	{\renewcommand{\UTFPRdiadefesa}{#1}
+    \renewcommand{\UTFPRmesdefesa}{#2}
+    \renewcommand{\UTFPRanodefesa}{#3}}
 
 \fancypagestyle{aprovacao}{
 \fancyhead{}
 \setlength{\topmargin}{-12mm}
+\setlength{\topskip}{0mm}
 \setlength{\footskip}{0mm}
-\setlength{\headheight}{15mm}
+\setlength{\headheight}{14mm}
 \renewcommand{\headrule}{\hrule height\headrulewidth \vspace{0.3mm} {\color{yellow} \hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
 \addtolength{\headheight}{\baselineskip}
 \renewcommand{\headrulewidth}{1pt}
@@ -644,7 +652,7 @@ justification=justified
 \setlength{\ABNTsignthickness}{0.4pt}
 \setlength{\ABNTsignskip}{6mm}
 \setlength{\ABNTsignwidth}{0.7\linewidth}
-{\centering \ABNTlocaldata,  \UTFPRdatadefesa.}
+{\centering \ABNTlocaldata,  \UTFPRdiadefesa/\UTFPRmesdefesa/\UTFPRanodefesa.}
 \assinatura{\UTFPRcoordenadorname, \UTFPRcoordenadordata \\ \UTFPRcoordenadorStr~do Curso}%
 \ifthenelse{\equal{\orientadorbancadata}{nao}}
 {\vspace{0.5em}  \addtocounter{nrobanca}{1}
@@ -788,7 +796,7 @@ justification=justified
     \@restonecolfalse\newpage
 \fi
 \thispagestyle{empty} 	% Define o estilo desta página como vazio
-	\pretextualchapter{}
+	\pretextualchapter{~} %%%% Alterado em 19 de setembro de 2012 para o \vfill funcionar.
 	\vfill
 	\begin{flushright}
 		\begin{minipage}{.75\textwidth}
@@ -843,7 +851,7 @@ justification=justified
     \@restonecolfalse\newpage
 \fi
 \thispagestyle{empty} 	% Define o estilo desta página como vazio
-	\pretextualchapter{}
+	\pretextualchapter{~} %%%% Alterado em 19 de setembro de 2012 para o \vfill funcionar.
 	\vfill
 	\begin{flushright}
 		\begin{minipage}{.75\textwidth}
@@ -880,7 +888,8 @@ justification=justified
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
 		\setlength\parskip{12pt}
-		\UTFPRcitadata. \textbf{\ABNTtitulodata}. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
+		\UTFPRcitadata. \textbf{\ABNTtitulodata}. \UTFPRanodefesa. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \ifthenelse{\equal{\UTFPRniveldata}{Mestrado}}
+           {\UTFPRcoordenacaodata}{\UTFPRcursodata},
 		\ABNTinstituicaodata. \ABNTlocaldata, \ABNTdatadata.\par
 }%
 {
@@ -910,7 +919,8 @@ justification=justified
 	\begin{espacosimples}%
 		\setlength\parindent{0pt}
 		\setlength\parskip{12pt}
-		\UTFPRcitadata. \textbf{\UTFPRtitledata.} \pageref{LastPage} f. \UTFPRdocumentodata\ -- \UTFPRcursodata,
+		\UTFPRcitadata. \textbf{\UTFPRtitledata.} \UTFPRanodefesa. \pageref{LastPage} f. \UTFPRdocumentodata\ -- \ifthenelse{\equal{\UTFPRniveldata}{Mestrado}}
+           {\UTFPRcoordenacaodata}{\UTFPRcursodata},
 		\ABNTinstituicaodata. \ABNTlocaldata, \ABNTdatadata. \par
 }%
 {
@@ -1018,7 +1028,8 @@ justification=justified
        	\auxcommand % Executando o comando lido.
        \fi
 	 \addtolength{\simbmaxwidth}{1em}
-	 \@starttoc{los}}
+    \@starttoc{los}
+}	
 	\end{espacosimples}
 }
 
@@ -1029,14 +1040,51 @@ justification=justified
      {\settowidth{\simbmaxwidth}{#1}} % seta o valor da maior com o tamanho da atual.
      {}\ignorespaces
 	  \ifthenelse{\equal{#2}{}}
-		  {\addcontentsline{los}{simbolo}{\protect\parbox[t]{\protect\simbmaxwidth}{#1}}}
-		  {\addcontentsline{los}{simbolo}{\protect\parbox[t]{\protect\simbmaxwidth}{#1} \protect\parbox[t]{\protect\textwidth - \protect\simbmaxwidth}{#2}}}\ignorespaces #1
+		  {\addcontentsline{los}{simbolo}{\hspace{0.24cm}\protect\parbox[t]{\protect\simbmaxwidth}{#1}}}
+		  {\addcontentsline{los}{simbolo}{\hspace{0.24cm}\protect\parbox[t]{\protect\simbmaxwidth}{#1} \protect\parbox[t]{\protect\textwidth - \protect\simbmaxwidth}{#2}}}\ignorespaces #1
 }
 
 % como a entrada ser´a impressa
 \newcommand\l@simbolo[2]{
 	\parbox[b]{\textwidth}{#1}
 }
+
+
+
+
+%%%%%%%%% LISTA DE ALGORITMOS %%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Altera a forma de montagem da lista de algoritmos
+\renewcommand{\listofalgorithms}
+{
+	\ifthenelse{\boolean{@twocolumn}}
+		{\setboolean{ABNTrestorecol}{true}\onecolumn}
+		{\setboolean{ABNTrestorecol}{false}}
+	\pretextualchapter{LISTA DE ALGORITMOS}
+	\begin{espacosimples}
+	\@starttoc{loa}
+	\end{espacosimples}
+	\ifthenelse{\boolean{ABNTrestorecol}}
+		{\twocolumn}
+		{}
+}
+
+
+
+\newcommand*{\l@algorithm}[2]
+{
+	\leftskip 3.4em
+	\rightskip 1.8em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.5cm
+	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	{\MakeUppercase{Algoritmo} \normalfont #1}\nobreak \figfillnum{#2}
+}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE SIGLAS
@@ -1050,7 +1098,7 @@ justification=justified
 	\ifthenelse{\lengthtest{\siglawidth > \siglamaxwidth}}% Se a nova sigla é maior,
 		{\settowidth{\siglamaxwidth}{#1}}% seta o valor da maior com o tamanho da atual.
 		{}\ignorespaces
-\nomenclature{#1}{#2}%
+\nomenclature{\hspace{0.14cm} #1}{#2}%
 {#2} ({#1})}
 
 \newcommand{\siglaStar}[2]{%
@@ -1058,7 +1106,7 @@ justification=justified
 	\ifthenelse{\lengthtest{\siglawidth > \siglamaxwidth}}% Se a nova sigla é maior,
 		{\settowidth{\siglamaxwidth}{#1}}% seta o valor da maior com o tamanho da atual.
 		{}\ignorespaces
-\nomenclature{#1}{#2}%
+\nomenclature{\hspace{0.14cm} #1}{#2}%
 {#2}}
 
 % Este comando redefine o codigo relevante do nomencl.sty
@@ -1101,13 +1149,47 @@ justification=justified
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LISTA DE ABREVIATURAS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newboolean{AlphaSort}
+\setboolean{AlphaSort}{true}
+\newcommand{\TSStextpagesep}{ }
+\newcommand{\TSSThePage}[1]{&}
+\renewcommand{\listofabreviationsname}{Lista de Abreviaturas}
+\newindex{abrevia}{abreviax}{abrevia}{\listofabreviationsname}
+
+
+\newcommand{\IndexCommand}[3]{\index[#1]{#2@#3|TSSThePage}}%
+
+\newcommand{\abrevi}[2]{\IndexCommand{abrevia}{#1 #2}{#1& #2} #2 (#1)}
+
+\newcommand{\Babrevtable}{\begin{flushleft}\begin{tabular}{lp{0.7\textwidth}l}}
+\newcommand{\Eabrevtable}{\end{tabular}\end{flushleft}}
+
+
+
+\newenvironment{tabeladesiglas}{\Babrevtable}{\Eabrevtable}
+
+\newcommand{\listadeabreviaturas}{
+\pretextualchapter{\listofabreviationsname}
+\IfFileExists{\jobname.abrevia}{
+\begin{tabeladesiglas}
+\printindex[abrevia]
+\end{tabeladesiglas}
+}{Sua lista de siglas s\'o vai aparecer aqui quando for rodar o makeindex.
+Veja a documenta\c c\~ao para mais detalhes.}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% LISTA DE QUADROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\listadequadros}{%
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
-%  \setchaptertype{listadequadros}
   \pretextualchapter{LISTA DE QUADROS}
   \@starttoc{qdr}%
   \ifthenelse{\boolean{ABNTrestorecol}}{\twocolumn}{}%
@@ -1154,7 +1236,7 @@ justification=justified
 	{
 		\setboolean{ABNTrestorecol}{false}
 	}%
-	\if@openright\cleardoublepage\else\clearpage\fi
+	%\if@openright\cleardoublepage\else\clearpage\fi
   	\pretextualchapter{SUM\'ARIO}%
 	\thispagestyle{\chaptertitlepagestyle}
 	\global\@topnum\z@
@@ -1169,7 +1251,7 @@ justification=justified
 
 %Altera forma de montagem dos capitulos
 \renewcommand{\l@chapter}[2]
-{
+{\setlength\parskip{0.25cm} %%% Acrescentado para permitir espaçamento no sumário.
 	\ifnum
 		\c@tocdepth > \m@ne
 		\addpenalty{-\@highpenalty}%
@@ -1215,7 +1297,8 @@ justification=justified
 			\hskip -\leftskip
                         #1\hspace{0.4em}\nobreak\dotfill\nobreak
 			\hb@xt@\@pnumwidth{\hss{#2}}
-			\begin{spacing}{\taxaespacomeio}\par\end{spacing}
+		 \begin{spacing} {\taxaespacomeio}\par \end{spacing}
+
 			\penalty\@highpenalty
 		\endgroup
 	\fi
@@ -1233,6 +1316,37 @@ justification=justified
   \ifthenelse{\equal{#1}{nouppercase}}{\realsection{#2}}{\realsection{\MakeUppercase{#2}}}
 }
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Defining how is typeset the \chapter
+\def\@makechapterhead#1{%
+  {%
+%  \noindent\rule{\textwidth}{1.7pt}\\\par
+  \normalfont\ABNTchaptersize\ABNTchapterfont%
+  \espaco{simples}%
+  %\vspace{30pt}%
+  \noindent%
+  \parbox[b]{\textwidth}{%
+    \parbox[t]{4ex}{\thechapter}%
+    \parbox[t]{\textwidth-4ex-1ex}%
+      {\interlinepenalty\@M\raggedright%
+        \ifthenelse{\boolean{ABNTcapchap}}%
+          {\MakeUppercase{#1}}%
+          {#1}
+      }%
+     }%
+   %\begin{spacing}{\taxaespacomeio}\par\par \end{spacing}
+   \vspace{18pt}
+  }%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 %Altera forma de montagem das subsecoes
 \renewcommand{\l@subsection}[2]
 {
@@ -1247,7 +1361,7 @@ justification=justified
 			\hskip -\leftskip
 			#1\hspace{0.4em}\nobreak\dotfill\nobreak
 			\hb@xt@\@pnumwidth{\hss{#2}}
-			\begin{spacing}{\taxaespacomeio}\par\end{spacing}
+			\begin{spacing}{\taxaespacomeio}\par \end{spacing}
 			\penalty\@highpenalty
 		\endgroup
 	\fi
@@ -1304,7 +1418,8 @@ justification=justified
           \interlinepenalty \@M
 					\ifnum #2<\c@secnumdepth%
 	          \ifthenelse{\boolean{ABNTcapsec}}
-	             {\MakeUppercase{#8}}{#8}\@@par%
+	             %{\MakeUppercase{#8}}{#8}\@@par% Retirada Caixa alta em 04 de setembro de 2012
+                    {#8}{#8}\@@par% Adicionado em 04 de setembro de 2012
 					\else%
 	             {#8}\@@par% lowercase
 					\fi}%
@@ -1329,7 +1444,129 @@ justification=justified
   \fi
   \@xsect{#5}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Implementation for Annex and Appendix
+%%%%%%%%%% Copiado do ABNTEX e alterado em 19/09/2012 para atender as normas da UTFPR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\anapchaptername}{\relax}
 
+\renewcommand*{\ABNTtravessao}{-$\!$-}
+
+\def\@anapchapter[#1]#2%
+      {
+       \refstepcounter{chapter}%
+       \ifthenelse{\boolean{ABNTAnApName}}
+        {
+         \begingroup
+         \ifthenelse{\equal{#1}{}}
+            {\def\thechapter{\anapchaptername{} \Alph{chapter}}}
+            {\def\thechapter{\anapchaptername{} \Alph{chapter}{}
+                                \ABNTtravessao{} #1}} 
+         \ABNTchaptermark{}
+         \endgroup
+         \if@twocolumn
+           \@topnewpage[\@makeanapchapterhead{#2}]%
+         \else
+           \@makeanapchapterhead{#2}%
+           \@afterheading
+         \fi
+        }
+        {
+         \ABNTchaptermark{#1}
+         \if@twocolumn
+            \@topnewpage[\@makechapterhead{#2}]%
+         \else
+            \@makechapterhead{#2}%
+            \@afterheading
+         \fi
+        }
+       \ifnum \c@secnumdepth >\m@ne
+         \typeout{\@chapapp\space\thechapter.}%
+         \ifthenelse{\boolean{ABNTAnApName}}{
+           \ifthenelse{\equal{#1}{}}
+              {\ABNTaddcontentsline{toc}{chapter}%
+                  {\MakeUppercase \anapchaptername{} \thechapter}}
+              {\ABNTaddcontentsline{toc}{chapter}%
+                  {\MakeUppercase \anapchaptername{} \thechapter{} \ABNTtravessao{} #1}}
+         }
+         {
+          \ABNTaddcontentsline{toc}{chapter}%
+                   {\protect\numberline{\thechapter}#1}
+         }  
+       \else
+         \ABNTaddcontentsline{toc}{chapter}{#1}
+       \fi
+       \par
+      }
+
+
+\renewcommand{\ABNTaposindicativoanap}{\relax}
+
+\def\@makeanapchapterhead#1{%
+  {%
+%  \noindent\rule{\textwidth}{1.7pt}\\\par
+  \normalfont\ABNTchapterfont\ABNTanapsize
+  \espaco{simples}
+  \ifthenelse{\boolean{ABNTAnApIndicativoIndent}}
+    {\ifthenelse{\boolean{ABNTCapAnnexAppendix}}
+       {\settowidth{\ABNTanapindent}{\MakeUppercase{\anapchaptername}
+          \thechapter{} \ABNTtravessao{}}}
+       {\settowidth{\ABNTanapindent}{\anapchaptername
+          \thechapter{} \ABNTtravessao{}}}
+    }
+    {}
+%  \vspace*{30pt} %%%% Alterado em 19/09/2012 para ficar no inico da margem superior
+%
+%
+  \raggedright\espaco{1.2}\par  
+  \begin{list}{}{%
+       \setlength{\listparindent}{0cm}%
+       \setlength{\itemindent}{-\ABNTanapindent}%
+       \setlength{\rightmargin}{0cm}%
+       \setlength{\leftmargin}{\ABNTanapindent}%
+       \setlength{\parsep}{0pt}}%
+    \item %
+      \ifthenelse{\equal{#1}{}}
+         {\ifthenelse{\boolean{ABNTCapAnnexAppendix}}
+            {\MakeUppercase{\anapchaptername}}
+            {\anapchaptername} 
+          \thechapter \ABNTaposindicativoanap}
+         {\ifthenelse{\boolean{ABNTCapAnnexAppendix}}
+            {\MakeUppercase{\anapchaptername}}
+            {\anapchaptername}
+          \thechapter{} \ABNTtravessao{} \ABNTaposindicativoanap
+            \ifthenelse{\boolean{ABNTcapchap}}%
+              {\MakeUppercase{#1}}%
+              {#1}}
+  \end{list}
+  \par\vspace{50pt}%
+  }%
+}
+
+\renewcommand{\appendix}{
+  \setcounter{chapter}{0}
+  \resetsubcounters{chapter}
+  \gdef\thechapter{\Alph{chapter}}
+  \setchaptertype{appendix}
+  \gdef\@chapapp{Apendice}
+  \renewcommand{\anapchaptername}{\appendixname}
+  \global\let\@chapter\@anapchapter}
+
+\let\apendice\appendix
+
+\renewcommand{\annex}{
+  \setcounter{chapter}{0}
+  \resetsubcounters{chapter}
+  \gdef\thechapter{\Alph{chapter}}
+  \setchaptertype{annex}
+  \gdef\@chapapp{Anexo}
+  \renewcommand{\anapchaptername}{\annexname}
+  \global\let\@chapter\@anapchapter}
+
+\let\anexo\annex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%  end of code for Annex and Appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Altera o espacamento das linhas dos capitulos e apendices
 \newcommand*{\taxaespacomeio}{.5}
@@ -1351,6 +1588,22 @@ justification=justified
 
 % Define o tipo de numeracao das paginas
 \renewcommand{\chaptertitlepagestyle}{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Redefine como será impresso o \chapter*
+% Retirado da classe abntex e alterado em 19 de setembro de 2012
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\@makeschapterhead#1{%
+  \par
+  {\centering\normalfont\ABNTchaptersize\ABNTchapterfont%
+   \ifthenelse{\boolean{ABNTcapchap}}%
+     {\MakeUppercase{#1}}%
+     {#1}
+    \par
+    }%
+  \vspace{45pt}%
+  \par%
+}
+
 
 % Altera a posicao da numeracao de paginas dos elementos pre-textuais
 \renewcommand{\pretextualchapter}
@@ -1402,7 +1655,7 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LEGENDAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\captionfonts}{\small}
+%\newcommand{\captionfonts}{\small}
 
 %\long\def\@makecaption#1#2{
 %	\vskip\abovecaptionskip
@@ -1419,9 +1672,9 @@ justification=justified
 {
 \begin{flushleft}
         \begin{spacing}{0.1}
-			\par
+			\par 
 		\end{spacing}
-		\small{\textbf{Fonte: #1}}
+		{\fontsize{10}{12}\selectfont \textbf{Fonte: #1}} %%%% Alterado em 19/09/2012 para fonte normal
 	\end{flushleft}
 }
 
@@ -1462,6 +1715,8 @@ justification=justified
 \immediate\write\outputstream{\string\setlength{\simbmaxwidth}{\the\simbmaxwidth}}
 % Salvando comando contendo a largura da maior sigla:
 \immediate\write\outputstream{\string\setlength{\siglamaxwidth}{\the\siglamaxwidth}}
+% Salvando comando contendo a largura da maior abreviatura:
+\immediate\write\outputstream{\string\setlength{\abrevmaxwidth}{\the\abrevmaxwidth}}
 % Fechando stream:
 \immediate\closeout\outputstream
 }%
