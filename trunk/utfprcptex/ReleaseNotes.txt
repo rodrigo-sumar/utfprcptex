@@ -1,13 +1,21 @@
-\numerodemembrosnabanca{numero de membros}
+\subsection{Lista de Abreviaturas}
 
-Este comando é utilizado para definir se os campos de assinaturas dos membros da banca na folha de aprovação serão colocados em uma ou duas colunas. Se o orientador e/ou o coorientador não fizerem parte da banca eles não deverão ser considerados no numero total de membros.
+Você pode utilizar o \utfprtex\ para gerar uma lista de abreviaturas de forma automática. Na primeira vez que você for definir uma abreviatura no texto, utilize o comando \verb|\abrevi|. Este comando gera uma nova entrada na lista de abreviatura. Dois parâmetros são necessários para ele: o significado da abreviatura e a abreviatura em si. Por exemplo:
+	
+	\verb|\abrevi{V. Exa.}{Vossa Excelência}|
+
+Inserir o comando \verb|\listadeabreviaturas| no ponto do texto onde você quer que a lista de abreviaturas apareça. A classe esta configurada para ordenar a lista em ordem alfabética.
+
+Veja mais exemplos da lista de abreviaturas no documento exemplo que acompanha o \utfprtex.
 
 
-\orientadornabanca{sim ou nao}
-
-Este comando é utilizado para definir se o campo de assinatura do orientador será inserido entre os membros da banca ou não. No caso de o orientador não participar da banca sua assinatura constará junto a do coordenador do curso.
 
 
-\coorientadornabanca{sim ou nao}
+Comando alterado \verb|\datadefesaUTFRP{dia}{mes}{ano}|, para poder utilizar o ano de defesa no resumo.
 
-Este comando é utilizado para definir se o campo de assinatura do coorientador será inserido entre os membros da banca ou não. No caso de o coorientador não participar da banca sua assinatura constará junto a do coordenador do curso.
+
+\nivel{Mestrado} obrigatório para definir no resumo qual entrada será usada \coordenacao ou \curso
+
+Alterado  resumo e abstract.
+
+Alterado espaço entre paragrafos.
