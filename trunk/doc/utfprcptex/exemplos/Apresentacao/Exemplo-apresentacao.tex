@@ -1,0 +1,62 @@
+%
+% Exemplo de apresentação usando o beamer.
+% Modelo criado por Rodrigo Rodrigues Sumar, beseado no modelo Torino:
+% http://blog.barisione.org/2007-09/torino-a-pretty-theme-for-latex-beamer/
+%
+% Cornélio Procópio, PR, Brasil.
+%
+% 2012
+
+\documentclass[pdflatex,notes=hide]{beamer}
+
+%
+% CONVERTA PARA PDF USANDO O DVIPS!!!
+% Ou seja, gere um arquivo postscript (.ps) com o dvips.exe e converta-o para pdf
+% com ps2pdf.exe.
+
+%\usepackage{handoutWithNotes}
+\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1 with notes landscape}[a4paper,border shrink=5mm]
+%\usepackage{graphicx}
+\usepackage{pgf}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          bullet=circle,% Use circles instead of squares for bullets.
+          titleline=true,% Show a line below the frame title.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=logo-utfpr-cp,% Logo for the first page.
+          ]{UTFPR}
+
+
+
+\logo{\pgfputat{\pgfxy(-1,-1)}{\pgfbox[center,base]{\includegraphics[height=20px]{logo-utfpr}}}}
+
+\useoutertheme{decolinesUTFPR}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+\setbeamercolor{block body example}{bg=utfpr2}
+\setbeamercolor{block title example}{fg=black,bg=utfpr3}
+
+\setbeamercolor{section in head/foot}{fg=white,bg=utfpr3}
+\setbeamercolor{subsection in head/foot}{fg=white,bg=utfpr3}
+
+% Para mostrar as anotações em uma segunda tela:
+%\setbeameroption{show notes on second screen=right}
+
+% Para mostrar somente os slides de anotações:
+%\setbeameroption{show only notes}
+
+\author[Rodrigo Sumar]{Rodrigo Sumar \and Rodrigo Sumar}
+\title[Exemplo]{Exemplo de Apresentação Exemplo de Apresentação Exemplo de Apresentação Exemplo}
+\subtitle{fasdffasd}
+\institute[UTFPR-CP]{Universidade Técnologica Federal do Paraná \\ Campus Cornélio Procópio \\ Paraná, Brasil}
+\date[SIGLA]{Nome da conferência ou tipo de apresentação \\ Local, 2009}
+
+\begin{document}
+
+% O texto da apresentação está no arquivo content.tex.
+\include{conteudo}
+\end{document}
+
