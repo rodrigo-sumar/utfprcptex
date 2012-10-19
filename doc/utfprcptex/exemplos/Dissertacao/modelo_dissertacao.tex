@@ -1,0 +1,206 @@
+%% Exemplo de Utilizacao do Estilo de formatacao utfprcptex  (http://http://code.google.com/p/utfprcptex/)
+%% para elaboração de Teses, Dissertações, etc...
+%% Autores: Rodrigo Rodrigues Sumar (sumar@utfpr.edu.br)
+%%          Bruno Augusto Angélico (bangelico@utfpr.edu.br)
+%% Colaboradores:
+%%
+%%
+\documentclass[oneside,openright]{utfprcptex} %openright = o capitulo comeca sempre em paginas impares
+
+
+\usepackage[pdftex,colorlinks=false,plainpages=false,pdfpagelabels]{hyperref}
+%% A seguinte linha evita algumas mensagens de warning por parte do hyperref.
+%% Comentar se o pacote hyperref não estiver sendo utilizado.
+\pdfstringdefDisableCommands{\edef\uppercase{}}
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax
+}
+
+\usepackage[alf,abnt-emphasize=bf,bibjustif,recuo=0cm, abnt-etal-cite=3, abnt-etal-list=0]{abntcite} %configuracao correta das referencias bibliográficas.
+
+\usepackage[brazil]{babel} % pacote portugues brasileiro
+\usepackage[latin1]{inputenc} % pacote para acentuacao direta
+\usepackage{amsmath,amsfonts,amssymb} % pacote matematico
+\usepackage{graphicx} % pacote grafico
+\usepackage[bottom]{footmisc}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ambientes para definições, exemplos e teoremas
+\newtheorem{problema}{Problema}
+\newtheorem{definicao}{Definição}
+\newtheorem{proposicao}{Proposição}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}[teorema]{Lema}
+\newtheorem{corolario}{Corolário}
+\newtheorem{exemplo}{Exemplo}
+\newenvironment {prova}
+{\noindent {\it Demonstração.}} {{\par\hfill$\Box$ \\}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Para fonte Times (Nimbus Roman) descomente linha abaixo
+%\fontetipo{times}
+
+% Para fonte Helvetica (Nimbus Sans) descomente linhas abaixo
+\fontetipo{arial}
+
+%Podem utilizar GEOMETRY{...} para realizar pequenos ajustes das margens. Onde, left=esquerda, right=direita, top=superior, bottom=inferior. P.ex.:
+\usepackage[left=3.0cm,right=2cm,top=3cm,bottom=2cm,a4paper
+            %,showframe
+            ]{geometry}
+
+
+%O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
+\fazlistasiglas[Lista de Siglas] % Parâmetro opcional é o título da lista.
+
+% ---------- Preambulo ----------
+\instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
+\unidade{Câmpus Cornélio Procópio}
+\diretoria{Diretoria de Pesquisa e Pós-Graduação}
+\coordenacao{Programa de Pós-Graduação em Engenharia Elétrica}
+\curso{Mestrado em Engenharia Elétrica}
+\documento{Dissertação}
+\nivel{Mestrado}
+\titulacao{Mestre}
+\area{Engenharia Elétrica}
+\titulo{T\'itulo em Portugu\^es} % titulo do trabalho em portugues
+\title{Title in English} % titulo do trabalho em ingles
+\autor{Nome do Autor} % autor do trabalho
+\cita{SOBRENOME, Nome} % sobrenome (maiusculas), nome do autor do trabalho
+
+\palavraschave{Palavra-chave 1. Palavra-chave 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho - Devem ser inseridas de 3 a 5 palavras chave
+\keywords{Keyword 1. Keyword 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho em ingles - Devem ser inseridas de 3 a 5 palavras chave
+\comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRcoordenacaodata\ da \ABNTinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em \UTFPRareadata''.}
+
+
+
+\orientador[Orientador]{Prof. Dr.}{Nome do Orientador} % nome do orientador do trabalho
+%\orientador[Orientadora:]{Nome da Orientadora} % <- no caso de orientadora, usar esta sintaxe
+%\coorientador{Nome do Co-orientador} % nome do co-orientador do trabalho, caso exista
+\coorientador[Co-orientadora]{Profa. Dra.}{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
+%\coorientador[Co-orientadores:]{Nome do Co-orientador} % no caso de 2 co-orientadores, usar esta sintaxe
+%\coorientadorb{}	% este comando inclui o nome do 2o co-orientador
+
+\coordenadorUTFPR[Coordenadora]{Grau}{Nome do coordenador} % Coordenador do PPGEEL
+\local{Cornélio Procópio} % cidade
+\data{\UTFPRanodefesa} % Aqui deve ir o ano da defesa.
+
+%%%% Folha de Aprovação
+
+
+\textoaprovacao{Esta \UTFPRdocumentodata\ foi julgada adequada para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata'' e aprovado em sua forma final pelo \UTFPRcoordenacaodata\ da \ABNTinstituicaodata.}
+\numerodemembrosnabanca{5} % Isso decide se a lista de assinaturas será colocada em duas colunas
+\orientadornabanca{sim} % Se faz parte da banca definir como sim
+\coorientadornabanca{sim} % Se faz parte da banca definir como sim
+\primeiroassina[Título \\ Universidade]{Primeiro Membro da Banca}
+\segundoassina[Título \\Universidade]{Segundo Membro da Banca}
+\terceiroassina[Título \\Universidade]{Terceiro Membro da Banca}
+\quartoassina[Título \\Universidade]{Quarto Membro da Banca}
+\quintoassina[Título \\Universidade]{Quinto Membro da Banca}
+\sextoassina[Título \\Universidade]{Sexto Membro da Banca}
+\setimoassina[Título \\Universidade]{Sétimo Membro da Banca}
+\datadefesaUTFPR{29}{07}{2012} %% A data deve ser inserida no formato dd/mm/aaaa
+%%%% Comentar para versao impressa
+\versaoeletronica{``A Folha de Aprovação assinada encontra-se na Coordenação do Curso do Programa''}% Texto a ser inserido na versão eletronica do documento.
+%---------- Inicio do Documento ----------
+\begin{document}
+\hypersetup{pageanchor=false}
+\capa % geracao automatica da capa
+\folhaderosto[semficha] % geracao automatica da folha de rosto
+
+
+\termodeaprovacao % <- ainda a ser implementado corretamente
+
+% dedicatória (opcional)
+\begin{dedicatoria}
+Texto da dedicat\'oria.
+\end{dedicatoria}
+
+% agradecimentos (opcional)
+\begin{agradecimentos}
+Texto dos agradecimentos.
+\end{agradecimentos}
+
+% epigrafe (opcional)
+\begin{epigrafe}
+Texto da ep\'igrafe.
+\end{epigrafe}
+
+%resumo
+\begin{resumo}
+Texto do resumo (m\'aximo de 500 palavras).
+\end{resumo}
+
+%abstract
+\begin{abstract}
+Abstract text (maximum of 500 words).
+\end{abstract}
+
+
+% listas (opcionais, mas recomenda-se a partir de 5 elementos)
+\listadefiguras % geracao automatica da lista de figuras
+\listadetabelas % geracao automatica da lista de tabelas
+\listadequadros % geracao automatica da lista de quadros
+\listadesiglas  % geracao automatica da lista de siglas
+\listadeabreviaturas  % geracao automatica da lista de abreviaturas
+\listadesimbolos % geracao automatica da lista de simbolos
+%\listofalgorithms %%%%% EM FASE DE TESTES
+% sumario
+\sumario % geracao automatica do sumario
+\hypersetup{pageanchor=true}
+
+%---------- Inicio do Texto ----------
+% recomenda-se a escrita de cada capitulo em um arquivo texto separado (exemplo: intro.tex, fund.tex, exper.tex, concl.tex, etc.) e a posterior inclusao dos mesmos no mestre do documento utilizando o comando \input{}, da seguinte forma:
+\input{capitulo1/cap1.tex}
+\input{capitulo2/cap2.tex}
+\input{capitulo3/cap3.tex}
+
+
+%---------- Referencias ----------
+\bibliography{referencias/referencias} % geracao automatica das referencias a partir do arquivo reflatex.bib
+
+%---------- Apendices (opcionais) ----------
+\apendice
+\chapter{Nome do Ap\^endice}
+
+Use o comando {\ttfamily \textbackslash apendice} e depois comandos {\ttfamily \textbackslash chapter\{\}}
+para gerar t\'itulos de ap\^en-dices.
+
+
+% ---------- Anexos (opcionais) ----------
+\anexo
+\chapter{Nome do Anexo}
+
+Use o comando {\ttfamily \textbackslash anexo} e depois comandos {\ttfamily \textbackslash chapter\{\}}
+para gerar t\'itulos de anexos.
+
+
+% --------- Lista de siglas --------
+%\textbf{* Observa\c{c}\~oes:} a lista de siglas nao realiza a ordenacao das siglas em ordem alfabetica
+% Em breve isso sera implementado, enquanto isso:
+%\textbf{Sugest\~ao:} crie outro arquivo .tex para siglas e utilize o comando \sigla{sigla}{descri\c{c}\~ao}.
+%Para incluir este arquivo no final do arquivo, utilize o comando \input{}.
+%Assim, Todas as siglas serao geradas na ultima pagina. Entao, devera excluir a ultima pagina da versao final do arquivo
+% PDF do seu documento.
+
+
+%-------- Citacoes ---------
+% - Utilize o comando \citeonline{...} para citacoes com o seguinte formato: Autor et al. (2011).
+% Este tipo de formato eh utilizado no comeco do paragrafo. P.ex.: \citeonline{autor2011}
+
+% - Utilize o comando \cite{...} para citacoeses no meio ou final do paragrafo. P.ex.: \cite{autor2011}
+
+
+
+%-------- Titulos com nomes cientificos (titulo, capitulos e secoes) ----------
+% Regra para escrita de nomes cientificos:
+% Os nomes devem ser escritos em italico,
+%a primeira letra do primeiro nome deve ser em maiusculo e o restante em minusculo (inclusive a primeira letra do segundo nome).
+% VEJA os exemplos abaixo.
+%
+% 1) voce nao quer que a secao fique com uppercase (caixa alta) automaticamente:
+%\section[nouppercase]{\MakeUppercase{Estudo dos efeitos da radiacao ultravioleta C e TFD em celulas de} {\textit{Saccharomyces boulardii}}
+%
+% 2) por padrao os cases (maiusculas/minuscula) sao ajustados automaticamente, voce nao precisa usar makeuppercase e afins.
+% \section{Introducao} % a introducao sera posta no texto como INTRODUCAO, automaticamente, como a norma indica.
+\end{document} 
