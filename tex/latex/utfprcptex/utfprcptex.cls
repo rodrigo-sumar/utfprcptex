@@ -944,7 +944,7 @@ justification=justified
 
 % Altera a forma de montagem da lista de figuras
 \renewcommand{\listadefiguras}
-{
+{\setlength\parskip{0.25cm}
 	\ifthenelse{\boolean{@twocolumn}}
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
@@ -982,7 +982,7 @@ justification=justified
 
 % Altera a forma de montagem da lista de tabelas
 \renewcommand{\listadetabelas}
-{
+{\setlength\parskip{0.25cm}
 	\ifthenelse{\boolean{@twocolumn}}
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
@@ -1027,7 +1027,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-	 \addtolength{\simbmaxwidth}{1em}
+	 \addtolength{\simbmaxwidth}{1ex}
     \@starttoc{los}
 }	
 	\end{espacosimples}
@@ -1186,7 +1186,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% LISTA DE QUADROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\listadequadros}{%
+\newcommand{\listadequadros}{\setlength\parskip{0.25cm}%
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
