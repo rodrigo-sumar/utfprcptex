@@ -1,21 +1,5 @@
-\subsection{Lista de Abreviaturas}
-
-Você pode utilizar o \utfprtex\ para gerar uma lista de abreviaturas de forma automática. Na primeira vez que você for definir uma abreviatura no texto, utilize o comando \verb|\abrevi|. Este comando gera uma nova entrada na lista de abreviatura. Dois parâmetros são necessários para ele: o significado da abreviatura e a abreviatura em si. Por exemplo:
-	
-	\verb|\abrevi{V. Exa.}{Vossa Excelência}|
-
-Inserir o comando \verb|\listadeabreviaturas| no ponto do texto onde você quer que a lista de abreviaturas apareça. A classe esta configurada para ordenar a lista em ordem alfabética.
-
-Veja mais exemplos da lista de abreviaturas no documento exemplo que acompanha o \utfprtex.
-
-
-
-
-Comando alterado \verb|\datadefesaUTFRP{dia}{mes}{ano}|, para poder utilizar o ano de defesa no resumo.
-
-
-\nivel{Mestrado} obrigatório para definir no resumo qual entrada será usada \coordenacao ou \curso
-
-Alterado  resumo e abstract.
-
-Alterado espaço entre paragrafos.
+Adicionados os comandos \abrevi e \listadeabreviaturas para geral a lista de abreviaturas apareça.
+Alterado o comando \datadefesaUTFRP{dia}{mes}{ano}|, para poder utilizar o ano de defesa no resumo.
+O comando \nivel{Mestrado} obrigatório para definir no resumo qual entrada será usada \coordenacao ou \curso
+Alterados o resumo e o abstract.
+Alterado o espaço entre paragrafos.
