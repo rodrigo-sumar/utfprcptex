@@ -944,7 +944,7 @@ justification=justified
 
 % Altera a forma de montagem da lista de figuras
 \renewcommand{\listadefiguras}
-{\setlength\parskip{0.25cm}
+{
 	\ifthenelse{\boolean{@twocolumn}}
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
@@ -958,7 +958,7 @@ justification=justified
 }
 
 \renewcommand*{\l@figure}[2]
-{
+{\setlength\parskip{0.25cm}
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
@@ -982,7 +982,7 @@ justification=justified
 
 % Altera a forma de montagem da lista de tabelas
 \renewcommand{\listadetabelas}
-{\setlength\parskip{0.25cm}
+{
 	\ifthenelse{\boolean{@twocolumn}}
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
@@ -997,7 +997,7 @@ justification=justified
 }%
 
 \renewcommand*{\l@table}[2]
-{
+{\setlength\parskip{0.25cm}
 	\leftskip 3.4em % 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
@@ -1186,7 +1186,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% LISTA DE QUADROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\listadequadros}{\setlength\parskip{0.25cm}%
+\newcommand{\listadequadros}{%
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
@@ -1209,7 +1209,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 
 
 \newcommand{\l@quadro}[2]
-{
+{\setlength\parskip{0.25cm}
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
