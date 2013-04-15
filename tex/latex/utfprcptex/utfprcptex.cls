@@ -162,6 +162,9 @@ justification=justified
 \providecommand{\UTFPRemailaluno}{}
 \newcommand{\emailaluno}[1]{\renewcommand{\UTFPRemailaluno}{#1}}
 
+\providecommand{\UTFPRcodigoaluno}{}
+\newcommand{\codigoaluno}[1]{\renewcommand{\UTFPRcodigoaluno}{#1}}
+
 \providecommand{\UTFPRfone}{}
 \newcommand{\fonealuno}[1]{\renewcommand{\UTFPRfone}{#1}}
 %%%%%%%%%
@@ -361,7 +364,7 @@ justification=justified
      \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
             \hline
             \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
-            {\fontsize{12}{14}\selectfont \ABNTautordata} & 123456 & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & {\fontsize{12}{14}\selectfont \UTFPRcodigoaluno} & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
             \hline
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
@@ -936,7 +939,7 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cria um comando auxiliar para montagem da lista de figuras
 \newcommand{\figfillnum}[1]
-{
+{\setlength\parskip{0.25cm}
 	{\hspace{0em}\normalfont\dotfill}\nobreak
 	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
 	\begin{spacing}{\taxaespacomeio}\par\end{spacing}
@@ -949,16 +952,17 @@ justification=justified
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
 	\pretextualchapter{LISTA DE FIGURAS}
-	\begin{espacosimples}
+    \begin{espacosimples}
 	\@starttoc{lof}
 	\end{espacosimples}
+
 	\ifthenelse{\boolean{ABNTrestorecol}}
 		{\twocolumn}
 		{}
 }
 
 \renewcommand*{\l@figure}[2]
-{\setlength\parskip{0.25cm}
+{
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
@@ -974,11 +978,14 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cria um comando auxiliar para montagem da lista de tabelas
 \newcommand{\tabfillnum}[1]
-{
+{\setlength\parskip{0.25cm}
 	{\hspace{0em}\normalfont\dotfill}\nobreak
 	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
-	\begin{spacing}{\taxaespacomeio}\par\end{spacing}
+	\begin{spacing}{\taxaespacomeio}FGFGFGF\par\end{spacing}
 }
+
+
+
 
 % Altera a forma de montagem da lista de tabelas
 \renewcommand{\listadetabelas}
@@ -991,17 +998,19 @@ justification=justified
 	\begin{espacosimples}
 	\@starttoc{lot}
 	\end{espacosimples}
+
 	\ifthenelse{\boolean{ABNTrestorecol}}
 		{\twocolumn}
 		{}
 }%
 
+
 \renewcommand*{\l@table}[2]
-{\setlength\parskip{0.25cm}
-	\leftskip 3.4em % 3.4em
+{
+	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
-	\parindent 0.em
+	\parindent 0em
 	\@tempdima 2.8em
 	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
 	{\MakeUppercase{Tabela} \normalfont #1}\nobreak \tabfillnum{#2} %
@@ -1027,7 +1036,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-	 \addtolength{\simbmaxwidth}{1ex}
+	 \addtolength{\simbmaxwidth}{1em}
     \@starttoc{los}
 }	
 	\end{espacosimples}
@@ -1144,7 +1153,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-%		 \addtolength{\siglamaxwidth}{1ex}
+		 \addtolength{\siglamaxwidth}{10cm}
 \printnomenclature[\the\siglamaxwidth]}
 
 
@@ -1187,6 +1196,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %%%%% LISTA DE QUADROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\listadequadros}{%
+
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
@@ -1204,12 +1214,13 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 }
 
 \newcommand{\quadfillnum}[1]{%
+\setlength\parskip{0.25cm}
   {\hspace{1em}\normalfont\dotfill}\nobreak
   \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
 
 
 \newcommand{\l@quadro}[2]
-{\setlength\parskip{0.25cm}
+{
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
@@ -1461,7 +1472,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
          \ifthenelse{\equal{#1}{}}
             {\def\thechapter{\anapchaptername{} \Alph{chapter}}}
             {\def\thechapter{\anapchaptername{} \Alph{chapter}{}
-                                \ABNTtravessao{} #1}} 
+                                \ABNTtravessao{} #1}}
          \ABNTchaptermark{}
          \endgroup
          \if@twocolumn
@@ -1492,7 +1503,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
          {
           \ABNTaddcontentsline{toc}{chapter}%
                    {\protect\numberline{\thechapter}#1}
-         }  
+         }
        \else
          \ABNTaddcontentsline{toc}{chapter}{#1}
        \fi
@@ -1518,7 +1529,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %  \vspace*{30pt} %%%% Alterado em 19/09/2012 para ficar no inico da margem superior
 %
 %
-  \raggedright\espaco{1.2}\par  
+  \raggedright\espaco{1.2}\par
   \begin{list}{}{%
        \setlength{\listparindent}{0cm}%
        \setlength{\itemindent}{-\ABNTanapindent}%
@@ -1529,7 +1540,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
       \ifthenelse{\equal{#1}{}}
          {\ifthenelse{\boolean{ABNTCapAnnexAppendix}}
             {\MakeUppercase{\anapchaptername}}
-            {\anapchaptername} 
+            {\anapchaptername}
           \thechapter \ABNTaposindicativoanap}
          {\ifthenelse{\boolean{ABNTCapAnnexAppendix}}
             {\MakeUppercase{\anapchaptername}}
@@ -1672,7 +1683,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 {
 \begin{flushleft}
         \begin{spacing}{0.1}
-			\par 
+			\par
 		\end{spacing}
 		{\fontsize{10}{12}\selectfont \textbf{Fonte: #1}} %%%% Alterado em 19/09/2012 para fonte normal
 	\end{flushleft}
