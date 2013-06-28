@@ -364,7 +364,7 @@ justification=justified
      \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
             \hline
             \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
-            {\fontsize{12}{14}\selectfont \ABNTautordata} & {\fontsize{12}{14}\selectfont \UTFPRcodigoaluno} & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & \UTFPRcodigoaluno & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
             \hline
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
@@ -420,7 +420,7 @@ justification=justified
      \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
             \hline
             \noindent \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
-            {\fontsize{12}{14}\selectfont \ABNTautordata} & 123456 & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & {\fontsize{12}{14}\selectfont \UTFPRcodigoaluno} & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
             \hline
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
@@ -939,7 +939,7 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cria um comando auxiliar para montagem da lista de figuras
 \newcommand{\figfillnum}[1]
-{\setlength\parskip{0.25cm}
+{
 	{\hspace{0em}\normalfont\dotfill}\nobreak
 	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
 	\begin{spacing}{\taxaespacomeio}\par\end{spacing}
@@ -952,17 +952,16 @@ justification=justified
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
 	\pretextualchapter{LISTA DE FIGURAS}
-    \begin{espacosimples}
+	\begin{espacosimples}
 	\@starttoc{lof}
 	\end{espacosimples}
-
 	\ifthenelse{\boolean{ABNTrestorecol}}
 		{\twocolumn}
 		{}
 }
 
 \renewcommand*{\l@figure}[2]
-{
+{\setlength\parskip{0.25cm}
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
@@ -978,14 +977,11 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cria um comando auxiliar para montagem da lista de tabelas
 \newcommand{\tabfillnum}[1]
-{\setlength\parskip{0.25cm}
+{
 	{\hspace{0em}\normalfont\dotfill}\nobreak
 	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
-	\begin{spacing}{\taxaespacomeio}FGFGFGF\par\end{spacing}
+	\begin{spacing}{\taxaespacomeio}\par\end{spacing}
 }
-
-
-
 
 % Altera a forma de montagem da lista de tabelas
 \renewcommand{\listadetabelas}
@@ -998,19 +994,17 @@ justification=justified
 	\begin{espacosimples}
 	\@starttoc{lot}
 	\end{espacosimples}
-
 	\ifthenelse{\boolean{ABNTrestorecol}}
 		{\twocolumn}
 		{}
 }%
 
-
 \renewcommand*{\l@table}[2]
-{
-	\leftskip 3.4em
+{\setlength\parskip{0.25cm}
+	\leftskip 3.4em % 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
-	\parindent 0em
+	\parindent 0.em
 	\@tempdima 2.8em
 	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
 	{\MakeUppercase{Tabela} \normalfont #1}\nobreak \tabfillnum{#2} %
@@ -1036,7 +1030,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-	 \addtolength{\simbmaxwidth}{1em}
+	 \addtolength{\simbmaxwidth}{1ex}
     \@starttoc{los}
 }	
 	\end{espacosimples}
@@ -1153,7 +1147,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-		 \addtolength{\siglamaxwidth}{10cm}
+		 \addtolength{\siglamaxwidth}{4pt}
 \printnomenclature[\the\siglamaxwidth]}
 
 
@@ -1196,7 +1190,6 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %%%%% LISTA DE QUADROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\listadequadros}{%
-
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
@@ -1214,13 +1207,12 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 }
 
 \newcommand{\quadfillnum}[1]{%
-\setlength\parskip{0.25cm}
   {\hspace{1em}\normalfont\dotfill}\nobreak
   \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
 
 
 \newcommand{\l@quadro}[2]
-{
+{\setlength\parskip{0.25cm}
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
