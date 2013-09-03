@@ -45,13 +45,14 @@ section=TITLE
 \RequirePackage[overload]{textcase}
 \RequirePackage{fancyhdr}
 \RequirePackage{xcolor}
+\RequirePackage{longtable}
 \usepackage{remreset}		% reinicia contadores
 \definecolor{meucinza}{rgb}{0.5, 0.5, 0.5}
 \PassOptionsToPackage{hyperindex=false}{hyperref}
 \RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 % O comando a seguir executa o makeindex automaticamente
 %para ordenar automaticamente a lista de siglas
-\immediate\write18{makeindex \jobname.nlo -s nomencl.ist -o \jobname.nls}\relax
+\immediate\write18{makeindex \jobname.nlo -s siglascl.ist -o \jobname.nls}\relax
 \immediate\write18{makeindex \jobname.abreviax -s tabela-siglas.ist -o \jobname.abrevia}\relax
 
 \RequirePackage[
@@ -364,7 +365,7 @@ justification=justified
      \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
             \hline
             \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
-            {\fontsize{12}{14}\selectfont \ABNTautordata} & \UTFPRcodigoaluno & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & {\fontsize{12}{14}\selectfont \UTFPRcodigoaluno} & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
             \hline
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
@@ -420,7 +421,7 @@ justification=justified
      \begin{tabular}{| m{0.25\linewidth} | m{0.25\linewidth} |m{0.25\linewidth}|m{0.25\linewidth}|}
             \hline
             \noindent \textbf{Nome:} & \textbf{Código:} & \textbf{Telefone:} & \textbf{E-mail:} \\
-            {\fontsize{12}{14}\selectfont \ABNTautordata} & {\fontsize{12}{14}\selectfont \UTFPRcodigoaluno} & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
+            {\fontsize{12}{14}\selectfont \ABNTautordata} & 123456 & \UTFPRfone & \texttt{\UTFPRemailaluno}\\
             \hline
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \textbf{\UTFPRorientadorStr:}} & \multicolumn{2}{l|}{\textbf{Assinatura do orientador:}}\\
             \multicolumn{2}{|l|}{\fontsize{12}{14}\selectfont \ABNTorientadordata~  \ABNTorientadorname} &  \multicolumn{2}{l|}{}\\
@@ -939,7 +940,7 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cria um comando auxiliar para montagem da lista de figuras
 \newcommand{\figfillnum}[1]
-{
+{\setlength\parskip{0.25cm}
 	{\hspace{0em}\normalfont\dotfill}\nobreak
 	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
 	\begin{spacing}{\taxaespacomeio}\par\end{spacing}
@@ -952,16 +953,17 @@ justification=justified
 		{\setboolean{ABNTrestorecol}{true}\onecolumn}
 		{\setboolean{ABNTrestorecol}{false}}
 	\pretextualchapter{LISTA DE FIGURAS}
-	\begin{espacosimples}
+    \begin{espacosimples}
 	\@starttoc{lof}
 	\end{espacosimples}
+
 	\ifthenelse{\boolean{ABNTrestorecol}}
 		{\twocolumn}
 		{}
 }
 
 \renewcommand*{\l@figure}[2]
-{\setlength\parskip{0.25cm}
+{
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
@@ -977,11 +979,14 @@ justification=justified
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Cria um comando auxiliar para montagem da lista de tabelas
 \newcommand{\tabfillnum}[1]
-{
+{\setlength\parskip{0.25cm}
 	{\hspace{0em}\normalfont\dotfill}\nobreak
 	\hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
 	\begin{spacing}{\taxaespacomeio}\par\end{spacing}
 }
+
+
+
 
 % Altera a forma de montagem da lista de tabelas
 \renewcommand{\listadetabelas}
@@ -994,17 +999,19 @@ justification=justified
 	\begin{espacosimples}
 	\@starttoc{lot}
 	\end{espacosimples}
+
 	\ifthenelse{\boolean{ABNTrestorecol}}
 		{\twocolumn}
 		{}
 }%
 
+
 \renewcommand*{\l@table}[2]
-{\setlength\parskip{0.25cm}
-	\leftskip 3.4em % 3.4em
+{
+	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
-	\parindent 0.em
+	\parindent 0em
 	\@tempdima 2.8em
 	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
 	{\MakeUppercase{Tabela} \normalfont #1}\nobreak \tabfillnum{#2} %
@@ -1030,7 +1037,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-	 \addtolength{\simbmaxwidth}{1ex}
+	 \addtolength{\simbmaxwidth}{1em}
     \@starttoc{los}
 }	
 	\end{espacosimples}
@@ -1112,22 +1119,29 @@ justification=justified
 \nomenclature{\hspace{0.14cm} #1}{#2}%
 {#2}}
 
+
+\def\@@@nomenclature[#1]#2#3{%
+\def\@tempa{#2}\def\@tempb{#3}%
+\protected@write\@nomenclaturefile{}%
+{\string\nomenclatureentry{#1\nom@verb\@tempa @{\nom@verb\@tempa}&%
+\begingroup\nom@verb\@tempb\protect\nomeqref{\theequation}%
+|nompageref}{\thepage}}%
+\endgroup
+\@esphack}
+
+
+
 % Este comando redefine o codigo relevante do nomencl.sty
 \newcommand{\fazlistasiglas}[1][Lista de Siglas]{
 \def\thenomenclature{%
-   \if@openright\cleardoublepage\else\clearpage\fi%
-   \pretextualchapter{\nomname}
-    \if@intoc\addcontentsline{toc}{chapter}{\nomname}\fi%
-  \nompreamble
-  \list{}{%
-    \labelwidth\nom@tempdim
-    \leftmargin\labelwidth
-    \advance\leftmargin\labelsep
-    \itemsep\nomitemsep
-    \let\makelabel\nomlabel}}
+\if@openright\cleardoublepage\else\clearpage\fi%
+\if@intoc\addcontentsline{toc}{chapter}{\nomname}\fi%
+\pretextualchapter{\nomname}
+\nompreamble
+\begin{longtable}[l]{@{}ll@{}}}
 \def\endthenomenclature{%
-  \endlist
-  \nompostamble}%
+\end{longtable}%
+\nompostamble}
 \makenomenclature%
 \renewcommand{\nomname}{#1}
 \renewcommand{\nomentryend}{.}%
@@ -1136,6 +1150,7 @@ justification=justified
 
 %% Define o comando que monta a lista de siglas
 \newcommand{\listadesiglas}{
+
 		 % Abrindo arquivo para leitura e verificando se ele existe:
 		 \newread\instream
 		 \immediate\openin\instream=\jobname.tmp
@@ -1147,7 +1162,7 @@ justification=justified
        	\immediate\closein\instream % Fechando o arquivo.
        	\auxcommand % Executando o comando lido.
        \fi
-		 \addtolength{\siglamaxwidth}{4pt}
+	   \addtolength{\siglamaxwidth}{1em}
 \printnomenclature[\the\siglamaxwidth]}
 
 
@@ -1190,6 +1205,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %%%%% LISTA DE QUADROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\listadequadros}{%
+
   \ifthenelse{\boolean{@twocolumn}}%
     {\setboolean{ABNTrestorecol}{true}\onecolumn}%
     {\setboolean{ABNTrestorecol}{false}}%
@@ -1207,12 +1223,13 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 }
 
 \newcommand{\quadfillnum}[1]{%
+\setlength\parskip{0.25cm}
   {\hspace{1em}\normalfont\dotfill}\nobreak
   \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
 
 
 \newcommand{\l@quadro}[2]
-{\setlength\parskip{0.25cm}
+{
 	\leftskip 3.4em
 	\rightskip 1.8em
 	\parfillskip -\rightskip
