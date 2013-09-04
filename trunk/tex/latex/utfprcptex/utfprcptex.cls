@@ -60,6 +60,8 @@ format=hang,singlelinecheck=false,labelfont=bf,labelsep=endash,textfont=bf,
 justification=justified
 ]{caption}
 \renewcommand{\captionfont}{\fontsize{10}{12}\selectfont}
+
+
 % Package for pretty algorithms
 \RequirePackage[ruled]{algorithm}
 % Package for pretty algorithms
@@ -1018,6 +1020,50 @@ justification=justified
 }
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% LISTA DE QUADROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\listadequadros}{%
+
+  \ifthenelse{\boolean{@twocolumn}}%
+    {\setboolean{ABNTrestorecol}{true}\onecolumn}%
+    {\setboolean{ABNTrestorecol}{false}}%
+  \pretextualchapter{LISTA DE QUADROS}
+  \begin{espacosimples}
+  \@starttoc{qdr}%
+  \end{espacosimples}
+  \ifthenelse{\boolean{ABNTrestorecol}}{\twocolumn}{}%
+}%
+
+\newcounter{quadro}
+\setcounter{quadro}{0}
+\newcommand{\ext@quadro}{qdr}
+\newcommand{\quadro}[1]{%
+	\captionsetup{type=quadro,name=Quadro}%FIXME só funciona em TEXLIVE
+	\caption[#1]{#1}
+}
+
+\newcommand{\quadfillnum}[1]{%
+\setlength\parskip{0.25cm}
+  {\hspace{0em}\normalfont\dotfill}\nobreak
+  \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
+  \begin{spacing}{\taxaespacomeio}\par\end{spacing}
+  }
+
+
+\newcommand{\l@quadro}[2]
+{
+	\leftskip 3.4em
+	\rightskip 1.8em
+	\parfillskip -\rightskip
+	\parindent 0em
+	\@tempdima 2.8em
+	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	{\MakeUppercase{Quadro} \normalfont #1}\nobreak \quadfillnum{#2}
+}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE SIMBOLOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1096,6 +1142,7 @@ justification=justified
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE SIGLAS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1138,9 +1185,11 @@ justification=justified
 \if@intoc\addcontentsline{toc}{chapter}{\nomname}\fi%
 \pretextualchapter{\nomname}
 \nompreamble
-\begin{longtable}[l]{@{}ll@{}}}
+\begin{flushleft}
+\begin{tabular}[l]{@{}ll@{}}}
 \def\endthenomenclature{%
-\end{longtable}%
+\end{tabular}%
+\end{flushleft}
 \nompostamble}
 \makenomenclature%
 \renewcommand{\nomname}{#1}
@@ -1198,46 +1247,6 @@ justification=justified
 \end{tabeladesiglas}
 }{Sua lista de siglas s\'o vai aparecer aqui quando for rodar o makeindex.
 Veja a documenta\c c\~ao para mais detalhes.}}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%% LISTA DE QUADROS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\listadequadros}{%
-
-  \ifthenelse{\boolean{@twocolumn}}%
-    {\setboolean{ABNTrestorecol}{true}\onecolumn}%
-    {\setboolean{ABNTrestorecol}{false}}%
-  \pretextualchapter{LISTA DE QUADROS}
-  \@starttoc{qdr}%
-  \ifthenelse{\boolean{ABNTrestorecol}}{\twocolumn}{}%
-}%
-
-\newcounter{quadro}
-\setcounter{quadro}{0}
-\newcommand{\ext@quadro}{qdr}
-\newcommand{\quadro}[1]{%
-	\captionsetup{type=quadro,name=Quadro}%FIXME só funciona em TEXLIVE
-	\caption[#1]{#1}
-}
-
-\newcommand{\quadfillnum}[1]{%
-\setlength\parskip{0.25cm}
-  {\hspace{1em}\normalfont\dotfill}\nobreak
-  \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}\par}
-
-
-\newcommand{\l@quadro}[2]
-{
-	\leftskip 3.4em
-	\rightskip 1.8em
-	\parfillskip -\rightskip
-	\parindent 0em
-	\@tempdima 2.8em
-	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-	{\MakeUppercase{Quadro} \normalfont #1}\nobreak \quadfillnum{#2}
-}
 
 
 
