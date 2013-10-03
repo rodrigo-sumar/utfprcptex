@@ -2,4 +2,4 @@ Adicionados os comandos \abrevi e \listadeabreviaturas para geral a lista de abr
 Alterado o comando \datadefesaUTFRP{dia}{mes}{ano}|, para poder utilizar o ano de defesa no resumo.
 O comando \nivel{Mestrado} obrigatório para definir no resumo qual entrada será usada \coordenacao ou \curso
 Alterados o resumo e o abstract.
-Alterado o espaço entre paragrafos.
+Alterado o espaço entre paragrafos
