@@ -21,6 +21,7 @@
 \usepackage{pgf}
 \usepackage[latin1]{inputenc}
 \usepackage[brazil]{babel}
+\usepackage{subfig}
 
 \usetheme[pageofpages=of,% String used between the current page and the
                          % total page count.
@@ -30,7 +31,18 @@
           titlepagelogo=logo-utfpr-cp,% Logo for the first page.
           ]{UTFPR}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ambientes para definições, exemplos e teoremas
+\newtheorem{problema}{Problema}
+\newtheorem{definicao}{Definição}
+\newtheorem{proposicao}{Proposição}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lema}{Lema}
+\newtheorem{corolario}{Corolário}
+\newtheorem{exemplo}{Exemplo}
+\newenvironment {prova}
+{\noindent {\it Demonstração.}} {{\par\hfill$\Box$ \\}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \logo{\pgfputat{\pgfxy(-1,-1)}{\pgfbox[center,base]{\includegraphics[height=20px]{logo-utfpr}}}}
 

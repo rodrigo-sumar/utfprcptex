@@ -176,11 +176,6 @@ O comando {\ttfamily \textbackslash abrevi\{\}\{\}} da classe \utfprtex permite 
 
 
 
-
-
-
-
-
 %\begin{teorema}
 %fsadfd
 %\end{teorema}
@@ -192,9 +187,11 @@ O comando {\ttfamily \textbackslash abrevi\{\}\{\}} da classe \utfprtex permite 
 %\begin{lema}
 %fgfgfg
 %\end{lema}
-%
-%\begin{algorithm}
-%\caption{Calculate $y = x^n$}
+
+
+
+%\begin{algorithm}[!htb]
+%\caption{Calculo de $y = x^n$}
 %\label{alg1}
 %\begin{algorithmic}
 %\REQUIRE $n \geq 0 \vee x \neq 0$
@@ -217,4 +214,27 @@ O comando {\ttfamily \textbackslash abrevi\{\}\{\}} da classe \utfprtex permite 
 %\ENDIF
 %\ENDWHILE
 %\end{algorithmic}
-%\end{algorithm} 
+%\end{algorithm}
+%
+%
+%
+%\begin{algorithm}[!htb]
+%    \caption{Calculate $Q_{ij}$}\label{alg:calcqij}
+%    \begin{algorithmic}[1]
+%      \REQUIRE $\tau>0,A\ne\emptyset,N=|A|$
+%      \ENSURE $Q_{ij}(\Delta t)\sum_{t\in A} e^{-\frac{|t-\delta t|}{\tau}}, \forall t\in A$
+%      \STATE $\mathbf{A}\Leftarrow\mathrm{sort}(A)\;\{O(N\log N)\}$
+%      \STATE $Q^-(1)\Leftarrow 1$
+%      \STATE $Q^+(N)\Leftarrow 0$
+%      \FOR{$k=1$ \TO $N-1$}
+%      \STATE  $ed(k)\Leftarrow e^{-\frac{\mathbf{A}(k+1)-\mathbf{A}(k)}{\tau}}$
+%      \ENDFOR
+%      \FOR{$k=1$ \TO $N-1$}
+%      \STATE $Q^-(k+1)\Leftarrow 1+Q^-(k)\cdot ed(k)$
+%      \STATE $Q^+(N-k)\Leftarrow (Q^+(N-k+1)+1)\cdot ed(N-k)$
+%      \ENDFOR
+%      \FOR{$k=1$ \TO $N$}
+%      \STATE $Q_{ij}(A(k))\Leftarrow Q^+(k)+Q^-(k)$
+%      \ENDFOR
+%    \end{algorithmic}
+%  \end{algorithm}
