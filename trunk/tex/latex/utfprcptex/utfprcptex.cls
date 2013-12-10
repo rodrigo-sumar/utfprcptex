@@ -21,7 +21,7 @@
 
 % Esta é uma classe Latex2e:
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{utfprcptex}[2011/12/12 Classe de Normas para Trabalhos da UTFPR]
+\ProvidesClass{utfprcptex}[2013/12/12 Classe de Normas para Trabalhos da UTFPR]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{abnt}}
 \ProcessOptions
@@ -66,9 +66,10 @@ justification=justified
 \RequirePackage[ruled]{algorithm}
 % Package for pretty algorithms
 
-\RequirePackage{algorithmic}
-\floatname{algorithm}{Procedure}
 
+
+\RequirePackage{algorithmic}
+\floatname{algorithm}{Algoritmo}
 
 \makeatletter	%Para que se entenda o @
 
@@ -988,8 +989,6 @@ justification=justified
 }
 
 
-
-
 % Altera a forma de montagem da lista de tabelas
 \renewcommand{\listadetabelas}
 {
@@ -1014,8 +1013,7 @@ justification=justified
 	\rightskip 1.8em
 	\parfillskip -\rightskip
 	\parindent 0em
-	\@tempdima 2.8em
-	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+	\@tempdima 2.8em --\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
 	{\MakeUppercase{Tabela} \normalfont #1}\nobreak \tabfillnum{#2} %
 }
 
@@ -1049,6 +1047,7 @@ justification=justified
   \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
   \begin{spacing}{\taxaespacomeio}\par\end{spacing}
   }
+
 
 
 \newcommand{\l@quadro}[2]
@@ -1125,17 +1124,22 @@ justification=justified
 		{}
 }
 
-
+\newcommand{\algfillnum}[1]{%
+\setlength\parskip{0.25cm}
+  {\hspace{0em}\normalfont\dotfill}\nobreak
+  \hb@xt@\@pnumwidth{\hfil\normalfont #1}{}
+  \begin{spacing}{\taxaespacomeio}\par\end{spacing}
+  }
 
 \newcommand*{\l@algorithm}[2]
 {
 	\leftskip 3.4em
 	\rightskip 1.8em
-	\parfillskip -\rightskip
+	\parfillskip  -\rightskip
 	\parindent 0em
-	\@tempdima 2.5cm
+	\@tempdima 1.8cm
 	--\advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-	{\MakeUppercase{Algoritmo} \normalfont #1}\nobreak \figfillnum{#2}
+	{\MakeUppercase{Algoritmo} \normalfont #1 }\nobreak \algfillnum{#2}
 }
 
 
@@ -1156,7 +1160,10 @@ justification=justified
 		{\settowidth{\siglamaxwidth}{#1}}% seta o valor da maior com o tamanho da atual.
 		{}\ignorespaces
 \nomenclature{\hspace{0.14cm} #1}{#2}%
-{#2} ({#1})}
+{#2} ({#1})
+}
+
+
 
 \newcommand{\siglaStar}[2]{%
 	\settowidth{\siglawidth}{#1}\ignorespaces
@@ -1164,7 +1171,8 @@ justification=justified
 		{\settowidth{\siglamaxwidth}{#1}}% seta o valor da maior com o tamanho da atual.
 		{}\ignorespaces
 \nomenclature{\hspace{0.14cm} #1}{#2}%
-{#2}}
+{#2}
+}
 
 
 \def\@@@nomenclature[#1]#2#3{%
@@ -1179,6 +1187,7 @@ justification=justified
 
 
 % Este comando redefine o codigo relevante do nomencl.sty
+
 \newcommand{\fazlistasiglas}[1][Lista de Siglas]{
 \def\thenomenclature{%
 \if@openright\cleardoublepage\else\clearpage\fi%
@@ -1186,20 +1195,21 @@ justification=justified
 \pretextualchapter{\nomname}
 \nompreamble
 \begin{flushleft}
-\begin{tabular}[l]{@{}ll@{}}}
+\begin{longtable}[l]{@{}ll@{}}
+}
 \def\endthenomenclature{%
-\end{tabular}%
+\end{longtable}%
 \end{flushleft}
+
 \nompostamble}
 \makenomenclature%
 \renewcommand{\nomname}{#1}
-\renewcommand{\nomentryend}{.}%
+\renewcommand{\nomentryend}{}%
 \setlength{\nomitemsep}{-\parsep}% Tirando espaço extre entre as entradas na lista.
 }
 
 %% Define o comando que monta a lista de siglas
 \newcommand{\listadesiglas}{
-
 		 % Abrindo arquivo para leitura e verificando se ele existe:
 		 \newread\instream
 		 \immediate\openin\instream=\jobname.tmp
@@ -1212,7 +1222,9 @@ justification=justified
        	\auxcommand % Executando o comando lido.
        \fi
 	   \addtolength{\siglamaxwidth}{1em}
-\printnomenclature[\the\siglamaxwidth]}
+\printnomenclature[\the\siglamaxwidth]
+\setcounter{abstable}{0}
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1232,8 +1244,8 @@ justification=justified
 
 \newcommand{\abrevi}[2]{\IndexCommand{abrevia}{#1 #2}{#1& #2} #2 (#1)}
 
-\newcommand{\Babrevtable}{\begin{flushleft}\begin{tabular}{lp{0.7\textwidth}l}}
-\newcommand{\Eabrevtable}{\end{tabular}\end{flushleft}}
+\newcommand{\Babrevtable}{\begin{flushleft}\begin{longtable}[l]{lp{0.7\textwidth}l}}
+\newcommand{\Eabrevtable}{\end{longtable}\end{flushleft}}
 
 
 
@@ -1245,6 +1257,7 @@ justification=justified
 \begin{tabeladesiglas}
 \printindex[abrevia]
 \end{tabeladesiglas}
+\setcounter{abstable}{0}
 }{Sua lista de siglas s\'o vai aparecer aqui quando for rodar o makeindex.
 Veja a documenta\c c\~ao para mais detalhes.}}
 
@@ -1401,7 +1414,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 {
 	\ifnum \c@tocdepth >\m@ne
 		\addpenalty{-\@highpenalty}%
-		\setlength\@tempdima{3em}%
+		\setlength\@tempdima{3.35em}%
 		\begingroup
 			\renewcommand{\@pnumwidth}{1.6em}
 			\parindent \z@ \rightskip \@pnumwidth
@@ -1733,7 +1746,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 \typeout{|      Alterado conforme regras de 2009.       }
 \typeout{|      Desenvolvido por  UTFPR-CP                               }
 \typeout{|      Versão:                                             }
-\typeout{|   $LastChangedDate: 2012-08-02 16:27:00 -0300 (qui, 02 ago 2012)$  }
+\typeout{|   $LastChangedDate: 2013-12-10 09:27:00 -0300$  }
 \typeout{+===================================================================+}
 
 % Salvando arquivo temporário com dados a serem utilizados na próxima "rodada"
