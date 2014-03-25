@@ -71,6 +71,14 @@ justification=justified
 \RequirePackage{algorithmic}
 \floatname{algorithm}{Algoritmo}
 
+\makeatletter
+\renewcommand*{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}%
+\thispagestyle{empty}%
+\newpage%
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
 \makeatletter	%Para que se entenda o @
 
 \setlength\parskip{0pt} %% Alterado para zero para o espacamento entre paragrafos ser de aproximadamente 1.5 linhas.
@@ -78,6 +86,13 @@ justification=justified
 % Segunda parte: Declaração das opções da UTFPR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%% Adequar comprimento da linha do rodapé as normas da utfpr
+\renewcommand{\footnoterule}{%
+  \kern -3pt
+  \hrule width 5cm height 1pt
+  \kern 2pt
+}
+%%%%%%%%%%%%%%%%%%%%%
 % Logotipo:
 \newcommand{\utfprtex}{{\rm U\kern-.15em\lower.7ex\hbox{T}\kern-.125em{FPRCP}\kern-.125em T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
