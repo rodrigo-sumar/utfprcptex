@@ -174,6 +174,9 @@ justification=justified
 \providecommand{\UTFPRautorcincodata}{}
 \newcommand{\autorcinco}[1]{\renewcommand{\UTFPRautorcincodata}{#1}}
 
+\providecommand{\UTFPRautorseisdata}{}
+\newcommand{\autorseis}[1]{\renewcommand{\UTFPRautorseisdata}{#1}}
+
 \providecommand{\UTFPRcitadata}{}
 \newcommand{\cita}[1]{\renewcommand{\UTFPRcitadata}{#1}}
 
@@ -330,6 +333,7 @@ justification=justified
 				\UTFPRifnotempty{\UTFPRautortresdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautortresdata}\par}{\vspace{18pt}}
 				\UTFPRifnotempty{\UTFPRautorquatrodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorquatrodata}\par}{\vspace{18pt}}
                 \UTFPRifnotempty{\UTFPRautorcincodata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorcincodata}\par}{\vspace{18pt}}
+                \UTFPRifnotempty{\UTFPRautorseisdata}{\fontsize{12}{14}\selectfont \bf \MakeUppercase{\UTFPRautorseisdata}\par}{\vspace{18pt}}
 			\end{espacosimples}
 		\end{center}
         \vfill
